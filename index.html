@@ -4,17 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roswell Family Farm</title>
-  <meta name="description" content="Pasture-raised chickens and pork – fresh from our farm in Salisbury, NY." />
+  <meta name="description" content="Pasture-raised meat chickens and pork – fresh from our farm in Salisbury, NY." />
+
+  <!-- Tailwind CSS via CDN (OK for now) -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React + ReactDOM -->
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+  <!-- Babel for JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-gray-100 font-sans">
   <div id="root">Loading...</div>
 
-  <!-- React code -->
   <script type="text/babel">
+    // Nav
     const NavBar = () => (
       <nav className="bg-green-600 text-white p-4 shadow-md sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center">
@@ -31,6 +37,7 @@
       </nav>
     );
 
+    // Hero
     const Hero = () => (
       <section id="home" className="bg-gray-200 h-screen flex flex-col justify-center items-center text-center px-4">
         <h2 className="text-4xl md:text-6xl font-bold text-green-800 mb-4">Fresh From Our Farm</h2>
@@ -42,6 +49,7 @@
       </section>
     );
 
+    // About
     const About = () => (
       <section id="about" className="py-16 bg-white text-center px-4">
         <h2 className="text-3xl font-bold mb-4">About Roswell Family Farm</h2>
@@ -51,33 +59,32 @@
       </section>
     );
 
+    // Products
     const Products = () => (
-     const Products = () => (
-  <section id="products" className="py-16 bg-gray-100 px-4">
-    <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
-    <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold mb-2">Whole Chickens</h3>
-        <p className="text-gray-700">Perfect for roasting. Pasture-raised and packed with flavor.</p>
-      </div>
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold mb-2">Half Chickens</h3>
-        <p className="text-gray-700">Great for smaller meals. Pasture-raised and delicious.</p>
-      </div>
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold mb-2">Whole Pigs</h3>
-        <p className="text-gray-700">Reserve a whole pig — raised in partnership with Spofford Farm.</p>
-      </div>
-      <div className="bg-white p-6 rounded-lg shadow-md col-span-full md:col-span-3 text-center">
-        <h3 className="text-xl font-semibold mb-2">Coming Soon: Pork Cuts</h3>
-        <p className="text-gray-700">Chops, roasts, sausage & more — USDA-inspected and full of flavor.</p>
-      </div>
-    </div>
-  </section>
-);
-
+      <section id="products" className="py-16 bg-gray-100 px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Whole Chickens</h3>
+            <p className="text-gray-700">Perfect for roasting. Pasture-raised and packed with flavor.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Half Chickens</h3>
+            <p className="text-gray-700">Great for smaller meals. Pasture-raised and delicious.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Whole Pigs</h3>
+            <p className="text-gray-700">Reserve a whole pig — raised in partnership with Spofford Farm.</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md col-span-full md:col-span-3 text-center">
+            <h3 className="text-xl font-semibold mb-2">Coming Soon: Pork Cuts</h3>
+            <p className="text-gray-700">Chops, roasts, sausage & more — USDA-inspected and full of flavor.</p>
+          </div>
+        </div>
+      </section>
     );
 
+    // Contact
     const Contact = () => (
       <section id="contact" className="py-16 bg-white text-center px-4">
         <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
@@ -87,12 +94,14 @@
       </section>
     );
 
+    // Footer
     const Footer = () => (
       <footer className="bg-green-600 text-white text-center py-4">
         <p>© 2025 Roswell Family Farm. All rights reserved.</p>
       </footer>
     );
 
+    // App
     const App = () => (
       <div>
         <NavBar />
@@ -104,6 +113,7 @@
       </div>
     );
 
+    // Mount to DOM
     ReactDOM.render(<App />, document.getElementById('root'));
   </script>
 </body>
