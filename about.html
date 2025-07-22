@@ -7,66 +7,33 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg')
-        no-repeat center center fixed;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
       background-size: cover;
+      margin: 0;
       font-family: sans-serif;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-menu {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: #16a34a;
-        flex-direction: column;
-        padding: 1rem;
-      }
-
-      .mobile-menu.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: block;
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
     }
   </style>
 </head>
 <body class="text-white">
-
-  <!-- Navbar -->
-  <nav class="bg-green-600 p-4 sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Roswell Family Farm</h1>
-      <div class="md:hidden">
-        <span class="hamburger" onclick="toggleMenu()">☰</span>
-      </div>
-      <ul class="hidden md:flex space-x-4">
-        <li><a href="/" class="hover:text-green-200">Home</a></li>
-        <li><a href="/about.html" class="hover:text-green-200">About</a></li>
-        <li><a href="/#products" class="hover:text-green-200">Products</a></li>
-        <li><a href="/chicken-orders.html" class="hover:text-green-200">Chicken Orders</a></li>
-        <li><a href="/pork-orders.html" class="hover:text-green-200">Pork Preorders</a></li>
-        <li><a href="/goat-orders.html" class="hover:text-green-200">Goat Orders</a></li>
-        <li><a href="/contact.html" class="hover:text-green-200">Contact</a></li>
+  <!-- Navigation Bar -->
+  <header class="bg-green-800 p-4 shadow-md">
+    <nav class="container mx-auto flex justify-between items-center">
+      <a href="/" class="text-white text-xl font-bold">Roswell Family Farm</a>
+      <ul class="flex gap-6 text-white">
+        <li><a href="/about.html" class="hover:text-green-300">About</a></li>
+        <li><a href="/chicken-orders.html" class="hover:text-green-300">Chicken Orders</a></li>
+        <li><a href="/pork-orders.html" class="hover:text-green-300">Pork Orders</a></li>
+        <li><a href="/goat-orders.html" class="hover:text-green-300">Goat Orders</a></li>
+        <li><a href="/contact.html" class="hover:text-green-300">Contact</a></li>
       </ul>
-    </div>
-    <ul id="mobileMenu" class="mobile-menu md:hidden space-y-2 text-white">
-      <li><a href="/" class="hover:text-green-200">Home</a></li>
-      <li><a href="/about.html" class="hover:text-green-200">About</a></li>
-      <li><a href="/#products" class="hover:text-green-200">Products</a></li>
-      <li><a href="/chicken-orders.html" class="hover:text-green-200">Chicken Orders</a></li>
-      <li><a href="/pork-orders.html" class="hover:text-green-200">Pork Preorders</a></li>
-      <li><a href="/goat-orders.html" class="hover:text-green-200">Goat Orders</a></li>
-      <li><a href="/contact.html" class="hover:text-green-200">Contact</a></li>
-    </ul>
-  </nav>
+    </nav>
+  </header>
 
-  <!-- About Section -->
-  <section class="py-16 px-6 max-w-3xl mx-auto
+  <!-- Main Content -->
+  <main class="px-6 py-16 max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-8">About Roswell Family Farm</h1>
+    <p class="text-lg text-gray-200 mb-4">
+      Roswell Family Farm is proudly run by Anthony Roswell and his wife Emily, along with their three young farmhands — Willow (6), Wayon (5), and Wyatt (3). Together, they’re raising pasture-raised chickens with care and integrity right in the heart of Salisbury, NY.
+    </p>
+    <p class="text-lg text-gray-200 mb-4">
+      The Roswells believe in raising animals the right way — outdoors, with fresh air, green pasture, and plenty of room to roam. Their happy flock of chicke
