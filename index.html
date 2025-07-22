@@ -4,66 +4,91 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roswell Family Farm</title>
-  <meta name="description" content="Pasture-raised meat chickens, pork, and goats – fresh from our farm in Salisbury, NY." />
-
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
   <style>
     body {
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
         url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') 
         no-repeat center center fixed;
-      background-size: auto 100%;
-      margin: 0;
+      background-size: cover;
       font-family: sans-serif;
-    }
-
-    #root {
-      min-height: 100vh;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        background-size: auto 50%;
-      }
-      nav ul {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: #16a34a;
-        flex-direction: column;
-        padding: 1rem;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      .hamburger {
-        display: block;
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
     }
   </style>
 </head>
-<body class="font-sans">
-  <div id="root">Loading...</div>
+<body class="text-white">
 
-  <script type="text/babel">
-    const NavBar = () => {
-      const [isOpen, setIsOpen] = React.useState(false);
-      return (
-        <nav className="bg-green-600 text-white p-4 shadow-md sticky top-0 z-50">
-          <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-2xl font-bold">Roswell Family Farm</h1>
-            <div className="md:hidden">
-              <span className="hamburger" onClick={() => setIsOpen(!isOpen)}>☰</span>
-            </div>
-            <ul className={`md:flex space-x-4 ${isOpen ? 'active' : ''}`}>
-              <li><a href="#home" className="hover:text-green-200 block py-2">Home</a></li>
-              <li><a href="/about.html" className="hover:text-green-200 block py-2">About</a></li>
-              <li><a href="#products" className="hover:text-green-200 block py-2">Products</a></li>
+  <!-- Navbar -->
+  <nav class="bg-green-600 p-4 sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Roswell Family Farm</h1>
+      <ul class="hidden md:flex space-x-4">
+        <li><a href="/" class="hover:text-green-200">Home</a></li>
+        <li><a href="/about.html" class="hover:text-green-200">About</a></li>
+        <li><a href="#products" class="hover:text-green-200">Products</a></li>
+        <li><a href="/chicken-orders.html" class="hover:text-green-200">Chicken Orders</a></li>
+        <li><a href="/pork-orders.html" class="hover:text-green-200">Pork Preorders</a></li>
+        <li><a href="/goat-orders.html" class="hover:text-green-200">Goat Orders</a></li>
+        <li><a href="/contact.html" class="hover:text-green-200">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="h-screen flex flex-col justify-center items-center text-center px-4">
+    <h2 class="text-5xl font-bold mb-4">Fresh From Our Farm</h2>
+    <p class="text-xl mb-6">Pasture-raised meat chickens, pork, and goats – delivered to your door.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/chicken-orders.html" class="bg-green-600 px-6 py-3 rounded-full hover:bg-green-700">Chicken Orders</a>
+      <a href="/pork-orders.html" class="bg-pink-600 px-6 py-3 rounded-full hover:bg-pink-700">Pork Preorders</a>
+      <a href="/goat-orders.html" class="bg-blue-600 px-6 py-3 rounded-full hover:bg-blue-700">Goat Orders</a>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="py-16 px-4 bg-black bg-opacity-60">
+    <h2 class="text-3xl font-bold text-center mb-8">Our Products</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Whole Chickens</h3>
+        <p>Perfect for roasting. Pasture-raised and packed with flavor.</p>
+      </div>
+      <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Half Chickens</h3>
+        <p>Great for smaller meals. Pasture-raised and delicious.</p>
+      </div>
+      <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Chicken Cuts</h3>
+        <p>Premium cuts including breasts, thighs, and wings — pasture-raised.</p>
+      </div>
+      <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Whole Pigs</h3>
+        <p>Reserve a whole pig — raised in partnership with Spofford Farm.</p>
+      </div>
+      <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Half Pigs</h3>
+        <p>Perfect for families. Raised with care in partnership with Spofford Farm.</p>
+      </div>
+      <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Goat Meat</h3>
+        <p>Tender and flavorful pasture-raised goat meat, available for order.</p>
+      </div>
+      <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md col-span-full text-center">
+        <h3 class="text-xl font-semibold mb-2">Coming Soon: Pork Cuts</h3>
+        <p>Chops, roasts, sausage & more — USDA-inspected and full of flavor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-600 text-white text-center py-6">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+    <div class="bg-white text-gray-800 bg-opacity-90 p-4 rounded-lg shadow-md max-w-md mx-auto mt-4">
+      <h3 class="text-lg font-semibold mb-2">Hay Bales from Spofford Farm</h3>
+      <p>Big and small square bales available! 🌾 Perfect for livestock or landscaping.</p>
+      <p class="mt-2">📧 <a href="mailto:cspofford72@gmail.com" class="text-blue-600 underline">cspofford72@gmail.com</a></p>
+      <p>📞 (315) 868-2037</p>
+      <p>📍 955 Thompson Rd, Salisbury, NY</p>
+    </div>
+  </footer>
+</body>
+</html>
