@@ -3,55 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Us - Roswell Family Farm</title>
+  <title>About – Roswell Family Farm</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('your-background-image.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
-  </style>
 </head>
-<body class="text-white font-sans">
+<body class="bg-gray-100 font-sans">
 
   <!-- Navigation -->
-  <header class="bg-green-800 shadow-md">
-    <nav class="container mx-auto flex justify-between items-center p-4">
+  <header class="bg-green-700 shadow-md sticky top-0 z-50">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
       <a href="/" class="text-2xl font-bold text-white">Roswell Family Farm</a>
-      <ul class="hidden md:flex gap-6 text-white font-medium">
-        <li><a href="/about.html" class="hover:text-green-300">About</a></li>
-        <li><a href="/chicken-orders.html" class="hover:text-green-300">Chicken Orders</a></li>
-        <li><a href="/pork-orders.html" class="hover:text-green-300">Pork Orders</a></li>
-        <li><a href="/goat-orders.html" class="hover:text-green-300">Goat Orders</a></li>
-        <li><a href="/contact.html" class="hover:text-green-300">Contact</a></li>
+      <button id="menu-toggle" class="text-white md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <ul id="menu" class="hidden flex-col md:flex md:flex-row md:items-center gap-6 bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0 w-full md:w-auto px-4 py-4 md:p-0">
+        <li><a href="/" class="block py-2 hover:text-green-300">Home</a></li>
+        <li><a href="/about.html" class="block py-2 hover:text-green-300">About</a></li>
+        <li><a href="/chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
+        <li><a href="/pork-orders.html" class="block py-2 hover:text-green-300">Pork Orders</a></li>
+        <li><a href="/goat-orders.html" class="block py-2 hover:text-green-300">Goat Orders</a></li>
+        <li><a href="/contact.html" class="block py-2 hover:text-green-300">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-4xl mx-auto px-6 py-16 text-center">
-    <h1 class="text-4xl font-bold mb-8">Welcome to Roswell Family Farm</h1>
-
-    <p class="text-lg text-gray-200 mb-4">
-      Nestled in the heart of Salisbury, NY, Roswell Family Farm is a family-run homestead dedicated to raising animals the right way — on pasture, with care, intention, and plenty of fresh air.
+  <!-- About Section -->
+  <section class="py-16 px-6 text-center max-w-3xl mx-auto">
+    <h2 class="text-3xl font-bold mb-4 text-green-700">About Roswell Family Farm</h2>
+    <p class="text-gray-700 text-lg mb-6">
+      Roswell Family Farm is lovingly run by Anthony and his wife Emily Roswell, along with their three young kids: Willow (6), Wayon (5), and Wyatt (3). Nestled in Salisbury, NY, their family is passionate about raising happy, healthy animals the natural way.
     </p>
-
-    <p class="text-lg text-gray-200 mb-4">
-      The farm is led by Anthony and Emily Roswell, who are raising their three beautiful children — Willow (6), Wayon (5), and Wyatt (3) — to appreciate the land, animals, and values of real, honest food.
+    <p class="text-gray-700 text-lg mb-6">
+      They specialize in pasture-raised chickens and are excited to expand soon into raising goats as well. Through their close partnership with Craig and Stephanie Spofford of <strong>Spofford Farm</strong>, the Roswells are also proud to offer delicious, all-natural, pasture-raised pork — available as whole hogs, halves, or (coming soon) individual cuts.
     </p>
-
-    <p class="text-lg text-gray-200 mb-4">
-      At the heart of their operation are their happy, healthy pasture-raised chickens — raised with no hormones or antibiotics, just sunshine, bugs, grass, and love. Soon, the Roswells will be introducing goats to their pasture rotation as well!
+    <p class="text-gray-700 text-lg">
+      Whether you're enjoying chicken, pork, or goat from Roswell Family Farm, you can trust it's raised with love, care, and a whole lot of heart.
     </p>
+  </section>
 
-    <p class="text-lg text-gray-200 mb-4">
-      Beyond their own animals, Anthony and Emily are proud to team up with close friends and fellow farmers Craig and Stephanie Spofford of <strong>Spofford Farm</strong>. This partnership brings you delicious, all-natural pork — pasture-raised with care, and available as whole hogs, half hogs, or (soon) a variety of convenient cuts.
-    </p>
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+  </footer>
 
-    <p class="text-lg text-gray-200">
-      Roswell Family Farm is more than just a place to buy good meat — it’s a place rooted in family, stewardship, and a commitment to doing things the right way. From our family to yours, thank you for supporting local, pasture-raised food.
-    </p>
-  </main>
-
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('menu').classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
