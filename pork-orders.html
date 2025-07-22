@@ -11,9 +11,10 @@
       height: 100%;
       font-family: "Segoe UI", sans-serif;
       background-color: #f8f8f8;
+      color: #333;
     }
 
-    /* Home button styles */
+    /* Nav bar with home button */
     .nav-bar {
       background-color: #2f855a;
       padding: 1rem;
@@ -33,22 +34,59 @@
       background-color: #e2e8f0;
     }
 
+    /* Hero message */
+    .hero {
+      padding: 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #f0fdf4, #dcfce7);
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #2f612c;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #444;
+    }
+
     iframe {
       display: block;
       width: 100%;
-      height: calc(100vh - 70px); /* Adjust height to account for nav bar */
+      height: calc(100vh - 230px); /* adjust for nav + hero */
       border: none;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+      .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Home Button Nav Bar -->
+  <!-- Home button nav bar -->
   <div class="nav-bar">
     <a href="https://roswellfamilyfarm.com">← Back to Home</a>
   </div>
 
-  <!-- Google Form Embed -->
+  <!-- Hero section with creative farm message -->
+  <div class="hero">
+    <h1>Reserve Your Pasture-Raised Pork</h1>
+    <p>
+      Lovingly raised by <strong>Roswell Family Farm</strong> in cosmic collaboration with
+      <strong>Spofford Farm</strong> — bringing you pork that’s truly <em>out of this world</em>. 🐖🛸
+    </p>
+  </div>
+
+  <!-- Full-screen form embed -->
   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfdv8bqFWkMjJ0DUsmfAB9UcxT85-Nm8Lacon7SNDZ6sJhK8g/viewform?embedded=true" loading="lazy">
     Loading...
   </iframe>
