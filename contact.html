@@ -12,27 +12,35 @@
   <style>
     body {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
+        url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
       background-size: cover;
+    }
+    .nav-open {
+      display: flex !important;
+      flex-direction: column;
     }
   </style>
 </head>
 <body class="text-white font-sans">
 
-  <!-- Header / Navigation -->
+  <!-- Navigation -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
-    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <nav class="container mx-auto px-4 py-4 flex flex-wrap items-center justify-between">
       <a href="/" class="text-2xl font-bold text-white">Roswell Family Farm</a>
-      <button id="menu-toggle" class="text-white md:hidden">
+
+      <!-- Hamburger -->
+      <button id="menu-toggle" class="text-white md:hidden focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
-      <ul id="menu" class="hidden flex-col md:flex md:flex-row md:items-center gap-6 bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0 w-full md:w-auto px-4 py-4 md:p-0">
+
+      <!-- Menu -->
+      <ul id="menu" class="hidden md:flex md:items-center md:gap-6 w-full md:w-auto mt-4 md:mt-0 bg-green-700 md:bg-transparent px-4 py-4 md:p-0">
         <li><a href="/" class="block py-2 hover:text-green-300">Home</a></li>
         <li><a href="/about.html" class="block py-2 hover:text-green-300">About</a></li>
-        <li><a href="index.html#products" class="hover:text-green-200 block py-2">Products</a></li>
+        <li><a href="/index.html#products" class="block py-2 hover:text-green-300">Products</a></li>
         <li><a href="/chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
         <li><a href="/pork-orders.html" class="block py-2 hover:text-green-300">Pork Preorders</a></li>
         <li><a href="/goat-orders.html" class="block py-2 hover:text-green-300">Goat Orders</a></li>
@@ -71,14 +79,4 @@
   <!-- Footer -->
   <footer class="bg-green-700 text-white text-center py-6 mt-12">
     <p>© 2025 Roswell Family Farm. All rights reserved.</p>
-  </footer>
-
-  <!-- Hamburger Script -->
-  <script>
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('menu').classList.toggle('hidden');
-    });
-  </script>
-
-</body>
-</html>
+  </fo
