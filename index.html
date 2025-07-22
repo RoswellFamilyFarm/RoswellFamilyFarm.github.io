@@ -16,7 +16,7 @@
   <!-- Babel for JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- Custom CSS for background -->
+  <!-- Custom CSS for background and responsiveness -->
   <style>
     body {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
@@ -27,6 +27,52 @@
     #root {
       min-height: 100vh;
     }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #16a34a;
+        flex-direction: column;
+        padding: 1rem;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      nav {
+        padding: 1rem;
+      }
+      .hero h2 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .hero a {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
+      .about h2, .products h2, .contact h2 {
+        font-size: 1.5rem;
+      }
+      .about p, .contact p {
+        font-size: 0.9rem;
+      }
+      .products .grid {
+        grid-template-columns: 1fr;
+      }
+      .products div {
+        margin-bottom: 1rem;
+      }
+    }
   </style>
 </head>
 <body class="font-sans">
@@ -34,21 +80,27 @@
 
   <script type="text/babel">
     // Nav
-    const NavBar = () => (
-      <nav className="bg-green-600 text-white p-4 shadow-md sticky top-0 z-50">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Roswell Family Farm</h1>
-          <ul className="flex space-x-4">
-            <li><a href="#home" className="hover:text-green-200">Home</a></li>
-            <li><a href="#about" className="hover:text-green-200">About</a></li>
-            <li><a href="#products" className="hover:text-green-200">Products</a></li>
-            <li><a href="/chicken-orders.html" className="hover:text-green-200">Chicken Orders</a></li>
-            <li><a href="/pork-orders.html" className="hover:text-green-200">Pork Preorders</a></li>
-            <li><a href="#contact" className="hover:text-green-200">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-    );
+    const NavBar = () => {
+      const [isOpen, setIsOpen] = React.useState(false);
+      return (
+        <nav className="bg-green-600 text-white p-4 shadow-md sticky top-0 z-50">
+          <div className="container mx-auto flex justify-between items-center">
+            <h1 className="text-2xl font-bold">Roswell Family Farm</h1>
+            <div className="md:hidden">
+              <span className="hamburger" onClick={() => setIsOpen(!isOpen)}>☰</span>
+            </div>
+            <ul className={`md:flex space-x-4 ${isOpen ? 'active' : ''}`}>
+              <li><a href="#home" className="hover:text-green-200 block py-2">Home</a></li>
+              <li><a href="#about" className="hover:text-green-200 block py-2">About</a></li>
+              <li><a href="#products" className="hover:text-green-200 block py-2">Products</a></li>
+              <li><a href="/chicken-orders.html" className="hover:text-green-200 block py-2">Chicken Orders</a></li>
+              <li><a href="/pork-orders.html" className="hover:text-green-200 block py-2">Pork Preorders</a></li>
+              <li><a href="#contact" className="hover:text-green-200 block py-2">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      );
+    };
 
     // Hero
     const Hero = () => (
