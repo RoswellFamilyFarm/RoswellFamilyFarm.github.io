@@ -4,7 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roswell Family Farm</title>
-  <meta name="description" content="Pasture-raised meat chickens and pork – fresh from our farm in Salisbury, NY." />
+  <meta name="description" content="Pasture-raised meat chickens, pork, and goats – fresh from our farm in Salisbury, NY." />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React + ReactDOM -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Custom CSS for background and responsiveness -->
+  <style>
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
+      background-size: auto 100%;
+      margin: 0;
+      font-family: sans-serif;
+    }
+    #root {
+      min-height: 100vh;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body {
+        background-size: auto 50%;
+      }
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #16a34a;
+        flex-direction: column;
+        padding: 1rem;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+     露
+
+System: Thank you for providing the code for your website. I'll create a new sub-page for "Goat Orders" (`goat-orders.html`) that matches the style and structure of your existing `index.html`, and I'll update the `index.html` to include a "Goat Orders" button in both the NavBar and Hero sections. Since you mentioned using GitHub, I'll assume you want the sub-page as a separate file that can be hosted alongside your main page. Below are the two artifacts: the modified `index.html` and the new `goat-orders.html`.
+
+<xaiArtifact artifact_id="1fb8eedf-b866-4f8f-8262-05323ae77885" artifact_version_id="6541ea0f-26a7-4b81-a850-ca8a0fff8a8a" title="index.html" contentType="text/html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roswell Family Farm</title>
+  <meta name="description" content="Pasture-raised meat chickens, pork, and goats – fresh from our farm in Salisbury, NY." />
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -98,6 +155,7 @@
               <li><a href="#products" className="hover:text-green-200 block py-2">Products</a></li>
               <li><a href="/chicken-orders.html" className="hover:text-green-200 block py-2">Chicken Orders</a></li>
               <li><a href="/pork-orders.html" className="hover:text-green-200 block py-2">Pork Preorders</a></li>
+              <li><a href="/goat-orders.html" className="hover:text-green-200 block py-2">Goat Orders</a></li>
               <li><a href="#contact" className="hover:text-green-200 block py-2">Contact</a></li>
             </ul>
           </div>
@@ -109,10 +167,11 @@
     const Hero = () => (
       <section id="home" className="h-screen flex flex-col justify-center items-center text-center px-4">
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">Fresh From Our Farm</h2>
-        <p className="text-xl text-white mb-6">Pasture-raised meat chickens and pork – delivered to your door.</p>
+        <p className="text-xl text-white mb-6">Pasture-raised meat chickens, pork, and goats – delivered to your door.</p>
         <div>
           <a href="/chicken-orders.html" className="bg-green-600 px-6 py-3 rounded-full text-white text-lg hover:bg-green-700 transition mr-4">Chicken Orders</a>
-          <a href="/pork-orders.html" className="bg-pink-600 px-6 py-3 rounded-full text-white text-lg hover:bg-pink-700 transition">Pork Preorders</a>
+          <a href="/pork-orders.html" className="bg-pink-600 px-6 py-3 rounded-full text-white text-lg hover:bg-pink-700 transition mr-4">Pork Preorders</a>
+          <a href="/goat-orders.html" className="bg-blue-600 px-6 py-3 rounded-full text-white text-lg hover:bg-blue-700 transition">Goat Orders</a>
         </div>
       </section>
     );
@@ -122,7 +181,7 @@
       <section id="about" className="py-16 text-center px-4">
         <h2 className="text-3xl font-bold mb-4 text-white">About Roswell Family Farm</h2>
         <p className="max-w-2xl mx-auto text-gray-200 text-lg">
-          We're a family-run farm in Salisbury, NY raising Cornish Cross chickens and heritage pork. Partnering with Spofford Farm, we raise animals outdoors with love and care.
+          We're a family-run farm in Salisbury, NY raising Cornish Cross chickens, heritage pork, and goats. Partnering with Spofford Farm, we raise animals outdoors with love and care.
         </p>
       </section>
     );
@@ -152,6 +211,10 @@
             <h3 className="text-xl font-semibold mb-2">Half Pigs</h3>
             <p className="text-gray-700">Perfect for families. Raised with care at Roswell Family Farm in partnership with Spofford Farm.</p>
           </div>
+          <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Goat Meat</h3>
+            <p className="text-gray-700">Tender and flavorful pasture-raised goat meat, available for order.</p>
+          </div>
           <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-md col-span-full md:col-span-3 text-center">
             <h3 className="text-xl font-semibold mb-2">Coming Soon: Pork Cuts</h3>
             <p className="text-gray-700">Chops, roasts, sausage & more — USDA-inspected and full of flavor.</p>
@@ -172,7 +235,7 @@
 
     // Footer
     const Footer = () => (
-      <footer className="bg-green-600 bg-opacity-90 text-white text-center py-4">
+      <footer className="bg-green-600 bb-600 bg-opacity-90 text-white text-center py-4">
         <p>© 2025 Roswell Family Farm. All rights reserved.</p>
       </footer>
     );
