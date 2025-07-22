@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Roswell Family Farm</title>
-  <meta name="description" content="Pasture-raised meat chickens, pork, and goats – fresh from our farm in Salisbury, NY."/>
+  <meta name="description" content="Pasture-raised meat chickens, pork, and goats – fresh from our farm in Salisbury, NY." />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-cover bg-center bg-no-repeat font-sans" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg');">
@@ -22,8 +22,9 @@
       <ul id="menu" class="hidden flex-col md:flex md:flex-row md:items-center gap-6 bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0 w-full md:w-auto px-4 py-4 md:p-0">
         <li><a href="/" class="block py-2 hover:text-green-300">Home</a></li>
         <li><a href="/about.html" class="block py-2 hover:text-green-300">About</a></li>
+        <li><a href="#products" class="block py-2 hover:text-green-300">Products</a></li>
         <li><a href="/chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
-        <li><a href="/pork-orders.html" class="block py-2 hover:text-green-300">Pork Orders</a></li>
+        <li><a href="/pork-orders.html" class="block py-2 hover:text-green-300">Pork Preorders</a></li>
         <li><a href="/goat-orders.html" class="block py-2 hover:text-green-300">Goat Orders</a></li>
         <li><a href="/contact.html" class="block py-2 hover:text-green-300">Contact</a></li>
       </ul>
@@ -31,7 +32,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="h-screen flex flex-col justify-center items-center text-center text-white px-4">
+  <section id="home" class="h-screen flex flex-col justify-center items-center text-center text-white px-4">
     <h1 class="text-4xl md:text-6xl font-bold mb-4">Fresh From Our Farm</h1>
     <p class="text-xl mb-6">Pasture-raised meat chickens, pork, and goats – delivered to your door.</p>
     <div class="flex flex-wrap justify-center gap-4">
@@ -41,15 +42,51 @@
     </div>
   </section>
 
+  <!-- Products Section (restored) -->
+  <section id="products" class="py-16 px-4 bg-black bg-opacity-50">
+    <h2 class="text-3xl font-bold text-center text-white mb-8">Our Products</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Whole Chickens</h3>
+        <p>Perfect for roasting. Pasture-raised and packed with flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Half Chickens</h3>
+        <p>Great for smaller meals. Pasture-raised and delicious.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Chicken Cuts</h3>
+        <p>Premium cuts including breasts, thighs & wings.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Whole Pigs</h3>
+        <p>Reserve a whole pig — raised with care in partnership with Spofford Farm.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Half Pigs</h3>
+        <p>Perfect for families. Raised with care and flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Goat Meat</h3>
+        <p>Tender and flavorful pasture-raised goat meat available for order.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md col-span-full text-center">
+        <h3 class="text-xl font-semibold mb-2">Coming Soon: Pork Cuts</h3>
+        <p>Chops, roasts, sausage & more — USDA-inspected and full of flavor.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="bg-green-700 text-white text-center py-6">
     <p>© 2025 Roswell Family Farm. All rights reserved.</p>
   </footer>
 
+  <!-- Hamburger Toggle Script -->
   <script>
     document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('menu').classList.toggle('hidden');
-    });
+      document.getElementById('menu').classList.toggle('hidden')
+    })
   </script>
 </body>
 </html>
