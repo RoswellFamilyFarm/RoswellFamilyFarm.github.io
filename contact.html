@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact – Roswell Family Farm</title>
-  <meta name="description" content="Contact Roswell Family Farm and Spofford Farm for inquiries about our pasture-raised meats in Salisbury, NY." />
+  <meta name="description" content="Contact Roswell Family Farm and Spofford Farm for inquiries about our pasture-raised meats in Dolgeville, NY." />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     body {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                   url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
       background-size: cover;
     }
@@ -19,11 +19,11 @@
 </head>
 <body class="text-white font-sans">
 
-  <!-- Navigation -->
+  <!-- Header / Navigation -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
       <a href="/" class="text-2xl font-bold text-white">Roswell Family Farm</a>
-      <button id="menu-toggle" class="text-white md:hidden focus:outline-none">
+      <button id="menu-toggle" class="text-white md:hidden">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"/>
@@ -40,12 +40,44 @@
     </nav>
   </header>
 
-  <!-- Contact Section -->
+  <!-- Contact Info Section -->
   <section class="py-16 px-6 max-w-5xl mx-auto text-center">
     <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
-    <p class="text-xl mb-10">
-      Reach out to Roswell Family Farm or our partners at Spofford Farm for inquiries about our out-of-this-world pasture-raised meats! 🚀
-    </p>
+    <p class="text-xl mb-10">Reach out to Roswell Family Farm or our partners at Spofford Farm for inquiries about our pasture-raised meats! 🚜</p>
 
-    <div class="flex flex-col md:flex-row justify-center gap-8">
-      <!-- Roswell Farm Contact -->
+    <div class="flex flex-col gap-8 md:flex-row md:gap-12 justify-center items-center">
+      
+      <!-- Roswell Contact Card -->
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-6 w-full md:w-1/2">
+        <h3 class="text-2xl font-semibold mb-4">Roswell Family Farm</h3>
+        <p class="mb-2">📧 <a href="mailto:roswellfamilyfarm@gmail.com" class="text-blue-600 hover:underline">roswellfamilyfarm@gmail.com</a></p>
+        <p class="mb-2">📞 AJ: (315) 985-3896</p>
+        <p class="mb-2">📞 Emily: (315) 717-3465</p>
+        <p>📍 146 Daley Rd, Dolgeville, NY</p>
+      </div>
+
+      <!-- Spofford Contact Card -->
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-6 w-full md:w-1/2">
+        <h3 class="text-2xl font-semibold mb-4">Spofford Farm</h3>
+        <p class="mb-2">📧 <a href="mailto:cspofford72@gmail.com" class="text-blue-600 hover:underline">cspofford72@gmail.com</a></p>
+        <p class="mb-2">📞 Craig: (315) 868-2037</p>
+        <p>📍 955 Thompson Rd, Dolgeville, NY</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6 mt-12">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+  </footer>
+
+  <!-- Hamburger Script -->
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('menu').classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
