@@ -52,23 +52,30 @@
     );
 
     const Products = () => (
-      <section id="products" className="py-16 bg-gray-100 px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-2">Whole Chickens</h3>
-            <p className="text-gray-700">Perfect for roasting. Pasture-raised and packed with flavor.</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-2">Half Pigs</h3>
-            <p className="text-gray-700">Reserve your half pig – raised with Spofford Farm on pasture.</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-2">Chicken Cuts</h3>
-            <p className="text-gray-700">Ask about custom cuts: thighs, breasts, wings, and more.</p>
-          </div>
-        </div>
-      </section>
+     const Products = () => (
+  <section id="products" className="py-16 bg-gray-100 px-4">
+    <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
+    <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h3 className="text-xl font-semibold mb-2">Whole Chickens</h3>
+        <p className="text-gray-700">Perfect for roasting. Pasture-raised and packed with flavor.</p>
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h3 className="text-xl font-semibold mb-2">Half Chickens</h3>
+        <p className="text-gray-700">Great for smaller meals. Pasture-raised and delicious.</p>
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h3 className="text-xl font-semibold mb-2">Whole Pigs</h3>
+        <p className="text-gray-700">Reserve a whole pig — raised in partnership with Spofford Farm.</p>
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow-md col-span-full md:col-span-3 text-center">
+        <h3 className="text-xl font-semibold mb-2">Coming Soon: Pork Cuts</h3>
+        <p className="text-gray-700">Chops, roasts, sausage & more — USDA-inspected and full of flavor.</p>
+      </div>
+    </div>
+  </section>
+);
+
     );
 
     const Contact = () => (
