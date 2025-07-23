@@ -12,32 +12,25 @@
   <style>
     body {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
+                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
       background-size: cover;
-    }
-    .nav-open {
-      display: flex !important;
-      flex-direction: column;
+      font-family: sans-serif;
     }
   </style>
 </head>
-<body class="text-white font-sans">
+<body class="text-white">
 
-  <!-- Navigation -->
+  <!-- Header / Navigation -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
-    <nav class="container mx-auto px-4 py-4 flex flex-wrap items-center justify-between">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
       <a href="/" class="text-2xl font-bold text-white">Roswell Family Farm</a>
-
-      <!-- Hamburger -->
       <button id="menu-toggle" class="text-white md:hidden focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
-
-      <!-- Menu -->
-      <ul id="menu" class="hidden md:flex md:items-center md:gap-6 w-full md:w-auto mt-4 md:mt-0 bg-green-700 md:bg-transparent px-4 py-4 md:p-0">
+      <ul id="menu" class="hidden flex-col md:flex md:flex-row md:items-center gap-6 bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0 w-full md:w-auto px-4 py-4 md:p-0 z-40">
         <li><a href="/" class="block py-2 hover:text-green-300">Home</a></li>
         <li><a href="/about.html" class="block py-2 hover:text-green-300">About</a></li>
         <li><a href="/index.html#products" class="block py-2 hover:text-green-300">Products</a></li>
@@ -54,7 +47,7 @@
     <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
     <p class="text-xl mb-10">Reach out to Roswell Family Farm or our partners at Spofford Farm for inquiries about our pasture-raised meats! 🚜</p>
 
-    <div class="flex flex-col gap-8 md:flex-row md:gap-12 justify-center items-center">
+    <div class="flex flex-col gap-8 md:flex-row md:gap-12 justify-center items-stretch">
       
       <!-- Roswell Contact Card -->
       <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-6 w-full md:w-1/2">
@@ -79,4 +72,19 @@
   <!-- Footer -->
   <footer class="bg-green-700 text-white text-center py-6 mt-12">
     <p>© 2025 Roswell Family Farm. All rights reserved.</p>
-  </fo
+  </footer>
+
+  <!-- Hamburger Script (fixed load timing) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('menu');
+
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    });
+  </script>
+
+</body>
+</html>
