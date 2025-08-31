@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Roswell Family Farm</title>
-  <meta name="description" content="Pasture-raised meat chickens, pork, and goats – fresh from our farm in Salisbury, NY." />
+  <meta name="description" content="Pasture-raised meat chickens, pork, duck, and beef – fresh from our farm in Salisbury, NY." />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-cover bg-center bg-no-repeat font-sans" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg');">
@@ -25,7 +25,9 @@
         <li><a href="#products" class="block py-2 hover:text-green-300">Products</a></li>
         <li><a href="/chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
         <li><a href="/pork-orders.html" class="block py-2 hover:text-green-300">Pork Preorders</a></li>
-        <li><a href="/goat-orders.html" class="block py-2 hover:text-green-300">Goat Orders</a></li>
+        <li><a href="/duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
+        <li><a href="/beef-orders.html" class="block py-2 hover:text-green-300">Beef Orders</a></li>
+        <li><a href="/pork-cuts-orders.html" class="block py-2 hover:text-green-300">Pork Cuts Orders</a></li>
         <li><a href="/contact.html" class="block py-2 hover:text-green-300">Contact</a></li>
       </ul>
     </nav>
@@ -34,15 +36,17 @@
   <!-- Hero Section -->
   <section id="home" class="h-screen flex flex-col justify-center items-center text-center text-white px-4">
     <h1 class="text-4xl md:text-6xl font-bold mb-4">Fresh From Our Farm</h1>
-    <p class="text-xl mb-6">Pasture-raised meat chickens, pork, and goats – delivered to your door.</p>
+    <p class="text-xl mb-6">Pasture-raised meat chickens, pork, duck, and beef – delivered to your door.</p>
     <div class="flex flex-wrap justify-center gap-4">
-      <a href="/chicken-orders.html" class="bg-green-600 px-6 py-3 rounded-full hover:bg-green-700 transition">Chicken Orders</a>
-      <a href="/pork-orders.html" class="bg-pink-600 px-6 py-3 rounded-full hover:bg-pink-700 transition">Pork Preorders</a>
-      <a href="/goat-orders.html" class="bg-blue-600 px-6 py-3 rounded-full hover:bg-blue-700 transition">Goat Orders</a>
+      <a href="/chicken-orders.html" class="bg-green-600 px-6 py-3 rounded-full hover:bg-green-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Chicken Orders</a>
+      <a href="/pork-orders.html" class="bg-pink-600 px-6 py-3 rounded-full hover:bg-pink-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Pork Preorders</a>
+      <a href="/duck-orders.html" class="bg-yellow-600 px-6 py-3 rounded-full hover:bg-yellow-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Duck Orders</a>
+      <a href="/beef-orders.html" class="bg-red-600 px-6 py-3 rounded-full hover:bg-red-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Beef Orders</a>
+      <a href="/pork-cuts-orders.html" class="bg-purple-600 px-6 py-3 rounded-full hover:bg-purple-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Pork Cuts Orders</a>
     </div>
   </section>
 
-  <!-- Products Section (restored) -->
+  <!-- Products Section -->
   <section id="products" class="py-16 px-4 bg-black bg-opacity-50">
     <h2 class="text-3xl font-bold text-center text-white mb-8">Our Products</h2>
     <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -67,41 +71,54 @@
         <p>Perfect for families. Raised with care and flavor.</p>
       </div>
       <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Whole Goat</h3>
-        <p>Tender and flavorful pasture-raised goat meat available for order.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md col-span-full text-center">
-        <h3 class="text-xl font-semibold mb-2">Coming Soon: Pork Cuts</h3>
+        <h3 class="text-xl font-semibold mb-2">Pork Cuts</h3>
         <p>Chops, roasts, sausage & more — USDA-inspected and full of flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Roaster Pigs</h3>
+        <p>Pasture-raised roaster pigs, available for order by phone call only. Contact us at (315) 868-2037, (315) 985-3896, or (315) 717-3465.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Grassfed Beef</h3>
+        <p>Premium grassfed beef, raised naturally for superior taste.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Duck Meat</h3>
+        <p>Rich and tender pasture-raised duck, available for order.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Duck Eggs</h3>
+        <p>Coming soon: Fresh duck eggs, $6 per dozen.</p>
       </div>
     </div>
   </section>
+
   <!-- Spofford Farm Hay Ad Section -->
-<section class="py-16 px-4 bg-white bg-opacity-90 text-center">
-  <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Hay Sales</h2>
-  <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
-    In need of quality hay? Our partners at <strong>Spofford Farm</strong> offer both <strong>large square bales</strong> and <strong>small square bales</strong> — perfect for livestock, bedding, or storage.
-  </p>
-  <p class="text-gray-700 mb-4">
-    📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
-    📞 <strong>Craig: (315) 868-2037</strong>
-  </p>
-  <a href="/contact.html" class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Hay Orders</a>
-</section>
-<section class="py-16 px-4 bg-white bg-opacity-90 text-center">
-  <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Fresh Eggs</h2>
-  <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
-    Get delicious, farm-fresh eggs from our friends at <strong>Spofford Farm</strong>. Their hens are naturally raised and pasture-fed, producing eggs that are as fresh as they come — just <strong>$3 per dozen</strong>!
-  </p>
-  <p class="text-gray-700 mb-4">
-    🥚 <strong>$3/dozen</strong><br>
-    📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
-    📞 <strong>Craig: (315) 868-2037</strong>
-  </p>
-  <a href="/contact.html" class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Egg Orders</a>
-</section>
+  <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
+    <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Hay Sales</h2>
+    <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
+      In need of quality hay? Our partners at <strong>Spofford Farm</strong> offer both <strong>large square bales</strong> and <strong>small square bales</strong> — perfect for livestock, bedding, or storage.
+    </p>
+    <p class="text-gray-700 mb-4">
+      📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
+      📞 <strong>Craig: (315) 868-2037</strong>
+    </p>
+    <a href="/contact.html" class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Hay Orders</a>
+  </section>
 
-
+  <!-- Spofford Farm Fresh Eggs Section -->
+  <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
+    <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Fresh Eggs</h2>
+    <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
+      Get delicious, farm-fresh eggs from our friends at <strong>Spofford Farm</strong>. Their hens are naturally raised and pasture-fed, producing eggs that are as fresh as they come — just <strong>$3 per dozen</strong>!
+    </p>
+    <p class="text-gray-700 mb-4">
+      🥚 <strong>$3/dozen</strong><br>
+      📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
+      📞 <strong>Craig: (315) 868-2037</strong>
+    </p>
+    <a href="/contact.html" class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Egg Orders</a>
+  </section>
 
   <!-- Footer -->
   <footer class="bg-green-700 text-white text-center py-6">
