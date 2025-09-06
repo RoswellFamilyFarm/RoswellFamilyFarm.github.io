@@ -12,34 +12,137 @@
              url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg');">
 
   <!-- Navigation -->
-  <!-- (unchanged) -->
+  <header class="bg-green-700 shadow-md sticky top-0 z-50">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-bold text-white">Roswell Family Farm</a>
+      <button id="menu-toggle" class="text-white md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <ul id="menu"
+          class="hidden flex-col md:flex md:flex-row md:items-center gap-6
+                 bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0
+                 w-full md:w-auto px-4 py-4 md:p-0">
+        <li><a href="/" class="block py-2 hover:text-green-300">Home</a></li>
+        <li><a href="/about.html" class="block py-2 hover:text-green-300">About</a></li>
+        <li><a href="#products" class="block py-2 hover:text-green-300">Products</a></li>
+        <li><a href="/chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
+        <li><a href="/pork-orders.html" class="block py-2 hover:text-green-300">Pork Preorders</a></li>
+        <li><a href="/duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
+        <li><a href="/beef-orders.html" class="block py-2 hover:text-green-300">Beef Orders</a></li>
+        <li><a href="/pork-cuts-orders.html" class="block py-2 hover:text-green-300">Pork Cuts Orders</a></li>
+        <li><a href="/contact.html" class="block py-2 hover:text-green-300">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
   <section id="home" class="h-auto flex flex-col justify-center items-center text-center text-white px-4 py-16">
     <h1 class="text-4xl md:text-6xl font-bold mb-4">Fresh From Our Farm</h1>
     <p class="text-xl mb-6">Pasture-raised meat chickens, pork, duck, and beef – delivered to your door.</p>
-    <!-- buttons omitted for brevity -->
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/chicken-orders.html"
+         class="bg-green-600 px-6 py-3 rounded-full hover:bg-green-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Chicken Orders</a>
+      <a href="/pork-orders.html"
+         class="bg-pink-600 px-6 py-3 rounded-full hover:bg-pink-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Pork Preorders</a>
+      <a href="/duck-orders.html"
+         class="bg-yellow-600 px-6 py-3 rounded-full hover:bg-yellow-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Duck Orders</a>
+      <a href="/beef-orders.html"
+         class="bg-red-600 px-6 py-3 rounded-full hover:bg-red-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Beef Orders</a>
+      <a href="/pork-cuts-orders.html"
+         class="bg-purple-600 px-6 py-3 rounded-full hover:bg-purple-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Pork Cuts Orders</a>
+    </div>
 
     <!-- Advertisement image container -->
-    <!-- Fixed height so all ads are the same size; object-contain ensures aspect ratio is preserved -->
     <div class="mt-12 w-full max-w-3xl h-[600px] flex justify-center items-center">
-      <!-- Set src to the first item in the array below -->
+      <!-- Set src to the first file in your advertisement array -->
       <img id="adImage" src="IMG_4897.jpeg" alt="Roswell Family Farm Advertisement"
            class="max-h-full max-w-full object-contain rounded-lg shadow-lg" />
     </div>
   </section>
 
   <!-- Products Section -->
-  <!-- (unchanged) -->
+  <section id="products" class="py-16 px-4 bg-black bg-opacity-50">
+    <h2 class="text-3xl font-bold text-center text-white mb-8">Our Products</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Whole Chickens</h3>
+        <p>Perfect for roasting. Pasture-raised and packed with flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Half Chickens</h3>
+        <p>Great for smaller meals. Pasture-raised and delicious.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Chicken Cuts</h3>
+        <p>Premium cuts including breasts, thighs & wings.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Whole Pigs</h3>
+        <p>Reserve a whole pig — raised with care in partnership with Spofford Farm.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Half Pigs</h3>
+        <p>Perfect for families. Raised with care and flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Pork Cuts</h3>
+        <p>Chops, roasts, sausage & more — USDA‑inspected and full of flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Roaster Pigs</h3>
+        <p>Pasture-raised roaster pigs, available for order by phone call only. Contact us at (315) 868-2037, (315) 985-3896, or (315) 717-3465.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Grassfed Beef</h3>
+        <p>Premium grassfed beef, raised naturally for superior taste.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Duck Meat</h3>
+        <p>Rich and tender pasture-raised duck, available for order.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Duck Eggs</h3>
+        <p>Coming soon: Fresh duck eggs, $6 per dozen.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Spofford Farm Hay Ad Section -->
-  <!-- (unchanged) -->
+  <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
+    <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Hay Sales</h2>
+    <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
+      In need of quality hay? Our partners at <strong>Spofford Farm</strong> offer both <strong>large square bales</strong> and <strong>small square bales</strong> — perfect for livestock, bedding, or storage.
+    </p>
+    <p class="text-gray-700 mb-4">
+      📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
+      📞 <strong>Craig: (315) 868-2037</strong>
+    </p>
+    <a href="/contact.html"
+       class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Hay Orders</a>
+  </section>
 
   <!-- Spofford Farm Fresh Eggs Section -->
-  <!-- (unchanged) -->
+  <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
+    <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Fresh Eggs</h2>
+    <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
+      Get delicious, farm-fresh eggs from our friends at <strong>Spofford Farm</strong>. Their hens are naturally raised and pasture-fed, producing eggs that are as fresh as they come — just <strong>$3 per dozen</strong>!
+    </p>
+    <p class="text-gray-700 mb-4">
+      🥚 <strong>$3/dozen</strong><br>
+      📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
+      📞 <strong>Craig: (315) 868-2037</strong>
+    </p>
+    <a href="/contact.html"
+       class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Egg Orders</a>
+  </section>
 
   <!-- Footer -->
-  <!-- (unchanged) -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+  </footer>
 
   <!-- Scripts -->
   <script>
@@ -49,13 +152,13 @@
     });
 
     // Advertisement slider logic
-    // Make sure these five image files exist in your repo:
+    // Ensure these files exist in your repository
     const advertisementImages = [
       'IMG_4897.jpeg',   // Variety boxes advertisement
       'IMG_4898.jpeg',   // Roaster pigs advertisement
       'IMG_4899.jpeg',   // Pasture‑raised chicken flyer
       'IMG_4900.jpeg',   // Pasture‑raised pork flyer
-      'IMG_4904.jpeg'    // Farm‑fresh duck (new)
+      'IMG_4904.jpeg'    // Farm‑fresh duck advertisement
     ];
     let currentAdIndex = 0;
     const adElement = document.getElementById('adImage');
@@ -63,7 +166,7 @@
       currentAdIndex = (currentAdIndex + 1) % advertisementImages.length;
       adElement.src = advertisementImages[currentAdIndex];
     }
-    setInterval(switchAdImage, 4000);  // 4‑second rotation
+    setInterval(switchAdImage, 4000);
   </script>
 </body>
 </html>
