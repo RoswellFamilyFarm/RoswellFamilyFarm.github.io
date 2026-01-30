@@ -2,294 +2,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roswell Family Farm | Dolgeville / Salisbury, NY</title>
-
-  <!-- SEO -->
-  <meta
-    name="description"
-    content="Roswell Family Farm is a family-operated farm in Dolgeville/Salisbury, NY in the Mohawk Valley. Pasture-raised meats and local farm updates."
-  />
-
-  <!-- If you already use a shared stylesheet, keep this -->
-  <link rel="stylesheet" href="/assets/css/style.css" />
-
-  <style>
-    :root{
-      --roswell-green:#3DC45A;
-      --cosmic-blue:#2C68FF;
-      --midnight:#0B0B0B;
-      --sky:#E4E8EB;
-      --white:#FFFFFF;
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      color:var(--midnight);
-      background:var(--white);
-      line-height:1.5;
-    }
-
-    .container{
-      width:100%;
-      max-width:900px;
-      margin:0 auto;
-      padding:0 16px;
-    }
-
-    /* NAV */
-    .nav-wrap{
-      border-bottom:1px solid var(--sky);
-      background:var(--white);
-      position:sticky;
-      top:0;
-      z-index:10;
-    }
-    nav{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-      padding:12px 0;
-    }
-    nav a{
-      text-decoration:none;
-      color:var(--midnight);
-      padding:8px 10px;
-      border-radius:10px;
-    }
-    nav a:hover{
-      background:var(--sky);
-    }
-    .nav-brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-right:auto;
-      padding:6px 8px;
-      border-radius:12px;
-    }
-    .nav-brand img{
-      height:30px;
-      width:auto;
-      display:block;
-    }
-    .nav-brand span{
-      font-weight:700;
-      letter-spacing:0.2px;
-    }
-
-    /* HERO (NO slideshow, NO video, NO flashing images) */
-    header.hero{
-      padding:34px 0 26px;
-      background: linear-gradient(135deg, rgba(61,196,90,0.10), rgba(44,104,255,0.08));
-      border-bottom:1px solid var(--sky);
-    }
-    .hero-inner{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .hero-logo{
-      width:110px;
-      max-width:35vw;
-      height:auto;
-    }
-    h1{
-      margin:0;
-      font-size:1.9rem;
-      line-height:1.2;
-    }
-    .subhead{
-      margin:8px 0 0;
-      color:#222;
-      max-width:58ch;
-    }
-    .cta-row{
-      margin-top:16px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-block;
-      text-decoration:none;
-      font-weight:700;
-      padding:10px 14px;
-      border-radius:12px;
-      border:2px solid var(--midnight);
-      color:var(--midnight);
-      background:var(--white);
-    }
-    .btn-primary{
-      border-color:var(--roswell-green);
-      background:var(--roswell-green);
-      color:var(--white);
-    }
-    .btn-primary:hover{filter:brightness(0.98)}
-    .btn:hover{background:var(--sky)}
-
-    /* SECTIONS */
-    section{
-      padding:26px 0;
-    }
-    h2{
-      margin:0 0 12px;
-      font-size:1.35rem;
-    }
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
-    .card{
-      border:1px solid var(--sky);
-      border-radius:16px;
-      padding:14px;
-      background:var(--white);
-    }
-    .card h3{
-      margin:0 0 6px;
-      font-size:1.05rem;
-    }
-    .meta{
-      font-size:0.92rem;
-      color:#444;
-      margin:0 0 10px;
-    }
-    .tag{
-      display:inline-block;
-      font-size:0.85rem;
-      font-weight:700;
-      padding:4px 8px;
-      border-radius:999px;
-      border:1px solid var(--sky);
-      background:rgba(44,104,255,0.06);
-      margin-right:6px;
-    }
-
-    footer{
-      padding:22px 0;
-      border-top:1px solid var(--sky);
-      color:#444;
-      font-size:0.95rem;
-    }
-
-    @media (min-width: 720px){
-      .cards{
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roswell Family Farm</title>
+  <meta name="description" content="Pasture-raised meat chickens, pork, duck, and beef – fresh from our farm in Salisbury, NY." />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-cover bg-center bg-no-repeat font-sans"
+      style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+             url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg');">
 
-<body>
-
-  <!-- NAV (matches required site sections; add Farm Update link too) -->
-  <div class="nav-wrap">
-    <div class="container">
-      <nav>
-        <a class="nav-brand" href="index.html" aria-label="Roswell Family Farm Home">
-          <img src="images/brand/roswell_logo_primary.png" alt="Roswell Family Farm logo" />
-          <span>Roswell Family Farm</span>
-        </a>
-
-        <a href="chicken-orders.html">Chicken</a>
-        <a href="pork-orders.html">Pork</a>
-        <a href="beef-orders.html">Beef</a>
-        <a href="variety-boxes.html">Variety Boxes</a>
-        <a href="#farm-update">Farm Update</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <div class="hero-inner">
-        <img
-          class="hero-logo"
-          src="images/brand/roswell_logo_primary.png"
-          alt="Roswell Family Farm logo"
-        />
-
-        <div>
-          <h1>Pasture-raised meats from our family to yours</h1>
-          <p class="subhead">
-            Dolgeville / Salisbury, New York • Mohawk Valley
-          </p>
-
-          <div class="cta-row">
-            <a class="btn btn-primary" href="chicken-orders.html">Order Chicken</a>
-            <a class="btn" href="#farm-update">See Farm Updates</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Navigation -->
+  <header class="bg-green-700 shadow-md sticky top-0 z-50">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-bold text-white">Roswell Family Farm</a>
+      <button id="menu-toggle" class="text-white md:hidden focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <ul id="menu"
+          class="hidden flex-col md:flex md:flex-row md:items-center gap-6
+                 bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0
+                 w-full md:w-auto px-4 py-4 md:p-0">
+        <li><a href="/" class="block py-2 hover:text-green-300">Home</a></li>
+        <li><a href="/about.html" class="block py-2 hover:text-green-300">About</a></li>
+        <li><a href="#products" class="block py-2 hover:text-green-300">Products</a></li>
+        <li><a href="/chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
+        <li><a href="/pork-orders.html" class="block py-2 hover:text-green-300">Pork Preorders</a></li>
+        <li><a href="/duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
+        <li><a href="/beef-orders.html" class="block py-2 hover:text-green-300">Beef Orders</a></li>
+        <li><a href="/pork-cuts-orders.html" class="block py-2 hover:text-green-300">Pork Cuts Orders</a></li>
+        <li><a href="/contact.html" class="block py-2 hover:text-green-300">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- QUICK INFO -->
-  <section>
-    <div class="container">
-      <h2>Welcome</h2>
-      <div class="card">
-        <p style="margin:0;">
-          This site is kept simple on purpose—fast to load, easy to scroll, and easy to keep updated.
-          Check the Farm Update section below for the latest notes (restocks, pickup windows, farm news).
-        </p>
+  <!-- Hero Section -->
+  <section id="home" class="h-auto flex flex-col justify-center items-center text-center text-white px-4 py-16">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">Fresh From Our Farm</h1>
+    <p class="text-xl mb-6">Pasture-raised meat chickens, pork, duck, and beef – delivered to your door.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/chicken-orders.html"
+         class="bg-green-600 px-6 py-3 rounded-full hover:bg-green-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Chicken Orders</a>
+      <a href="/pork-orders.html"
+         class="bg-pink-600 px-6 py-3 rounded-full hover:bg-pink-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Pork Preorders</a>
+      <a href="/duck-orders.html"
+         class="bg-yellow-600 px-6 py-3 rounded-full hover:bg-yellow-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Duck Orders</a>
+      <a href="/beef-orders.html"
+         class="bg-red-600 px-6 py-3 rounded-full hover:bg-red-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Beef Orders</a>
+      <a href="/pork-cuts-orders.html"
+         class="bg-purple-600 px-6 py-3 rounded-full hover:bg-purple-700 transition md:px-6 md:py-3 sm:px-4 sm:py-2">Pork Cuts Orders</a>
+    </div>
+
+    <!-- Advertisement image container -->
+    <div class="mt-12 w-full max-w-3xl h-[600px] flex justify-center items-center">
+      <!-- Set src to the first file in your advertisement array -->
+      <img id="adImage" src="IMG_4897.jpeg" alt="Roswell Family Farm Advertisement"
+           class="max-h-full max-w-full object-contain rounded-lg shadow-lg" />
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-16 px-4 bg-black bg-opacity-50">
+    <h2 class="text-3xl font-bold text-center text-white mb-8">Our Products</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Whole Chickens</h3>
+        <p>Perfect for roasting. Pasture-raised and packed with flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Half Chickens</h3>
+        <p>Great for smaller meals. Pasture-raised and delicious.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Chicken Cuts</h3>
+        <p>Premium cuts including breasts, thighs & wings.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Whole Pigs</h3>
+        <p>Reserve a whole pig — raised with care in partnership with Spofford Farm.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Half Pigs</h3>
+        <p>Perfect for families. Raised with care and flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Pork Cuts</h3>
+        <p>Chops, roasts, sausage & more — USDA‑inspected and full of flavor.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Roaster Pigs</h3>
+        <p>Pasture-raised roaster pigs, available for order by phone call only. Contact us at (315) 868-2037, (315) 985-3896, or (315) 717-3465.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Grassfed Beef</h3>
+        <p>Premium grassfed beef, raised naturally for superior taste.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Duck Meat</h3>
+        <p>Rich and tender pasture-raised duck, available for order.</p>
+      </div>
+      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Duck Eggs</h3>
+        <p>Coming soon: Fresh duck eggs, $6 per dozen.</p>
       </div>
     </div>
   </section>
 
-  <!-- FARM UPDATE SECTION -->
-  <section id="farm-update">
-    <div class="container">
-      <h2>Farm Update</h2>
-
-      <div class="cards">
-        <!-- Update Card 1 -->
-        <article class="card">
-          <h3><span class="tag">Latest</span> Update Title (edit this)</h3>
-          <p class="meta">
-            <time datetime="2026-01-30">January 30, 2026</time>
-          </p>
-          <p style="margin:0;">
-            Add your newest update here. Example: “Online orders open,” “Pickup window,” “Restock notes,” etc.
-            Keep it short and clear.
-          </p>
-        </article>
-
-        <!-- Update Card 2 -->
-        <article class="card">
-          <h3>Update Title (edit this)</h3>
-          <p class="meta">
-            <time datetime="2026-01-15">January 15, 2026</time>
-          </p>
-          <p style="margin:0;">
-            Older update goes here. You can keep 2–4 cards on the homepage and rotate them as needed.
-          </p>
-        </article>
-      </div>
-
-      <div style="margin-top:12px;">
-        <a class="btn" href="contact.html">Contact Us</a>
-        <a class="btn" href="mailto:roswellfamilyfarm@gmail.com">Email</a>
-      </div>
-    </div>
+  <!-- Spofford Farm Hay Ad Section -->
+  <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
+    <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Hay Sales</h2>
+    <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
+      In need of quality hay? Our partners at <strong>Spofford Farm</strong> offer both <strong>large square bales</strong> and <strong>small square bales</strong> — perfect for livestock, bedding, or storage.
+    </p>
+    <p class="text-gray-700 mb-4">
+      📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
+      📞 <strong>Craig: (315) 868-2037</strong>
+    </p>
+    <a href="/contact.html"
+       class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Hay Orders</a>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p style="margin:0;">
-        © Roswell Family Farm • Dolgeville / Salisbury, NY
-      </p>
-    </div>
+  <!-- Spofford Farm Fresh Eggs Section -->
+  <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
+    <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Fresh Eggs</h2>
+    <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
+      Get delicious, farm-fresh eggs from our friends at <strong>Spofford Farm</strong>. Their hens are naturally raised and pasture-fed, producing eggs that are as fresh as they come — just <strong>$3 per dozen</strong>!
+    </p>
+    <p class="text-gray-700 mb-4">
+      🥚 <strong>$3/dozen</strong><br>
+      📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
+      📞 <strong>Craig: (315) 868-2037</strong>
+    </p>
+    <a href="/contact.html"
+       class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Egg Orders</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
   </footer>
 
+  <!-- Scripts -->
+  <script>
+    // Mobile menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('menu').classList.toggle('hidden');
+    });
+
+    // Advertisement slider logic
+    // Ensure these files exist in your repository
+    const advertisementImages = [
+      'IMG_4897.jpeg',   // Variety boxes advertisement
+      'IMG_4898.jpeg',   // Roaster pigs advertisement
+      'IMG_4899.jpeg',   // Pasture‑raised chicken flyer
+      'IMG_4900.jpeg',   // Pasture‑raised pork flyer
+      'IMG_4904.jpeg'    // Farm‑fresh duck advertisement
+    ];
+    let currentAdIndex = 0;
+    const adElement = document.getElementById('adImage');
+    function switchAdImage() {
+      currentAdIndex = (currentAdIndex + 1) % advertisementImages.length;
+      adElement.src = advertisementImages[currentAdIndex];
+    }
+    setInterval(switchAdImage, 4000);
+  </script>
 </body>
 </html>
