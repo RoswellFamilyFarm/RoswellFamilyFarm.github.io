@@ -2,7 +2,7 @@ name: Update Facebook Feed JSON
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # every 10 minutes (UTC)
+    - cron: "*/5 * * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -46,11 +46,10 @@ jobs:
           git config user.name "roswell-farm-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          # Always sync runner with latest main
-          git fetch origin main
+          # Make sure we're on main
           git checkout main
-          git pull --rebase origin main
 
+          # Stage the generated file
           git add assets/data/facebook.json
 
           # If no changes, exit cleanly
@@ -59,20 +58,29 @@ jobs:
             exit 0
           fi
 
+          # Commit our update first (so we can safely rebase if main moved)
           git commit -m "Update Facebook feed JSON"
 
-          # Push with retries (handles remote moving during the run)
+          # Rebase + push with retries (handles remote main moving)
           for i in 1 2 3 4 5; do
-            echo "Push attempt $i..."
-            git fetch origin main
-            git pull --rebase origin main || true
+            echo "Rebase + push attempt $i..."
 
+            git fetch origin main
+
+            # Rebase our commit onto the latest origin/main
+            if ! git rebase origin/main; then
+              echo "Rebase conflict. Aborting rebase."
+              git rebase --abort || true
+              exit 1
+            fi
+
+            # Try push
             if git push origin HEAD:main; then
               echo "Push succeeded."
               exit 0
             fi
 
-            echo "Push failed (remote changed). Waiting and retrying..."
+            echo "Push failed (remote changed again). Retrying..."
             sleep $((3 * i))
           done
 
