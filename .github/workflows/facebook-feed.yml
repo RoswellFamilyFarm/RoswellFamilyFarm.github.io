@@ -1,0 +1,39 @@
+name: Update Facebook Feed JSON
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # every 10 minutes (UTC)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-facebook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch Facebook posts
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          FB_GRAPH_VERSION: "v23.0"
+          FB_LIMIT: "25"
+        run: python scripts/fetch_facebook.py
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "roswell-farm-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/data/facebook.json
+          git diff --cached --quiet || (git commit -m "Update Facebook feed JSON" && git push)
