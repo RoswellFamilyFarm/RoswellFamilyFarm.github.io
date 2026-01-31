@@ -255,9 +255,11 @@
       var fbLink = "https://www.facebook.com/647110288496461";
 
       try {
-        // GitHub Pages-safe: build URL relative to the current page
+        // GitHub Pages-safe + CACHE-BUSTER so it always pulls the newest JSON
         var jsonUrl = new URL('assets/data/facebook.json', window.location.href);
+        jsonUrl.searchParams.set('v', Date.now().toString()); // <-- cache buster
         var res = await fetch(jsonUrl.toString(), { cache: 'no-store' });
+
         if (!res.ok) throw new Error('facebook.json not found yet');
         var data = await res.json();
 
@@ -378,7 +380,16 @@
         .replace(/'/g, '&#039;');
     }
 
+    // Initial load
     loadFacebookUpdates();
+
+    // Optional: refresh automatically while someone is sitting on the page (every 5 minutes)
+    setInterval(loadFacebookUpdates, 5 * 60 * 1000);
+
+    // Refresh once when they come back to the tab (helps on mobile)
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) loadFacebookUpdates();
+    });
   </script>
 </body>
 </html>
