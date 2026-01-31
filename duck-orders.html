@@ -6,82 +6,35 @@
   <title>Duck Orders | Roswell Family Farm</title>
   <meta name="description" content="Duck orders and updates from Roswell Family Farm. Join the list to be notified when duck orders reopen." />
 
-  <!-- Tailwind (for the same nav + mobile hamburger behavior as your homepage) -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Contact-page color scheme background -->
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+    body {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg')
+        no-repeat center center fixed;
+      background-size: cover;
       font-family: "Segoe UI", sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
     }
 
-    .hero {
-      padding: 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #f0fdf4, #dcfce7);
-    }
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      color: #2f612c;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: 0 auto 1rem;
-      color: #444;
-    }
-    .hero h2 {
-      font-size: 1.5rem;
-      margin: 1rem 0 0.5rem;
-      color: #2f612c;
-    }
-    .hero ul {
-      list-style-type: none;
-      padding: 0;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .hero ul li {
-      font-size: 1.1rem;
-      color: #444;
-      margin-bottom: 0.5rem;
-    }
-    .hero a {
-      color: #2f855a;
-      text-decoration: underline;
-    }
-    .hero a:hover {
-      color: #1f6140;
-    }
-
-    iframe {
-      display: block;
+    .form-frame {
       width: 100%;
-      height: calc(100vh - 250px);
       border: none;
+      height: 85vh;
+      display: block;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.5rem; }
-      .hero h2 { font-size: 1.3rem; }
-      .hero p, .hero ul li {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
-      iframe { height: calc(100vh - 290px); }
+    @media (max-width: 640px) {
+      .form-frame { height: 78vh; }
     }
   </style>
 </head>
 
-<body>
+<body class="text-white">
 
-  <!-- Navigation (same style + reliable hamburger as your homepage) -->
+  <!-- Header / Navigation (matches your updated pages) -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
       <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
@@ -125,77 +78,184 @@
     </nav>
   </header>
 
-  <!-- Page Content -->
-  <div class="hero">
-    <h1>Currently Not Accepting Duck Orders</h1>
-    <p>
-      Raised with love by <strong>Roswell Family Farm</strong> — bringing you duck that’s truly <em>out of this world</em>.
-      🦆🛸<br />
-      We’re not accepting duck orders right now — we’ll update you when orders reopen.
-    </p>
+  <!-- Page Content (structured like beef page, with contact-page scheme) -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8 md:p-10">
 
-    <h2>📝 Order / Interest Instructions</h2>
-    <p>
-      If you’d like to be on our list for the next duck availability, fill out the form below with:<br />
-      The type of duck cuts you'd like (e.g. thighs, breasts, wings, whole duck, etc.)<br />
-      The quantity or weight for each (note: packages typically range from ~1.3 to 2.5 lbs).<br />
-      Feel free to format it like this:<br />
-      - Duck Quarters: 3 packages (~2 lbs each)<br />
-      - Whole Duck: 1 (~4–5 lbs)<br />
-      - Duck Breast: 4 lbs<br />
-      Any special requests or notes you'd like us to consider
-    </p>
+        <h1 class="text-4xl font-bold mb-4 text-green-800 text-center">Duck Orders</h1>
 
-    <h2>🔁 After Submission</h2>
-    <p>
-      We’ll follow up when duck orders reopen and confirm availability + timing with you directly.
-    </p>
+        <p class="text-lg text-gray-800 mb-8 text-center max-w-3xl mx-auto">
+          Our ducks are raised with care at <strong>Roswell Family Farm</strong>.
+          We’re <strong>not accepting duck orders right now</strong> — but you can join the list below and we’ll reach out
+          as soon as orders reopen. 🦆🛸
+        </p>
 
-    <h2>🌱 Pricing Note</h2>
-    <p>
-      Duck meat pricing is <strong>not finalized yet</strong>. We’ll share confirmed pricing when orders reopen.
-    </p>
+        <!-- Top cards (like beef page) -->
+        <div class="grid gap-6 md:grid-cols-2">
 
-    <p>Thank you for shopping local and supporting our farm family!</p>
+          <!-- Status / What’s happening -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-2">🚧 Current Status</h2>
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              Duck orders are currently paused. When the next batch is ready, we’ll reopen ordering and notify everyone
+              who submitted the interest form.
+            </p>
 
-    <h2>🦆 Questions?</h2>
-    <p>
-      Email: <a href="mailto:roswellfamilyfarm@gmail.com">roswellfamilyfarm@gmail.com</a><br />
-      Facebook: <a href="https://www.facebook.com/647110288496461" target="_blank" rel="noopener noreferrer">Roswell Family Farm</a><br />
-      Instagram: <a href="https://instagram.com/RoswellFamilyFarm" target="_blank" rel="noopener noreferrer">@RoswellFamilyFarm</a>
-    </p>
-  </div>
+            <div class="bg-gray-50 rounded-md border border-gray-100 p-4">
+              <p class="text-sm text-gray-700">
+                <strong>Pricing note:</strong> duck pricing is <strong>not finalized yet</strong>. Confirmed prices will be shared
+                when ordering reopens.
+              </p>
+            </div>
+          </div>
 
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSfqty1vxImP5IM6-88Aj6_YE000nxevJ2xjc7g5f5yQXIK3bw/viewform?embedded=true"
-    loading="lazy"
-    title="Duck Orders Interest Form"
-  >
-    Loading...
-  </iframe>
+          <!-- Interest / order instructions -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-2">📝 Join the List</h2>
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              Use the form below to tell us what you’d want when duck orders reopen:
+            </p>
 
-  <!-- Scripts (same reliable hamburger behavior) -->
+            <ul class="text-sm text-gray-700 space-y-2 list-disc pl-5">
+              <li>The cuts you’re interested in (whole duck, breasts, legs, wings, etc.)</li>
+              <li>How many packages (or total pounds) for each</li>
+              <li>Any notes or preferences we should know</li>
+            </ul>
+
+            <div class="mt-4 bg-gray-50 rounded-md border border-gray-100 p-4">
+              <p class="text-sm text-gray-700 font-semibold mb-2">Example format:</p>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                • Duck Quarters: 3 packages (~2 lbs each)<br />
+                • Whole Duck: 1 (~4–5 lbs)<br />
+                • Duck Breast: 4 lbs<br />
+                • Notes: (anything special you want us to know)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second row (like beef page sections) -->
+        <div class="grid gap-6 md:grid-cols-2 mt-6">
+
+          <!-- What happens after -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h3 class="text-xl font-semibold text-green-800 mb-2">🔁 After You Submit</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              When duck orders reopen, we’ll contact you directly to confirm availability, timing, and next steps.
+              Pickup or delivery details will be arranged with you.
+            </p>
+          </div>
+
+          <!-- Questions -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h3 class="text-xl font-semibold text-green-800 mb-2">🦆 Questions?</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Email:
+              <a class="text-blue-700 underline hover:text-blue-900" href="mailto:roswellfamilyfarm@gmail.com">
+                roswellfamilyfarm@gmail.com
+              </a><br />
+              Facebook:
+              <a class="text-blue-700 underline hover:text-blue-900"
+                 href="https://www.facebook.com/647110288496461"
+                 target="_blank" rel="noopener noreferrer">
+                Roswell Family Farm
+              </a><br />
+              Instagram:
+              <a class="text-blue-700 underline hover:text-blue-900"
+                 href="https://instagram.com/RoswellFamilyFarm"
+                 target="_blank" rel="noopener noreferrer">
+                @RoswellFamilyFarm
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Typical cuts grid (beef-page style, no prices since not finalized) -->
+        <div class="mt-8">
+          <h3 class="text-2xl font-semibold text-green-800 mb-3">🌱 Typical Duck Options (When Available)</h3>
+          <p class="text-sm text-gray-700 mb-4">
+            These are common requests. Availability may vary when ordering reopens.
+          </p>
+
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm text-gray-800">
+            <div class="bg-white rounded-md border border-gray-100 p-3">Whole Duck</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Half Duck</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Boneless Breasts</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Leg Quarters</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Wings</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Hearts / Livers</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Embedded Duck Interest Form -->
+  <section class="px-4 pb-16">
+    <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
+      <iframe
+        class="form-frame"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfqty1vxImP5IM6-88Aj6_YE000nxevJ2xjc7g5f5yQXIK3bw/viewform?embedded=true"
+        loading="lazy"
+        title="Duck Orders Interest Form"
+      >
+        Loading...
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+  </footer>
+
+  <!-- Hamburger Script (greased-machine version; closes on link tap + outside click) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var toggle = document.getElementById('menu-toggle');
       var menu = document.getElementById('menu');
       if (!toggle || !menu) return;
 
-      toggle.addEventListener('click', function () {
-        var willOpen = menu.classList.contains('hidden');
-        menu.classList.toggle('hidden');
-        toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      function closeMenu() {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMenu() {
+        menu.classList.remove('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isClosed = menu.classList.contains('hidden');
+        if (isClosed) openMenu();
+        else closeMenu();
       });
 
       // Close menu after tapping a link on mobile
       var links = menu.querySelectorAll('a');
       links.forEach(function (a) {
         a.addEventListener('click', function () {
-          if (window.innerWidth < 768) {
-            menu.classList.add('hidden');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
+          if (window.innerWidth < 768) closeMenu();
         });
+      });
+
+      // Click outside closes (mobile)
+      document.addEventListener('click', function () {
+        if (window.innerWidth < 768 && !menu.classList.contains('hidden')) closeMenu();
+      });
+
+      // Escape key closes
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      // Resize safety (phone rotate / desktop)
+      window.addEventListener('resize', function () {
+        closeMenu();
       });
     });
   </script>
