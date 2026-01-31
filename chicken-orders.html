@@ -9,15 +9,16 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Contact-page color scheme background -->
   <style>
     body {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg')
+        no-repeat center center fixed;
       background-size: cover;
       font-family: "Segoe UI", sans-serif;
     }
 
-    /* Keeps the form tall without messing up on mobile */
     .form-frame {
       width: 100%;
       border: none;
@@ -33,7 +34,7 @@
 
 <body class="text-white">
 
-  <!-- Header / Navigation (matches your other updated pages) -->
+  <!-- Header / Navigation (matches your updated pages) -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
       <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
@@ -77,26 +78,105 @@
     </nav>
   </header>
 
-  <!-- Hero / Intro (updated to match contact page vibe) -->
-  <section class="py-16 px-6 max-w-5xl mx-auto text-center">
-    <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8">
-      <h1 class="text-4xl font-bold mb-4 text-green-800">Reserve Your Pasture-Raised Chicken</h1>
-      <p class="text-lg text-gray-800 max-w-3xl mx-auto">
-        Raised under open skies by <strong>Roswell Family Farm</strong>, our chickens are tender, juicy,
-        and pasture-powered. 🐔🌿<br class="hidden sm:block" />
-        Secure your <strong>whole</strong>, <strong>half</strong>, and/or <strong>cuts</strong> before they vanish from the freezer. 🛸
-      </p>
+  <!-- Page Content (structured like your beef page, with contact-page scheme) -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8 md:p-10">
 
-      <div class="mt-6 text-sm text-gray-700">
-        Questions? Email
-        <a class="text-blue-700 underline hover:text-blue-900" href="mailto:roswellfamilyfarm@gmail.com">roswellfamilyfarm@gmail.com</a>
-        or visit our Facebook:
-        <a class="text-blue-700 underline hover:text-blue-900" href="https://www.facebook.com/647110288496461" target="_blank" rel="noopener noreferrer">Roswell Family Farm</a>
+        <h1 class="text-4xl font-bold mb-4 text-green-800 text-center">Reserve Your Pasture-Raised Chicken</h1>
+
+        <p class="text-lg text-gray-800 mb-8 text-center max-w-3xl mx-auto">
+          Raised under open skies by <strong>Roswell Family Farm</strong>, our chickens are tender, juicy,
+          and pasture-powered. 🐔🌿
+          <br class="hidden sm:block" />
+          Use the form below to reserve <strong>whole</strong>, <strong>half</strong>, and/or <strong>cuts</strong> (availability varies by processing date).
+        </p>
+
+        <!-- Top row (like beef page cards) -->
+        <div class="grid gap-6 md:grid-cols-2">
+
+          <!-- What you can order -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-2">🍗 What You Can Order</h2>
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              Our chicken order form is the fastest way to reserve your favorites. Common options include:
+            </p>
+
+            <div class="grid gap-3 sm:grid-cols-2 text-sm text-gray-800">
+              <div class="bg-white rounded-md border border-gray-100 p-3">Whole Chickens</div>
+              <div class="bg-white rounded-md border border-gray-100 p-3">Half Chickens</div>
+              <div class="bg-white rounded-md border border-gray-100 p-3">Breasts</div>
+              <div class="bg-white rounded-md border border-gray-100 p-3">Thighs</div>
+              <div class="bg-white rounded-md border border-gray-100 p-3">Drumsticks</div>
+              <div class="bg-white rounded-md border border-gray-100 p-3">Wings</div>
+            </div>
+
+            <p class="text-xs text-gray-600 mt-4">
+              *Availability depends on what’s being processed and what’s already reserved.
+            </p>
+          </div>
+
+          <!-- How to order -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-2">📝 How to Order</h2>
+            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+              Fill out the form with the items you want and the quantity for each. If you have a preference
+              (example: “smaller birds” or “more wings”), add it in the notes section.
+            </p>
+
+            <div class="mt-4 bg-gray-50 rounded-md border border-gray-100 p-4">
+              <p class="text-sm text-gray-700 font-semibold mb-2">Example notes format:</p>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                • Whole Chickens: 2<br />
+                • Thighs: 3 packs<br />
+                • Wings: 2 packs<br />
+                • Notes: prefer smaller packs if possible
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second row (like beef page sections) -->
+        <div class="grid gap-6 md:grid-cols-2 mt-6">
+
+          <!-- After submission -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h3 class="text-xl font-semibold text-green-800 mb-2">🔁 After You Submit</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              We’ll review your request and follow up to confirm what we can fill, plus pickup/delivery details.
+              If something sells out, we’ll offer the closest match (or you can adjust your order).
+            </p>
+          </div>
+
+          <!-- Questions -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h3 class="text-xl font-semibold text-green-800 mb-2">❓ Questions?</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Email:
+              <a class="text-blue-700 underline hover:text-blue-900" href="mailto:roswellfamilyfarm@gmail.com">
+                roswellfamilyfarm@gmail.com
+              </a><br />
+              Facebook:
+              <a class="text-blue-700 underline hover:text-blue-900"
+                 href="https://www.facebook.com/647110288496461"
+                 target="_blank" rel="noopener noreferrer">
+                Roswell Family Farm
+              </a><br />
+              Instagram:
+              <a class="text-blue-700 underline hover:text-blue-900"
+                 href="https://instagram.com/RoswellFamilyFarm"
+                 target="_blank" rel="noopener noreferrer">
+                @RoswellFamilyFarm
+              </a>
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Embedded chicken Google Form -->
+  <!-- Embedded Chicken Google Form -->
   <section class="px-4 pb-16">
     <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
       <iframe
@@ -110,33 +190,56 @@
     </div>
   </section>
 
-  <!-- Footer (matches contact page) -->
+  <!-- Footer -->
   <footer class="bg-green-700 text-white text-center py-6">
     <p>© 2025 Roswell Family Farm. All rights reserved.</p>
   </footer>
 
-  <!-- Hamburger Script (matches your other updated pages; closes on link tap) -->
+  <!-- Hamburger Script (greased-machine version; closes on link tap + outside click) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var toggle = document.getElementById('menu-toggle');
       var menu = document.getElementById('menu');
       if (!toggle || !menu) return;
 
-      toggle.addEventListener('click', function () {
-        var willOpen = menu.classList.contains('hidden');
-        menu.classList.toggle('hidden');
-        toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      function closeMenu() {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMenu() {
+        menu.classList.remove('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isClosed = menu.classList.contains('hidden');
+        if (isClosed) openMenu();
+        else closeMenu();
       });
 
       // Close menu after tapping a link on mobile
       var links = menu.querySelectorAll('a');
       links.forEach(function (a) {
         a.addEventListener('click', function () {
-          if (window.innerWidth < 768) {
-            menu.classList.add('hidden');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
+          if (window.innerWidth < 768) closeMenu();
         });
+      });
+
+      // Click outside closes (mobile)
+      document.addEventListener('click', function () {
+        if (window.innerWidth < 768 && !menu.classList.contains('hidden')) closeMenu();
+      });
+
+      // Escape key closes
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      // Resize safety (phone rotate / desktop)
+      window.addEventListener('resize', function () {
+        closeMenu();
       });
     });
   </script>
