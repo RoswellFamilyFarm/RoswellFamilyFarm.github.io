@@ -1,6 +1,28 @@
 {
-  "generated_at": "2026-01-30T00:00:00Z",
-  "mode": "placeholder",
-  "count": 0,
-  "posts": []
+  "generated_at": "2026-01-31T04:35:36.172492+00:00",
+  "cutoff_utc": "2026-01-30T04:35:36.172492+00:00",
+  "mode": "fallback_recent",
+  "count": 3,
+  "posts": [
+    {
+      "message": "💧 Need water? We’ve got you covered! 💧\nIf anyone in town is in need of water, you’re welcome to come to the farm for some.\nJust send us a message and we’ll get you taken care of.\nCommunity helps community 🤍🚜",
+      "created_time": "2026-01-30T01:12:48+0000",
+      "permalink_url": "https://www.facebook.com/122162141804942538/posts/122161909868942538",
+      "id": "647110288496461_122161909868942538"
+    },
+    {
+      "message": "☃️❄️ New Farmhand Alert! ❄️☃️\nRoswell Family Farm has a snowman addition today!\nHe doesn’t eat much, doesn’t talk back, and is GREAT at standing guard during snow days 😂\nThe animals are curious, the kids are impressed, and we’re pretty sure he’s here to stay… at least until the sun comes out ☀️\nWinter fun at the farm hits different ❄️🤍\n#RoswellFamilyFarm #SnowmanSeason #FarmLife #WinterOnTheFarm #SnowDayFun",
+      "created_time": "2026-01-27T03:34:37+0000",
+      "permalink_url": "https://www.facebook.com/122162141804942538/posts/122161220330942538",
+      "full_picture": "https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/621833671_122161220312942538_5896025407667660234_n.jpg?stp=dst-jpg_p720x720_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=FhrX7ubgQEUQ7kNvwGkfjWK&_nc_oc=Adlg2yj6Elfj8TPkjxo2J03v5JtpOmhQJK0opwdM7hMOqJX7LD1mrCIR842SDxhLRIU&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&edm=AKK4YLsEAAAA&_nc_gid=6CNRH5ELG4jzIjuzfCM-Ow&_nc_tpa=Q5bMBQGgPT4t44oRjIpp911U-M2Omlfn107eZbIQgfA_BsxFD_h3eqUYyVx5mePLAklC0W7WfTiVgxPdaQ&oh=00_AfshOkvfcZnaYA9sHQwIX1JJB6qE-EkO4blWs5rG_ZMg3w&oe=698353AC",
+      "id": "647110288496461_122161220330942538"
+    },
+    {
+      "message": "❄️ Snow Day = Snow Ice Cream Day! 🍦\nWhen the snow is fresh and fluffy, we know exactly what time it is… snow ice cream time at Roswell Family Farm! 👽\nA little milk, a little sweetness, and a whole lot of farm magic ✨\nThe animals are snug, the kids are smiling, and winter just got a whole lot sweeter.\nDid you make snow ice cream today? \nTell us your favorite ice cream add-ins below! ⬇️\n#RoswellFamilyFarm #SnowIceCream #FarmLife #SnowDayFun #WinterOnTheFarm ❄️🤍",
+      "created_time": "2026-01-25T20:11:17+0000",
+      "permalink_url": "https://www.facebook.com/122162141804942538/posts/122161004534942538",
+      "full_picture": "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/618231628_122161004318942538_4570426426579086374_n.jpg?stp=cp1_dst-jpg_p720x720_tt6&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=28_EB1GC-3sQ7kNvwHnGgHV&_nc_oc=AdlrCUXJIGgiGxL8ZcjWCO-rea3eXhaRamMjSWyU1iQgpNTjUCvNSlcbHqtkcFkSYxE&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&edm=AKK4YLsEAAAA&_nc_gid=6CNRH5ELG4jzIjuzfCM-Ow&_nc_tpa=Q5bMBQFP_216Xc3n6yaLyjKZZk_4pMwEsvZuMUb1dIXtUj5K5wHBVddgMk-26hjH06Yza2XxHblsaTntLQ&oh=00_AfuLofTjtQIZFxQ3VnYnnW_VhzUCxEDe1dYqYxpW6qiPGg&oe=698358CF",
+      "id": "647110288496461_122161004534942538"
+    }
+  ]
 }
