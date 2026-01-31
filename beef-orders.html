@@ -4,162 +4,215 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Beef Orders | Roswell Family Farm</title>
+  <meta name="description" content="Reserve grassfed beef cuts from Roswell Family Farm. Submit your beef order form online." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg')
+                  no-repeat center center fixed;
+      background-size: cover;
       font-family: "Segoe UI", sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
     }
 
-    .nav-bar {
-      background-color: #2f855a;
-      padding: 1rem;
-      text-align: center;
-    }
-    .nav-bar a {
-      background-color: white;
-      color: #2f855a;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
-    }
-    .nav-bar a:hover {
-      background-color: #e2e8f0;
-    }
-
-    .hero {
-      padding: 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #f0fdf4, #dcfce7);
-    }
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      color: #2f612c;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: 0 auto 1rem;
-      color: #444;
-    }
-    .hero h2 {
-      font-size: 1.5rem;
-      margin: 1rem 0 0.5rem;
-      color: #2f612c;
-    }
-    .hero ul {
-      list-style-type: none;
-      padding: 0;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .hero ul li {
-      font-size: 1.1rem;
-      color: #444;
-      margin-bottom: 0.5rem;
-    }
-    .hero a {
-      color: #2f855a;
-      text-decoration: underline;
-    }
-    .hero a:hover {
-      color: #1f6140;
-    }
-
-    iframe {
-      display: block;
+    .form-frame {
       width: 100%;
-      height: calc(100vh - 230px);
       border: none;
+      height: 85vh;
+      display: block;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 1.5rem;
-      }
-      .hero h2 {
-        font-size: 1.3rem;
-      }
-      .hero p, .hero ul li {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
+    @media (max-width: 640px) {
+      .form-frame { height: 78vh; }
     }
   </style>
 </head>
-<body>
 
-  <div class="nav-bar">
-    <a href="https://roswellfamilyfarm.com">← Back to Home</a>
-  </div>
+<body class="text-white">
 
-  <div class="hero">
-    <h1>Reserve Your Grassfed Beef Cuts</h1>
-    <p>
-      Nurtured by the stellar hands of our fellow Upstate NY family farmers, in cosmic collaboration with
-      <strong>Roswell Family Farm</strong> — bringing you beef that’s truly <em>out of this world</em>.
-      🐄🛸<br />
-      Now taking orders for grassfed beef cuts — USDA processed.
-    </p>
-    <h2>📝 Order Instructions</h2>
-    <p>
-      Please fill out your order with:<br />
-      The type of beef cuts you'd like (e.g. rib steaks, porterhouse steak, ground beef, and stew meat, etc.)<br />
-      The quantity or weight for each (note: packages range from 0.5 to 2 lbs with the exception of roast). You will be matched as closely as possible to your order request with up to ±0.5 lb variation.<br />
-      Feel free to format it like this:<br />
-      - Filet Mignon: 3 packages (~0.5 lbs each)<br />
-      - London Broil: 1 (~3-4 lbs)<br />
-      - Ground Beef: 4 lbs<br />
-      Any special requests or notes you'd like us to consider
-    </p>
-    <h2>🔁 After Submission</h2>
-    <p>
-      We’ll confirm availability of cuts<br />
-      You’ll receive the final cost directly<br />
-      Pickup or delivery details will be arranged with you directly<br />
-      📨 We’ll follow up to confirm availability.
-    </p>
-    <h2>🌱 Available Cuts & Prices:</h2>
-    <ul>
-      <li>Ground Beef ($7.00/lb)</li>
-      <li>Stew Meat ($7.00/lb)</li>
-      <li>Shave Steaks ($8.00/lb)</li>
-      <li>Rib Steak ($14.00/lb)</li>
-      <li>Sirloin Steak ($17.00/lb)</li>
-      <li>Sirloin Tip Steaks ($12.00/lb)</li>
-      <li>Porterhouse Steaks ($17.00/lb)</li>
-      <li>Ranch Style Steaks ($10.00/lb)</li>
-      <li>Chuck Steaks ($7.00/lb)</li>
-      <li>Strip Steaks ($18.00/lb)</li>
-      <li>Skirt Steaks ($17.00/lb)</li>
-      <li>T-Bone Steaks ($15.00/lb)</li>
-      <li>Eye Round Steaks ($9.00/lb)</li>
-      <li>Filet Mignon ($20.00/lb)</li>
-      <li>London Broil ($12.00/lb)</li>
-      <li>Beef Short Ribs ($8.00/lb)</li>
-      <li>Bottom Round/Rump Roasts ($8.00/lb)</li>
-      <li>Chuck Roasts ($9.00/lb)</li>
-      <li>Brisket ($10.00/lb)</li>
-    </ul>
-    <p>Thank you for shopping local and supporting our farm family!</p>
-    <h2>🐷 Questions?</h2>
-    <p>
-      Email: <a href="mailto:roswellfamilyfarm@gmail.com">roswellfamilyfarm@gmail.com</a><br />
-      Facebook: <a href="https://instagram.com/RoswellFamilyFarm">@RoswellFamilyFarm</a>
-    </p>
-  </div>
+  <!-- Header / Navigation (matches the other updated pages) -->
+  <header class="bg-green-700 shadow-md sticky top-0 z-50">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
+      <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
 
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe1zrO6hSxpB5oMFuoIumJuViWn92OrS1DBh7zTUNDIB_MCcg/viewform?embedded=true" loading="lazy">
-    Loading...
-  </iframe>
+      <button
+        id="menu-toggle"
+        type="button"
+        class="text-white md:hidden focus:outline-none"
+        aria-label="Open menu"
+        aria-controls="menu"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <ul
+        id="menu"
+        class="hidden flex flex-col md:flex md:flex-row md:items-center gap-6
+               bg-green-700 md:bg-transparent text-white
+               absolute md:static top-full left-0 w-full md:w-auto
+               px-4 py-4 md:p-0 shadow-lg md:shadow-none z-50"
+      >
+        <li><a href="./" class="block py-2 hover:text-green-300">Home</a></li>
+        <li><a href="about.html" class="block py-2 hover:text-green-300">About</a></li>
+
+        <!-- Homepage sections -->
+        <li><a href="./#products" class="block py-2 hover:text-green-300">Products</a></li>
+        <li><a href="./#farm-updates" class="block py-2 hover:text-green-300">Farm Updates</a></li>
+
+        <li><a href="chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
+        <li><a href="pork-orders.html" class="block py-2 hover:text-green-300">Pork Preorders</a></li>
+        <li><a href="duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
+        <li><a href="beef-orders.html" class="block py-2 hover:text-green-300">Beef Orders</a></li>
+        <li><a href="pork-cuts-orders.html" class="block py-2 hover:text-green-300">Pork Cuts Orders</a></li>
+
+        <li><a href="contact.html" class="block py-2 hover:text-green-300">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Intro / Details (contact page color scheme: white card on dark overlay) -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8">
+        <h1 class="text-4xl font-bold mb-4 text-green-800">Reserve Your Grassfed Beef Cuts</h1>
+
+        <p class="text-lg text-gray-800 mb-6">
+          Nurtured by the stellar hands of our fellow Upstate NY family farmers, in cosmic collaboration with
+          <strong>Roswell Family Farm</strong> — bringing you beef that’s truly <em>out of this world</em>. 🐄🛸
+          <br class="hidden sm:block" />
+          Now taking orders for grassfed beef cuts — USDA processed.
+        </p>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-xl font-semibold text-green-800 mb-2">📝 Order Instructions</h2>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              Please fill out your order with:
+              <br />• The type of beef cuts you'd like (e.g. rib steaks, porterhouse steak, ground beef, stew meat, etc.)
+              <br />• The quantity or weight for each (packages typically range from 0.5 to 2 lbs; roasts can be larger)
+              <br />• We’ll match as closely as possible to your request with up to ±0.5 lb variation
+              <br /><br />
+              Example format:
+              <br />- Filet Mignon: 3 packages (~0.5 lbs each)
+              <br />- London Broil: 1 (~3–4 lbs)
+              <br />- Ground Beef: 4 lbs
+              <br /><br />
+              Add any special requests or notes you'd like us to consider.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-xl font-semibold text-green-800 mb-2">🔁 After Submission</h2>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              • We’ll confirm availability of cuts
+              <br />• You’ll receive the final cost directly
+              <br />• Pickup or delivery details will be arranged with you directly
+              <br />• We’ll follow up to confirm availability
+            </p>
+
+            <div class="mt-4 text-sm text-gray-700">
+              Questions? Email
+              <a class="text-blue-700 underline hover:text-blue-900" href="mailto:roswellfamilyfarm@gmail.com">roswellfamilyfarm@gmail.com</a>
+              <br />
+              Facebook:
+              <a class="text-blue-700 underline hover:text-blue-900" href="https://www.facebook.com/647110288496461" target="_blank" rel="noopener noreferrer">Roswell Family Farm</a>
+              <br />
+              Instagram:
+              <a class="text-blue-700 underline hover:text-blue-900" href="https://instagram.com/RoswellFamilyFarm" target="_blank" rel="noopener noreferrer">@RoswellFamilyFarm</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <h2 class="text-2xl font-semibold text-green-800 mb-3">🌱 Available Cuts & Prices</h2>
+
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm text-gray-800">
+            <div class="bg-white rounded-md border border-gray-100 p-3">Ground Beef ($7.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Stew Meat ($7.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Shave Steaks ($8.00/lb)</div>
+
+            <div class="bg-white rounded-md border border-gray-100 p-3">Rib Steak ($14.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Sirloin Steak ($17.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Sirloin Tip Steaks ($12.00/lb)</div>
+
+            <div class="bg-white rounded-md border border-gray-100 p-3">Porterhouse Steaks ($17.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Ranch Style Steaks ($10.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Chuck Steaks ($7.00/lb)</div>
+
+            <div class="bg-white rounded-md border border-gray-100 p-3">Strip Steaks ($18.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Skirt Steaks ($17.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">T-Bone Steaks ($15.00/lb)</div>
+
+            <div class="bg-white rounded-md border border-gray-100 p-3">Eye Round Steaks ($9.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Filet Mignon ($20.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">London Broil ($12.00/lb)</div>
+
+            <div class="bg-white rounded-md border border-gray-100 p-3">Beef Short Ribs ($8.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Bottom Round/Rump Roasts ($8.00/lb)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Chuck Roasts ($9.00/lb)</div>
+
+            <div class="bg-white rounded-md border border-gray-100 p-3">Brisket ($10.00/lb)</div>
+          </div>
+
+          <p class="text-gray-700 mt-4 text-sm">
+            Thank you for shopping local and supporting our farm family!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Embedded Beef Google Form (in a matching white container) -->
+  <section class="px-4 pb-16">
+    <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
+      <iframe
+        class="form-frame"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSe1zrO6hSxpB5oMFuoIumJuViWn92OrS1DBh7zTUNDIB_MCcg/viewform?embedded=true"
+        loading="lazy"
+        title="Beef Order Form"
+      >
+        Loading...
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+  </footer>
+
+  <!-- Hamburger Script (greased-machine version; closes on link tap) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggle = document.getElementById('menu-toggle');
+      var menu = document.getElementById('menu');
+      if (!toggle || !menu) return;
+
+      toggle.addEventListener('click', function () {
+        var willOpen = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+
+      // Close menu after tapping a link on mobile
+      var links = menu.querySelectorAll('a');
+      links.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth < 768) {
+            menu.classList.add('hidden');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
