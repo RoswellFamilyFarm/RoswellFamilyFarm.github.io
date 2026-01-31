@@ -14,20 +14,30 @@
 
   <!-- Navigation -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
-    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
       <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
 
-      <button id="menu-toggle" class="text-white md:hidden focus:outline-none" aria-label="Open menu">
+      <button
+        id="menu-toggle"
+        type="button"
+        class="text-white md:hidden focus:outline-none"
+        aria-label="Open menu"
+        aria-controls="menu"
+        aria-expanded="false"
+      >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
 
-      <ul id="menu"
-          class="hidden flex-col md:flex md:flex-row md:items-center gap-6
-                 bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0
-                 w-full md:w-auto px-4 py-4 md:p-0">
+      <ul
+        id="menu"
+        class="hidden flex flex-col md:flex md:flex-row md:items-center gap-6
+               bg-green-700 md:bg-transparent text-white
+               absolute md:static top-full left-0 w-full md:w-auto
+               px-4 py-4 md:p-0 shadow-lg md:shadow-none z-50"
+      >
         <li><a href="./" class="block py-2 hover:text-green-300">Home</a></li>
         <li><a href="about.html" class="block py-2 hover:text-green-300">About</a></li>
         <li><a href="#products" class="block py-2 hover:text-green-300">Products</a></li>
@@ -71,7 +81,6 @@
 
       <div class="grid gap-8 md:grid-cols-2 items-start">
         <div class="text-gray-800">
-          <!-- UPDATED: Breaking News card (no button) -->
           <div class="bg-white rounded-lg shadow-md p-6">
             <h3 class="text-xl font-semibold mb-2">Breaking News</h3>
 
@@ -83,19 +92,16 @@
             </p>
 
             <p class="text-sm text-gray-700 mb-4">
-             Until then, Facebook is mission control — and the latest farm signals auto-sync right here.
-<strong>Bonus intel:</strong> a small petting-zoo outpost may be landing in a village near you (current roster:
-<strong>peacock + turkeys</strong>, with more animals in the works). <strong>Let’s keep our alien prongs crossed</strong>
-it all comes together. 👽🤞🛸
-
+              Until then, Facebook is mission control — and the latest farm signals auto-sync right here.
+              <strong>Bonus intel:</strong> a small petting-zoo outpost may be landing in a village near you (current roster:
+              <strong>peacock + turkeys</strong>, with more animals in the works). <strong>Let’s keep our alien prongs crossed</strong>
+              it all comes together. 👽🤞🛸
             </p>
 
             <p class="text-sm text-gray-700">
               Scroll down and tap <strong>Read more on Facebook</strong> to catch the full signal. 🛰️
             </p>
           </div>
-
-          <!-- NOTE BLOCK REMOVED FROM HERE -->
         </div>
 
         <div>
@@ -162,7 +168,7 @@ it all comes together. 👽🤞🛸
       </div>
       <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold mb-2">Duck Eggs</h3>
-        <p>Coming soon: Fresh duck eggs, $6 per dozen.</p>
+        <p>Available: Duck eggs — $7/dozen or $4/half-dozen.</p>
       </div>
     </div>
   </section>
@@ -185,10 +191,10 @@ it all comes together. 👽🤞🛸
   <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
     <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Fresh Eggs</h2>
     <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
-      Get delicious, farm-fresh eggs from our friends at <strong>Spofford Farm</strong>. Their hens are naturally raised and pasture-fed, producing eggs that are as fresh as they come — just <strong>$3 per dozen</strong>!
+      Get delicious, farm-fresh eggs from our friends at <strong>Spofford Farm</strong>. Their hens are naturally raised and pasture-fed, producing eggs that are as fresh as they come.
     </p>
     <p class="text-gray-700 mb-4">
-      🥚 <strong>$3/dozen</strong><br>
+      🥚 <strong>Contact for current pricing</strong><br>
       📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
       📞 <strong>Craig: (315) 868-2037</strong>
     </p>
@@ -196,7 +202,7 @@ it all comes together. 👽🤞🛸
        class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Egg Orders</a>
   </section>
 
-  <!-- MOVED NOTE (now between the Contact button area and the footer) -->
+  <!-- Note (between content and footer) -->
   <section class="px-4 pb-12 bg-white bg-opacity-90">
     <div class="max-w-3xl mx-auto">
       <div class="bg-white rounded-lg shadow-md p-6 text-center">
@@ -210,312 +216,34 @@ it all comes together. 👽🤞🛸
 
   <!-- Footer -->
   <footer class="bg-green-700 text-white text-center py-6">
-    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+    <p>© 2026 Roswell Family Farm. All rights reserved.</p>
   </footer>
 
   <!-- Scripts -->
   <script>
-    // Mobile menu toggle
-    (function () {
+    // Mobile menu toggle (reliable on mobile)
+    document.addEventListener('DOMContentLoaded', function () {
       var toggle = document.getElementById('menu-toggle');
       var menu = document.getElementById('menu');
-      if (toggle && menu) {
-        toggle.addEventListener('click', function () {
-          menu.classList.toggle('hidden');
-        });
-      }
-    })();
+      if (!toggle || !menu) return;
 
-    // Farm Updates: load generated JSON and render up to 3 posts
-    async function loadFacebookUpdates() {
-      var wrap = document.getElementById('fb-updates');
-      var note = document.getElementById('fb-updates-note');
-      var synced = document.getElementById('fb-updates-synced');
-      if (!wrap) return;
+      toggle.addEventListener('click', function () {
+        var willOpen = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
 
-      var fbLink = "https://www.facebook.com/647110288496461";
-
-      try {
-        // GitHub Pages-safe: build URL relative to the current page
-        var jsonUrl = new URL('assets/data/facebook.json', window.location.href);
-        var res = await fetch(jsonUrl.toString(), { cache: 'no-store' });
-        if (!res.ok) throw new Error('facebook.json not found yet');
-        var data = await res.json();
-
-        // Synced time
-        if (synced && data.generated_at) {
-          var gen = new Date(data.generated_at);
-          if (!isNaN(gen.getTime())) {
-            synced.textContent = "Synced: " + gen.toLocaleString();
-          } else {
-            synced.textContent = "";
+      // Close menu after tapping a link on mobile
+      var links = menu.querySelectorAll('a');
+      links.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth < 768) {
+            menu.classList.add('hidden');
+            toggle.setAttribute('aria-expanded', 'false');
           }
-        } else if (synced) {
-          synced.textContent = "";
-        }
-
-        var posts = Array.isArray(data.posts) ? data.posts : [];
-        var mode = data.mode || "unknown";
-
-        wrap.innerHTML = '';
-
-        if (mode === "last24") {
-          if (note) note.textContent = "Showing the 3 most recent posts from the last 24 hours.";
-        } else if (mode === "fallback_recent") {
-          if (note) note.textContent = "Showing our most recent updates.";
-        } else {
-          if (note) note.textContent = "";
-        }
-
-        if (posts.length === 0) {
-          wrap.innerHTML = `
-            <div class="sm:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6 text-gray-700">
-              No updates to display right now. Please check our Facebook page.
-              <div class="mt-4">
-                <a class="inline-block bg-green-700 text-white px-5 py-2 rounded-full hover:bg-green-800 transition"
-                   href="${fbLink}" target="_blank" rel="noopener noreferrer">
-                  Open Facebook
-                </a>
-              </div>
-            </div>
-          `;
-          return;
-        }
-
-        posts.slice(0, 3).forEach(function (post) {
-          var link = post.permalink_url || fbLink;
-
-          var created = post.created_time ? new Date(post.created_time) : null;
-          var dateText = created && !isNaN(created.getTime()) ? created.toLocaleString() : '';
-
-          var message = (post.message || '').trim();
-          var messageSafe = message.length > 0 ? message : '(Tap to view this post on Facebook)';
-
-          // Fixed-height media area so cards line up nicely
-          var mediaHtml = post.full_picture
-            ? `
-              <div class="w-full h-56 overflow-hidden bg-gray-100">
-                <img src="${post.full_picture}" alt="Facebook post image" class="w-full h-full object-cover" loading="lazy">
-              </div>
-            `
-            : `
-              <div class="w-full h-56 bg-gradient-to-br from-green-700 to-green-900 flex items-center justify-center">
-                <div class="text-white text-center px-4">
-                  <div class="text-sm uppercase tracking-wider opacity-90">Farm Update</div>
-                  <div class="text-lg font-bold mt-1">Roswell Family Farm</div>
-                </div>
-              </div>
-            `;
-
-          var card = document.createElement('a');
-          card.href = link;
-          card.target = '_blank';
-          card.rel = 'noopener noreferrer';
-          card.className = 'flex flex-col bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition h-full';
-
-          var safeMessageHtml = escapeHtml(messageSafe).replace(/\n/g, '<br>');
-
-          card.innerHTML = `
-            ${mediaHtml}
-            <div class="p-4 flex-1 flex flex-col">
-              <div class="text-xs text-gray-500 mb-2">${escapeHtml(dateText)}</div>
-
-              <div class="text-sm text-gray-800"
-                   style="display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;">
-                ${safeMessageHtml}
-              </div>
-
-              <div class="mt-4 text-sm font-semibold text-green-800">Read on Facebook →</div>
-            </div>
-          `;
-
-          wrap.appendChild(card);
         });
-
-      } catch (err) {
-        wrap.innerHTML = `
-          <div class="sm:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6 text-gray-700">
-            Farm update signal is temporarily offline — please check Facebook directly.
-            <div class="mt-4">
-              <a class="inline-block bg-green-700 text-white px-5 py-2 rounded-full hover:bg-green-800 transition"
-                 href="${fbLink}" target="_blank" rel="noopener noreferrer">
-                Open Facebook
-              </a>
-            </div>
-          </div>
-        `;
-        if (note) note.textContent = "";
-        if (synced) synced.textContent = "";
-        console.error(err);
-      }
-    }
-
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
-    loadFacebookUpdates();
-  </script>
-</body>
-</html>
-      <h2 class="text-3xl font-bold text-green-800 text-center mb-4">Farm Updates</h2>
-      <p class="text-lg text-gray-800 text-center max-w-2xl mx-auto mb-10">
-        Fresh updates from our Facebook — automatically synced to the website.
-      </p>
-
-      <div class="grid gap-8 md:grid-cols-2 items-start">
-        <div class="text-gray-800">
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <h3 class="text-xl font-semibold mb-2">What’s new</h3>
-            <p class="mb-4">
-              If we post 3+ times in 24 hours, you’ll see only the 3 most recent posts from that window.
-              Otherwise, we’ll show our most recent updates.
-            </p>
-            <a
-              href="https://www.facebook.com/647110288496461"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition"
-            >
-              Visit us on Facebook
-            </a>
-          </div>
-
-          <!-- NOTE BLOCK REMOVED FROM HERE -->
-        </div>
-
-        <div>
-          <!-- Responsive grid so posts don’t look stacked -->
-          <div id="fb-updates" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch"></div>
-
-          <p id="fb-updates-note" class="text-xs text-gray-700 mt-4 text-center"></p>
-          <p id="fb-updates-synced" class="text-xs text-gray-600 mt-1 text-center"></p>
-
-          <div class="text-center mt-6">
-            <a
-              href="https://www.facebook.com/647110288496461"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition"
-            >
-              Read more on Facebook
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products Section -->
-  <section id="products" class="py-16 px-4 bg-black bg-opacity-50">
-    <h2 class="text-3xl font-bold text-center text-white mb-8">Our Products</h2>
-    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Whole Chickens</h3>
-        <p>Perfect for roasting. Pasture-raised and packed with flavor.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Half Chickens</h3>
-        <p>Great for smaller meals. Pasture-raised and delicious.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Chicken Cuts</h3>
-        <p>Premium cuts including breasts, thighs & wings.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Whole Pigs</h3>
-        <p>Reserve a whole pig — raised with care in partnership with Spofford Farm.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Half Pigs</h3>
-        <p>Perfect for families. Raised with care and flavor.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Pork Cuts</h3>
-        <p>Chops, roasts, sausage & more — USDA-inspected and full of flavor.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Roaster Pigs</h3>
-        <p>Pasture-raised roaster pigs, available for order by phone call only. Contact us at (315) 868-2037, (315) 985-3896, or (315) 717-3465.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Grassfed Beef</h3>
-        <p>Premium grassfed beef, raised naturally for superior taste.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Duck Meat</h3>
-        <p>Rich and tender pasture-raised duck, available for order.</p>
-      </div>
-      <div class="bg-white text-gray-900 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-2">Duck Eggs</h3>
-        <p>Coming soon: Fresh duck eggs, $6 per dozen.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Spofford Farm Hay Ad Section -->
-  <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
-    <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Hay Sales</h2>
-    <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
-      In need of quality hay? Our partners at <strong>Spofford Farm</strong> offer both <strong>large square bales</strong> and <strong>small square bales</strong> — perfect for livestock, bedding, or storage.
-    </p>
-    <p class="text-gray-700 mb-4">
-      📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
-      📞 <strong>Craig: (315) 868-2037</strong>
-    </p>
-    <a href="contact.html"
-       class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Hay Orders</a>
-  </section>
-
-  <!-- Spofford Farm Fresh Eggs Section -->
-  <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
-    <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Fresh Eggs</h2>
-    <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
-      Get delicious, farm-fresh eggs from our friends at <strong>Spofford Farm</strong>. Their hens are naturally raised and pasture-fed, producing eggs that are as fresh as they come — just <strong>$3 per dozen</strong>!
-    </p>
-    <p class="text-gray-700 mb-4">
-      🥚 <strong>$3/dozen</strong><br>
-      📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
-      📞 <strong>Craig: (315) 868-2037</strong>
-    </p>
-    <a href="contact.html"
-       class="inline-block bg-green-700 text-white px-6 py-3 rounded-full hover:bg-green-800 transition">Contact for Egg Orders</a>
-  </section>
-
-  <!-- MOVED NOTE (now between the Contact button area and the footer) -->
-  <section class="px-4 pb-12 bg-white bg-opacity-90">
-    <div class="max-w-3xl mx-auto">
-      <div class="bg-white rounded-lg shadow-md p-6 text-center">
-        <h4 class="text-lg font-semibold mb-2">Note</h4>
-        <p class="text-sm text-gray-700">
-          Some privacy/ad blockers can hide social content. If you don’t see updates here, tap “Visit us on Facebook.”
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-green-700 text-white text-center py-6">
-    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    // Mobile menu toggle
-    (function () {
-      var toggle = document.getElementById('menu-toggle');
-      var menu = document.getElementById('menu');
-      if (toggle && menu) {
-        toggle.addEventListener('click', function () {
-          menu.classList.toggle('hidden');
-        });
-      }
-    })();
+      });
+    });
 
     // Farm Updates: load generated JSON and render up to 3 posts
     async function loadFacebookUpdates() {
