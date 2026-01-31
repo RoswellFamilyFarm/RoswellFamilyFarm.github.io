@@ -15,7 +15,6 @@
   <!-- Navigation -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <!-- Use relative link for GitHub Pages project sites -->
       <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
 
       <button id="menu-toggle" class="text-white md:hidden focus:outline-none" aria-label="Open menu">
@@ -29,13 +28,10 @@
           class="hidden flex-col md:flex md:flex-row md:items-center gap-6
                  bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0
                  w-full md:w-auto px-4 py-4 md:p-0">
-
-        <!-- All internal links made relative for GitHub Pages compatibility -->
         <li><a href="./" class="block py-2 hover:text-green-300">Home</a></li>
         <li><a href="about.html" class="block py-2 hover:text-green-300">About</a></li>
         <li><a href="#products" class="block py-2 hover:text-green-300">Products</a></li>
         <li><a href="#farm-updates" class="block py-2 hover:text-green-300">Farm Updates</a></li>
-
         <li><a href="chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
         <li><a href="pork-orders.html" class="block py-2 hover:text-green-300">Pork Preorders</a></li>
         <li><a href="duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
@@ -94,14 +90,17 @@
           <div class="bg-white rounded-lg shadow-md p-6 mt-6">
             <h4 class="text-lg font-semibold mb-2">Note</h4>
             <p class="text-sm text-gray-700">
-              Some privacy/ad blockers can hide social embeds. If you don’t see updates, tap “Visit us on Facebook.”
+              Some privacy/ad blockers can hide social content. If you don’t see updates here, tap “Visit us on Facebook.”
             </p>
           </div>
         </div>
 
         <div>
-          <div id="fb-updates" class="grid gap-6 md:grid-cols-1"></div>
+          <!-- Responsive grid so posts don’t look stacked -->
+          <div id="fb-updates" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch"></div>
+
           <p id="fb-updates-note" class="text-xs text-gray-700 mt-4 text-center"></p>
+          <p id="fb-updates-synced" class="text-xs text-gray-600 mt-1 text-center"></p>
 
           <div class="text-center mt-6">
             <a
@@ -169,7 +168,7 @@
   <section class="py-16 px-4 bg-white bg-opacity-90 text-center">
     <h2 class="text-3xl font-bold text-green-800 mb-4">Spofford Farm Hay Sales</h2>
     <p class="text-lg text-gray-800 max-w-2xl mx-auto mb-6">
-      In need of quality hay? Our partners at <strong>Spofford Farm</strong> offer both <strong>large square bales</strong> and <strong>small square bales</strong> — perfect for livestock, bedding, or mulch.
+      In need of quality hay? Our partners at <strong>Spofford Farm</strong> offer both <strong>large square bales</strong> and <strong>small square bales</strong> — perfect for livestock, bedding, or storage.
     </p>
     <p class="text-gray-700 mb-4">
       📍 <strong>955 Thompson Rd, Dolgeville, NY</strong><br>
@@ -203,44 +202,59 @@
   <script>
     // Mobile menu toggle
     (function () {
-      const toggle = document.getElementById('menu-toggle');
-      const menu = document.getElementById('menu');
+      var toggle = document.getElementById('menu-toggle');
+      var menu = document.getElementById('menu');
       if (toggle && menu) {
-        toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+        toggle.addEventListener('click', function () {
+          menu.classList.toggle('hidden');
+        });
       }
     })();
 
     // Farm Updates: load generated JSON and render up to 3 posts
     async function loadFacebookUpdates() {
-      const wrap = document.getElementById('fb-updates');
-      const note = document.getElementById('fb-updates-note');
+      var wrap = document.getElementById('fb-updates');
+      var note = document.getElementById('fb-updates-note');
+      var synced = document.getElementById('fb-updates-synced');
       if (!wrap) return;
 
-      // Correct Facebook Page link
-      const fbLink = "https://www.facebook.com/647110288496461";
+      var fbLink = "https://www.facebook.com/647110288496461";
 
       try {
-        // IMPORTANT: Relative path works on GitHub Pages project sites AND root sites
-        const res = await fetch('assets/data/facebook.json', { cache: 'no-store' });
+        // GitHub Pages-safe: build URL relative to the current page
+        var jsonUrl = new URL('assets/data/facebook.json', window.location.href);
+        var res = await fetch(jsonUrl.toString(), { cache: 'no-store' });
         if (!res.ok) throw new Error('facebook.json not found yet');
-        const data = await res.json();
+        var data = await res.json();
 
-        const posts = Array.isArray(data.posts) ? data.posts : [];
-        const mode = data.mode || "unknown";
+        // Synced time
+        if (synced && data.generated_at) {
+          var gen = new Date(data.generated_at);
+          if (!isNaN(gen.getTime())) {
+            synced.textContent = "Synced: " + gen.toLocaleString();
+          } else {
+            synced.textContent = "";
+          }
+        } else if (synced) {
+          synced.textContent = "";
+        }
+
+        var posts = Array.isArray(data.posts) ? data.posts : [];
+        var mode = data.mode || "unknown";
 
         wrap.innerHTML = '';
 
         if (mode === "last24") {
           if (note) note.textContent = "Showing the 3 most recent posts from the last 24 hours.";
         } else if (mode === "fallback_recent") {
-          if (note) note.textContent = "No 3+ post burst in the last 24 hours — showing the most recent updates.";
+          if (note) note.textContent = "Showing our most recent updates.";
         } else {
           if (note) note.textContent = "";
         }
 
         if (posts.length === 0) {
           wrap.innerHTML = `
-            <div class="bg-white rounded-lg shadow-md p-6 text-gray-700">
+            <div class="sm:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6 text-gray-700">
               No updates to display right now. Please check our Facebook page.
               <div class="mt-4">
                 <a class="inline-block bg-green-700 text-white px-5 py-2 rounded-full hover:bg-green-800 transition"
@@ -253,34 +267,50 @@
           return;
         }
 
-        posts.slice(0, 3).forEach(post => {
-          const link = post.permalink_url || fbLink;
+        posts.slice(0, 3).forEach(function (post) {
+          var link = post.permalink_url || fbLink;
 
-          const created = post.created_time ? new Date(post.created_time) : null;
-          const dateText = created ? created.toLocaleString() : '';
+          var created = post.created_time ? new Date(post.created_time) : null;
+          var dateText = created && !isNaN(created.getTime()) ? created.toLocaleString() : '';
 
-          const message = (post.message || '').trim();
-          const messageSafe = message.length > 0 ? message : '(Tap to view this post on Facebook)';
+          var message = (post.message || '').trim();
+          var messageSafe = message.length > 0 ? message : '(Tap to view this post on Facebook)';
 
-          const imgHtml = post.full_picture
-            ? `<img src="${post.full_picture}" alt="Facebook post image" class="w-full h-56 object-cover">`
-            : '';
+          // Fixed-height media area so cards line up nicely
+          var mediaHtml = post.full_picture
+            ? `
+              <div class="w-full h-56 overflow-hidden bg-gray-100">
+                <img src="${post.full_picture}" alt="Facebook post image" class="w-full h-full object-cover" loading="lazy">
+              </div>
+            `
+            : `
+              <div class="w-full h-56 bg-gradient-to-br from-green-700 to-green-900 flex items-center justify-center">
+                <div class="text-white text-center px-4">
+                  <div class="text-sm uppercase tracking-wider opacity-90">Farm Update</div>
+                  <div class="text-lg font-bold mt-1">Roswell Family Farm</div>
+                </div>
+              </div>
+            `;
 
-          const card = document.createElement('a');
+          var card = document.createElement('a');
           card.href = link;
           card.target = '_blank';
           card.rel = 'noopener noreferrer';
-          card.className = 'block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition';
+          card.className = 'flex flex-col bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition h-full';
+
+          var safeMessageHtml = escapeHtml(messageSafe).replace(/\n/g, '<br>');
 
           card.innerHTML = `
-            ${imgHtml}
-            <div class="p-4">
+            ${mediaHtml}
+            <div class="p-4 flex-1 flex flex-col">
               <div class="text-xs text-gray-500 mb-2">${escapeHtml(dateText)}</div>
+
               <div class="text-sm text-gray-800"
-                   style="display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;">
-                ${escapeHtml(messageSafe)}
+                   style="display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;">
+                ${safeMessageHtml}
               </div>
-              <div class="text-sm font-semibold text-green-800 mt-3">Read on Facebook →</div>
+
+              <div class="mt-4 text-sm font-semibold text-green-800">Read on Facebook →</div>
             </div>
           `;
 
@@ -289,7 +319,7 @@
 
       } catch (err) {
         wrap.innerHTML = `
-          <div class="bg-white rounded-lg shadow-md p-6 text-gray-700">
+          <div class="sm:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6 text-gray-700">
             Farm update signal is temporarily offline — please check Facebook directly.
             <div class="mt-4">
               <a class="inline-block bg-green-700 text-white px-5 py-2 rounded-full hover:bg-green-800 transition"
@@ -300,17 +330,18 @@
           </div>
         `;
         if (note) note.textContent = "";
+        if (synced) synced.textContent = "";
         console.error(err);
       }
     }
 
     function escapeHtml(str) {
       return String(str)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     loadFacebookUpdates();
