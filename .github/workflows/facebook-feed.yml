@@ -2,11 +2,16 @@ name: Update Facebook Feed JSON
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # every 10 minutes (UTC)
+    - cron: "*/5 * * * *"   
   workflow_dispatch: {}
 
 permissions:
   contents: write
+
+# Prevent overlapping runs from stepping on each other
+concurrency:
+  group: facebook-feed-main
+  cancel-in-progress: true
 
 jobs:
   update-facebook:
@@ -14,6 +19,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0      # required for pull --rebase to work reliably
+          ref: main           # ensures we're on main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -33,7 +41,26 @@ jobs:
 
       - name: Commit & push if changed
         run: |
+          set -e
+
           git config user.name "roswell-farm-bot"
           git config user.email "actions@users.noreply.github.com"
+
+          # Make sure we're up-to-date before committing
+          git pull --rebase origin main
+
           git add assets/data/facebook.json
-          git diff --cached --quiet || (git commit -m "Update Facebook feed JSON" && git push)
+
+          # If no changes, exit cleanly
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update Facebook feed JSON"
+
+          # In case main changed again while we were running
+          git pull --rebase origin main
+
+          # Push back to main
+          git push origin HEAD:main
