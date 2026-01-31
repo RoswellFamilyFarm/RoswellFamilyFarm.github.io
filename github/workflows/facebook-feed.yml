@@ -30,6 +30,13 @@ jobs:
           FB_GRAPH_VERSION: "v23.0"
           FB_LIMIT: "25"
         run: python scripts/fetch_facebook.py
+        
+      - name: Debug - show generated JSON
+        run: |
+          echo "Branch:"
+          git rev-parse --abbrev-ref HEAD
+          echo "File content:"
+          cat assets/data/facebook.json
 
       - name: Commit & push if changed
         run: |
