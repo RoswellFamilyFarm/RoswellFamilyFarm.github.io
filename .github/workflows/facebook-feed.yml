@@ -2,13 +2,12 @@ name: Update Facebook Feed JSON
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   
+    - cron: "*/10 * * * *"   # every 10 minutes (UTC)
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
-# Prevent overlapping runs from stepping on each other
 concurrency:
   group: facebook-feed-main
   cancel-in-progress: true
@@ -20,8 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0      # required for pull --rebase to work reliably
-          ref: main           # ensures we're on main
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -40,13 +39,16 @@ jobs:
         run: python scripts/fetch_facebook.py
 
       - name: Commit & push if changed
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
 
           git config user.name "roswell-farm-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          # Make sure we're up-to-date before committing
+          # Always sync runner with latest main
+          git fetch origin main
+          git checkout main
           git pull --rebase origin main
 
           git add assets/data/facebook.json
@@ -59,8 +61,20 @@ jobs:
 
           git commit -m "Update Facebook feed JSON"
 
-          # In case main changed again while we were running
-          git pull --rebase origin main
+          # Push with retries (handles remote moving during the run)
+          for i in 1 2 3 4 5; do
+            echo "Push attempt $i..."
+            git fetch origin main
+            git pull --rebase origin main || true
 
-          # Push back to main
-          git push origin HEAD:main
+            if git push origin HEAD:main; then
+              echo "Push succeeded."
+              exit 0
+            fi
+
+            echo "Push failed (remote changed). Waiting and retrying..."
+            sleep $((3 * i))
+          done
+
+          echo "Push failed after 5 attempts."
+          exit 1
