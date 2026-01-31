@@ -4,86 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pork Cuts Orders | Roswell Family Farm</title>
-  <meta name="description" content="Reserve pasture-raised pork cuts from Roswell Family Farm in collaboration with Spofford Farm. Submit your order form online." />
+  <meta name="description" content="Order pasture-raised pork cuts from Roswell Family Farm in collaboration with Spofford Farm. Submit your pork cuts order online." />
 
-  <!-- Tailwind (for the same nav + mobile hamburger behavior as your homepage) -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Contact-page color scheme background -->
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+    body {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg')
+        no-repeat center center fixed;
+      background-size: cover;
       font-family: "Segoe UI", sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
     }
 
-    .hero {
-      padding: 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #f0fdf4, #dcfce7);
-    }
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      color: #2f612c;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: 0 auto 1rem;
-      color: #444;
-    }
-    .hero h2 {
-      font-size: 1.5rem;
-      margin: 1rem 0 0.5rem;
-      color: #2f612c;
-    }
-    .hero ul {
-      list-style-type: none;
-      padding: 0;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .hero ul li {
-      font-size: 1.1rem;
-      color: #444;
-      margin-bottom: 0.5rem;
-    }
-    .hero a {
-      color: #2f855a;
-      text-decoration: underline;
-    }
-    .hero a:hover {
-      color: #1f6140;
-    }
-
-    iframe {
-      display: block;
+    .form-frame {
       width: 100%;
-      height: calc(100vh - 250px);
       border: none;
+      height: 85vh;
+      display: block;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.5rem; }
-      .hero h2 { font-size: 1.3rem; }
-      .hero p, .hero ul li {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
-      iframe {
-        height: calc(100vh - 290px);
-      }
+    @media (max-width: 640px) {
+      .form-frame { height: 78vh; }
     }
   </style>
 </head>
 
-<body>
+<body class="text-white">
 
-  <!-- Navigation (same style + reliable hamburger as your homepage) -->
+  <!-- Header / Navigation -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
       <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
@@ -127,98 +78,214 @@
     </nav>
   </header>
 
-  <!-- Page Content -->
-  <div class="hero">
-    <h1>Reserve Your Pasture-Raised Pork Cuts</h1>
-    <p>
-      Raised with love by <strong>Roswell Family Farm</strong> in cosmic collaboration with
-      <strong>Spofford Farm</strong> — bringing you pork cuts that’s truly <em>out of this world</em>.
-      🐖🛸<br />
-      Now taking orders for pasture-raised pork cuts — USDA processed.
-    </p>
+  <!-- Page Content (structured like beef page) -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8 md:p-10">
 
-    <h2>📝 Order Instructions</h2>
-    <p>
-      Please fill out your order with:<br />
-      The type of pork cuts you'd like (e.g. ribs, chops, variety of sausage, roast, steaks, etc.)<br />
-      The quantity or weight for each (note: packages range from 0.5 to 2 lbs with the exception of roast). You will be matched as closely as possible to your order request with up to ±0.5 lb variation.<br />
-      Feel free to format it like this:<br />
-      - Loin Chops: 3 packages (~0.5 lbs each)<br />
-      - Picnic Roast: 1 (~6-7 lbs)<br />
-      - Breakfast Sausage: 4 lbs<br />
-      Any special requests or notes you'd like us to consider
-    </p>
+        <h1 class="text-4xl font-bold mb-4 text-green-800 text-center">Reserve Your Pasture-Raised Pork Cuts</h1>
 
-    <h2>🔁 After Submission</h2>
-    <p>
-      We’ll confirm availability of cuts<br />
-      You’ll receive the final cost directly<br />
-      Pickup or delivery details will be arranged with you directly<br />
-      📨 We’ll follow up to confirm availability, deposit, and processing timeline.<br />
-      Next processing days: November and December date TBD
-    </p>
+        <p class="text-lg text-gray-800 mb-8 text-center max-w-3xl mx-auto">
+          Raised with care through our partnership with <strong>Spofford Farm</strong> and offered by
+          <strong>Roswell Family Farm</strong> — clean, flavorful pork cuts ready for your freezer.
+        </p>
 
-    <h2>🌱 Available Cuts & Prices:</h2>
-    <ul>
-      <li>Breakfast Sausage Ground ($8.00/lb)</li>
-      <li>Breakfast Sausage Links ($8.50/lb)</li>
-      <li>Sweet Sausage Ground ($8.00/lb)</li>
-      <li>Sweet Sausage Links ($8.50/lb)</li>
-      <li>Hot Sausage Ground ($8.00/lb)</li>
-      <li>Hot Sausage Link ($8.50/lb)</li>
-      <li>Pork Sirloin ($6.00/lb) - Have 4 packages (.56, 1.06, 1.08, 1.22)</li>
-      <li>Pork Blade Steak ($5.75/lb) - Have 4 packages (1.82, 1.94, 1.96, 2.16)</li>
-      <li>Pork Ham Steaks ($8.00/lb) - Have 23 pounds</li>
-      <li>Pork Spare Ribs ($5.30/lb) - Have 2 packages (1.52, 1.72)</li>
-      <li>Pork Baby Back Ribs ($5.50/lb) - Have 2 packages (1.22, 1.50)</li>
-      <li>Pork Country Style Ribs ($5.30/lb) - Have 4 packages (.76, .80, 1.64, 1.72)</li>
-      <li>Pork Picnic Roast ($5.50/lb) - Have 2 packages (5.80, 6.84)</li>
-      <li>Pork Loin Roast ($6.50/lb) - Have 1 package (2.10)</li>
-      <li>Pork Whole Tenderloin ($8.00/lb) - Have 2 packages (.84, .98)</li>
-      <li>Pork Boneless Loin Chops ($7.30/lb) - Have 8 packages ranging (.48-.58)</li>
-      <li>Pork Boneless Rib Chops ($7.30/lb) - Have 4 packages (.42, .46, .46, .50)</li>
-    </ul>
+        <!-- Top cards (like beef page) -->
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- Order Instructions -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-3">📝 Order Instructions</h2>
 
-    <p>Thank you for shopping local and supporting our farm family!</p>
+            <ul class="text-sm text-gray-700 space-y-2 list-disc pl-5">
+              <li>List the cuts you want (ex: chops, ribs, roasts, sausage).</li>
+              <li>Add how many packages (or total pounds) for each item.</li>
+              <li>If you have preferences (thicker chops, more sausage, etc.), add it in the notes.</li>
+            </ul>
 
-    <h2>🐷 Questions?</h2>
-    <p>
-      Email: <a href="mailto:roswellfamilyfarm@gmail.com">roswellfamilyfarm@gmail.com</a><br />
-      Facebook: <a href="https://www.facebook.com/647110288496461" target="_blank" rel="noopener noreferrer">Roswell Family Farm</a><br />
-      Instagram: <a href="https://instagram.com/RoswellFamilyFarm" target="_blank" rel="noopener noreferrer">@RoswellFamilyFarm</a>
-    </p>
-  </div>
+            <div class="mt-4 bg-gray-50 rounded-md border border-gray-100 p-4">
+              <p class="text-sm text-gray-700 font-semibold mb-2">Example format:</p>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                • Boneless Loin Chops: 3 packages<br />
+                • Picnic Roast: 1 roast<br />
+                • Breakfast Sausage (ground): 4 lbs<br />
+                • Notes: (anything special you want us to know)
+              </p>
+            </div>
+          </div>
 
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSdijdeW1lhRcEonraKAi1QT2hPiViFH0fJrX0BHIzB-2dsQQw/viewform?embedded=true"
-    loading="lazy"
-    title="Pork Cuts Order Form"
-  >
-    Loading...
-  </iframe>
+          <!-- After Submission -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-3">🔁 After You Submit</h2>
 
-  <!-- Scripts (same reliable hamburger behavior) -->
+            <ul class="text-sm text-gray-700 space-y-2 list-disc pl-5">
+              <li>We’ll confirm what’s available and match your request as closely as possible.</li>
+              <li>We’ll send your total price based on final packed weights.</li>
+              <li>Pickup/delivery details will be arranged directly with you.</li>
+            </ul>
+
+            <div class="mt-4">
+              <h3 class="text-lg font-semibold text-green-800 mb-2">🐷 Questions?</h3>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                Email:
+                <a class="text-blue-700 underline hover:text-blue-900" href="mailto:roswellfamilyfarm@gmail.com">
+                  roswellfamilyfarm@gmail.com
+                </a><br />
+                Facebook:
+                <a class="text-blue-700 underline hover:text-blue-900"
+                   href="https://www.facebook.com/647110288496461"
+                   target="_blank" rel="noopener noreferrer">
+                  Roswell Family Farm
+                </a><br />
+                Instagram:
+                <a class="text-blue-700 underline hover:text-blue-900"
+                   href="https://instagram.com/RoswellFamilyFarm"
+                   target="_blank" rel="noopener noreferrer">
+                  @RoswellFamilyFarm
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prices (like beef “Available Cuts & Prices”) -->
+        <div class="mt-8">
+          <h2 class="text-2xl font-semibold text-green-800 mb-3">🌱 Available Cuts & Prices</h2>
+          <p class="text-sm text-gray-700 mb-4">
+            Prices are per pound unless noted otherwise. Availability can change — the form is the best way to request what you want.
+          </p>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <!-- Sausage -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+              <h3 class="text-xl font-semibold text-green-800 mb-3">Sausage</h3>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                  <thead class="text-gray-700">
+                    <tr>
+                      <th class="py-2 pr-4">Item</th>
+                      <th class="py-2 text-right">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-700">
+                    <tr class="border-t"><td class="py-2 pr-4">Breakfast Sausage (ground)</td><td class="py-2 text-right">$8.00/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Breakfast Links</td><td class="py-2 text-right">$8.50/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Sweet Sausage (ground)</td><td class="py-2 text-right">$8.00/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Sweet Links</td><td class="py-2 text-right">$8.50/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Hot Sausage (ground)</td><td class="py-2 text-right">$8.00/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Hot Links</td><td class="py-2 text-right">$8.50/lb</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Pork Cuts -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+              <h3 class="text-xl font-semibold text-green-800 mb-3">Pork Cuts</h3>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                  <thead class="text-gray-700">
+                    <tr>
+                      <th class="py-2 pr-4">Cut</th>
+                      <th class="py-2 text-right">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-700">
+                    <tr class="border-t"><td class="py-2 pr-4">Pork Sirloin</td><td class="py-2 text-right">$6.00/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Blade Steak</td><td class="py-2 text-right">$5.75/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Ham Steaks</td><td class="py-2 text-right">$8.00/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Spare Ribs</td><td class="py-2 text-right">$5.30/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Baby Back Ribs</td><td class="py-2 text-right">$5.50/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Country Style Ribs</td><td class="py-2 text-right">$5.30/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Picnic Roast</td><td class="py-2 text-right">$5.50/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Loin Roast</td><td class="py-2 text-right">$6.50/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Whole Tenderloin</td><td class="py-2 text-right">$8.00/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Boneless Loin Chops</td><td class="py-2 text-right">$7.30/lb</td></tr>
+                    <tr class="border-t"><td class="py-2 pr-4">Boneless Rib Chops</td><td class="py-2 text-right">$7.30/lb</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-600 mt-4 text-center">
+            Note: final totals are based on actual packed weights at pickup/delivery.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Embedded Pork Cuts Google Form -->
+  <section class="px-4 pb-16">
+    <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
+      <iframe
+        class="form-frame"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdijdeW1lhRcEonraKAi1QT2hPiViFH0fJrX0BHIzB-2dsQQw/viewform?embedded=true"
+        loading="lazy"
+        title="Pork Cuts Order Form"
+      >
+        Loading...
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+  </footer>
+
+  <!-- Hamburger Script (greased-machine version) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var toggle = document.getElementById('menu-toggle');
       var menu = document.getElementById('menu');
       if (!toggle || !menu) return;
 
-      toggle.addEventListener('click', function () {
-        var willOpen = menu.classList.contains('hidden');
-        menu.classList.toggle('hidden');
-        toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      function closeMenu() {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMenu() {
+        menu.classList.remove('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isClosed = menu.classList.contains('hidden');
+        if (isClosed) openMenu();
+        else closeMenu();
       });
 
-      // Close menu after tapping a link on mobile
+      // Close after tapping a link on mobile
       var links = menu.querySelectorAll('a');
       links.forEach(function (a) {
         a.addEventListener('click', function () {
-          if (window.innerWidth < 768) {
-            menu.classList.add('hidden');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
+          if (window.innerWidth < 768) closeMenu();
         });
+      });
+
+      // Click outside closes (mobile)
+      document.addEventListener('click', function (e) {
+        if (window.innerWidth < 768) {
+          if (!menu.classList.contains('hidden')) closeMenu();
+        }
+      });
+
+      // Resize safety (if you rotate phone / go desktop)
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768) {
+          // Let desktop menu show normally via Tailwind md:flex
+          menu.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Escape key closes
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
       });
     });
   </script>
