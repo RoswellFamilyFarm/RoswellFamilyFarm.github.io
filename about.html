@@ -5,27 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About – Roswell Family Farm</title>
   <meta name="description" content="Learn about Roswell Family Farm in Salisbury, NY — pasture-raised poultry, pork, and locally sourced beef." />
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Contact-page color scheme background -->
+  <style>
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: "Segoe UI", sans-serif;
+    }
+  </style>
 </head>
 
-<body class="bg-gray-100 font-sans">
+<body class="text-white">
 
-  <!-- Navigation -->
+  <!-- Header / Navigation (updated to match your other pages) -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
-    <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
       <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
 
-      <button id="menu-toggle" class="text-white md:hidden focus:outline-none" aria-label="Open menu">
+      <button
+        id="menu-toggle"
+        type="button"
+        class="text-white md:hidden focus:outline-none"
+        aria-label="Open menu"
+        aria-controls="menu"
+        aria-expanded="false"
+      >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
 
-      <ul id="menu"
-          class="hidden flex-col md:flex md:flex-row md:items-center gap-6
-                 bg-green-700 md:bg-transparent text-white absolute md:static top-16 left-0
-                 w-full md:w-auto px-4 py-4 md:p-0">
+      <ul
+        id="menu"
+        class="hidden flex flex-col md:flex md:flex-row md:items-center gap-6
+               bg-green-700 md:bg-transparent text-white
+               absolute md:static top-full left-0 w-full md:w-auto
+               px-4 py-4 md:p-0 shadow-lg md:shadow-none z-50"
+      >
         <li><a href="./" class="block py-2 hover:text-green-300">Home</a></li>
         <li><a href="about.html" class="block py-2 hover:text-green-300">About</a></li>
 
@@ -44,33 +66,53 @@
     </nav>
   </header>
 
-  <!-- About Section -->
-  <section class="py-16 px-6 text-center max-w-3xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4 text-green-700">About Roswell Family Farm</h2>
+  <!-- About Section (rewritten wording, same meaning + facts, contact-page look) -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8 md:p-10">
+        <h1 class="text-4xl font-bold mb-6 text-green-800 text-center">About Roswell Family Farm</h1>
 
-    <p class="text-gray-700 text-lg mb-6">
-      Roswell Family Farm is lovingly run by Anthony and Emily Roswell, along with their three kids — Willow (7), Waylon (6), and Wyatt (4). Nestled in Salisbury, NY, our family is passionate about raising healthy animals the right way, and sharing farm-fresh food with our community.
-    </p>
+        <div class="space-y-6 text-lg text-gray-800 leading-relaxed">
+          <p>
+            Roswell Family Farm is a family-run farm operated by Anthony and Emily Roswell, alongside their three kids —
+            Willow (7), Waylon (6), and Wyatt (4). Based in Salisbury, NY, we’re focused on raising animals with care and
+            getting real, farm-fresh food into the hands of our local community.
+          </p>
 
-    <p class="text-gray-700 text-lg mb-6">
-      We began with <strong>pasture-raised chickens</strong>, giving them room to roam, sunshine to soak in, and fresh grass and bugs to enjoy every day. This natural lifestyle makes for happier birds and richer flavor you can taste in every bite. We’ve since added <strong>ducks for both meat and eggs</strong>, bringing even more variety and farm-fresh goodness straight from our pastures to your plate.
-    </p>
+          <p>
+            Our story started with <strong>pasture-raised chickens</strong>. We give them space to roam, sunshine to enjoy,
+            and a natural day on pasture with grass and bugs. That kind of life makes for happier birds — and the richer
+            flavor shows up in every meal. Over time, we added <strong>ducks for both meat and eggs</strong>, bringing more
+            variety and even more farm goodness straight from our pastures to your table.
+          </p>
 
-    <p class="text-gray-700 text-lg mb-6">
-      Through our close partnership with <strong>Craig and Stephanie Spofford</strong> of <strong>Spofford Farm</strong>, we’re proud to offer <strong>roaster pigs</strong>, whole and half hogs, and a wide variety of <strong>pasture-raised pork cuts</strong>. This partnership lets us bring you pork that’s tender, flavorful, and raised with the same values we live by here at Roswell Family Farm.
-    </p>
+          <p>
+            Through our close partnership with <strong>Craig and Stephanie Spofford</strong> of <strong>Spofford Farm</strong>,
+            we’re proud to offer <strong>roaster pigs</strong>, whole and half hogs, and a wide selection of
+            <strong>pasture-raised pork cuts</strong>. Working together helps us provide pork that’s full of flavor and raised
+            with the same values we live by at Roswell Family Farm.
+          </p>
 
-    <p class="text-gray-700 text-lg mb-6">
-      For our <strong>beef</strong>, we source directly from trusted nearby family farms. These farms raise cattle on open pastures with the same standards of care, honesty, and respect that we believe in. By sourcing locally, we not only ensure the highest quality cuts but also support other hardworking families in our community. It’s food that strengthens the bonds of local farming while giving you meals that are rich, wholesome, and unforgettable.
-    </p>
+          <p>
+            When it comes to <strong>beef</strong>, we source from trusted nearby family farms that raise cattle on open pasture
+            with standards we respect — care, honesty, and responsible farming. Keeping it local means great quality for your
+            freezer, while also supporting other hardworking families right here in our region.
+          </p>
 
-    <p class="text-gray-700 text-lg mb-6">
-      Our mission is simple: to provide <strong>affordable, high-quality meat to local families</strong>. By raising our own poultry and pork while sourcing beef and other products from neighboring farms, we’re able to expand the reach of all our markets. Someone might come looking for chicken and leave with pork or beef from another farm — and the same goes in reverse. It’s a win-win that strengthens local agriculture, keeps money in our community, and puts delicious, honest food on your table.
-    </p>
+          <p>
+            Our mission stays simple: provide <strong>affordable, high-quality meat for local families</strong>. By raising our
+            own poultry and pork — and partnering locally for beef and other products — we can help expand everyone’s markets.
+            Someone might stop for chicken and head home with pork or beef too (and the same happens in reverse). It strengthens
+            local agriculture, keeps dollars close to home, and puts honest food on the table.
+          </p>
 
-    <p class="text-gray-700 text-lg">
-      Whether it’s chicken, duck, pork, or beef, you can count on Roswell Family Farm to provide food that’s <strong>raised with love, rooted in tradition, and bursting with real flavor</strong>.
-    </p>
+          <p>
+            Whether you’re picking up chicken, duck, pork, or beef, you can count on Roswell Family Farm for food that’s
+            <strong>raised with love, rooted in tradition, and packed with real flavor</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -78,16 +120,31 @@
     <p>© 2025 Roswell Family Farm. All rights reserved.</p>
   </footer>
 
+  <!-- Hamburger Script (greased-machine version; closes on link tap) -->
   <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', function () {
       var toggle = document.getElementById('menu-toggle');
       var menu = document.getElementById('menu');
-      if (toggle && menu) {
-        toggle.addEventListener('click', function () {
-          menu.classList.toggle('hidden');
+      if (!toggle || !menu) return;
+
+      toggle.addEventListener('click', function () {
+        var willOpen = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+
+      // Close menu after tapping a link on mobile
+      var links = menu.querySelectorAll('a');
+      links.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth < 768) {
+            menu.classList.add('hidden');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
         });
-      }
-    })();
+      });
+    });
   </script>
+
 </body>
 </html>
