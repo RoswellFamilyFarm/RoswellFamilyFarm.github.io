@@ -257,20 +257,16 @@
       try {
         // GitHub Pages-safe + CACHE-BUSTER so it always pulls the newest JSON
         var jsonUrl = new URL('assets/data/facebook.json', window.location.href);
-        jsonUrl.searchParams.set('v', Date.now().toString()); // <-- cache buster
+        jsonUrl.searchParams.set('v', Date.now().toString()); // cache buster
         var res = await fetch(jsonUrl.toString(), { cache: 'no-store' });
 
         if (!res.ok) throw new Error('facebook.json not found yet');
         var data = await res.json();
 
-        // Synced time
+        // Synced time (when GitHub Action generated the JSON)
         if (synced && data.generated_at) {
           var gen = new Date(data.generated_at);
-          if (!isNaN(gen.getTime())) {
-            synced.textContent = "Synced: " + gen.toLocaleString();
-          } else {
-            synced.textContent = "";
-          }
+          synced.textContent = !isNaN(gen.getTime()) ? ("Synced: " + gen.toLocaleString()) : "";
         } else if (synced) {
           synced.textContent = "";
         }
@@ -383,12 +379,16 @@
     // Initial load
     loadFacebookUpdates();
 
-    // Optional: refresh automatically while someone is sitting on the page (every 5 minutes)
-    setInterval(loadFacebookUpdates, 5 * 60 * 1000);
+    // Refresh automatically so new posts show up ASAP after your workflow commits.
+    // (Workflow runs every 5 minutes, but the page will re-check every 60 seconds.)
+    setInterval(loadFacebookUpdates, 60 * 1000);
 
-    // Refresh once when they come back to the tab (helps on mobile)
+    // Refresh when they return to the tab or the tab regains focus (helps on mobile)
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden) loadFacebookUpdates();
+    });
+    window.addEventListener('focus', function () {
+      loadFacebookUpdates();
     });
   </script>
 </body>
