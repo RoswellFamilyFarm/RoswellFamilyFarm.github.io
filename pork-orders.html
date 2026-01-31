@@ -6,82 +6,35 @@
   <title>Pork Preorders | Roswell Family Farm</title>
   <meta name="description" content="Reserve a whole or half hog from Roswell Family Farm in collaboration with Spofford Farm. Submit your pork preorder online." />
 
-  <!-- Tailwind (for the same nav + mobile hamburger behavior as your homepage) -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Contact-page color scheme background -->
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg')
+                  no-repeat center center fixed;
+      background-size: cover;
       font-family: "Segoe UI", sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
     }
 
-    .hero {
-      padding: 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #f0fdf4, #dcfce7);
-    }
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      color: #2f612c;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: 0 auto 1rem;
-      color: #444;
-    }
-    .hero h2 {
-      font-size: 1.5rem;
-      margin: 1rem 0 0.5rem;
-      color: #2f612c;
-    }
-    .hero ul {
-      list-style-type: none;
-      padding: 0;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    .hero ul li {
-      font-size: 1.1rem;
-      color: #444;
-      margin-bottom: 0.5rem;
-    }
-    .hero a {
-      color: #2f855a;
-      text-decoration: underline;
-    }
-    .hero a:hover {
-      color: #1f6140;
-    }
-
-    iframe {
-      display: block;
+    .form-frame {
       width: 100%;
-      height: calc(100vh - 250px);
       border: none;
+      height: 85vh;
+      display: block;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.5rem; }
-      .hero h2 { font-size: 1.3rem; }
-      .hero p, .hero ul li {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
-      iframe { height: calc(100vh - 290px); }
+    @media (max-width: 640px) {
+      .form-frame { height: 78vh; }
     }
   </style>
 </head>
 
-<body>
+<body class="text-white">
 
-  <!-- Navigation (same style + reliable hamburger as your homepage) -->
+  <!-- Header / Navigation (matches your other updated pages) -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
       <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
@@ -125,105 +78,163 @@
     </nav>
   </header>
 
-  <!-- Page Content -->
-  <div class="hero">
-    <h1>Reserve Your Pasture-Raised Pork</h1>
-    <p>
-      Raised with love by <strong>Roswell Family Farm</strong> in cosmic collaboration with
-      <strong>Spofford Farm</strong> — bringing you pork that’s truly <em>out of this world</em>.
-      🐖🛸<br />
-      Now taking preorders for whole and half pigs — USDA and custom processing options available.
-    </p>
+  <!-- Page Content (structured like beef page, with contact-page scheme) -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8 md:p-10">
+        <h1 class="text-4xl font-bold mb-4 text-green-800 text-center">Reserve Your Pasture-Raised Pork</h1>
 
-    <h2>Roswell Family Farm – Half Hog Price Sheet</h2>
-    <p>Pasture-Raised | Salisbury, NY | No Antibiotics or Hormones</p>
+        <p class="text-lg text-gray-800 mb-8 text-center max-w-3xl mx-auto">
+          Raised with love by <strong>Roswell Family Farm</strong> in cosmic collaboration with <strong>Spofford Farm</strong> —
+          bringing you pork that’s truly <em>out of this world</em>. 🐖🛸
+          <br class="hidden sm:block" />
+          Now taking preorders for <strong>whole</strong> and <strong>half</strong> pigs — USDA and custom processing options available.
+        </p>
 
-    <h2>🌱 What You’re Getting:</h2>
-    <ul>
-      <li>Pasture-raised pork from pigs raised with care on our family farm</li>
-      <li>No antibiotics or added hormones</li>
-      <li>Processed at a USDA-inspected or custom butcher (your choice)</li>
-      <li>Custom cut just how your family likes it — thick chops, more sausage, no problem!</li>
-    </ul>
+        <!-- Two-column layout like beef page -->
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- Half Hog Card -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-1">Half Hog</h2>
+            <p class="text-sm text-gray-600 mb-4">Pasture-Raised | Salisbury, NY | No Antibiotics or Hormones</p>
 
-    <h2>💲 Total Cost:</h2>
-    <p>
-      $500–$550 per half hog<br />
-      Includes hanging weight cost + butchering fees<br />
-      You’ll take home around 65–75 lbs of frozen, vacuum-sealed pork — ready for the freezer.<br />
-      That’s about $7–$8.50 per pound of ready-to-cook premium pork!<br />
-      A $100 deposit is required to reserve your half hog.
-    </p>
+            <h3 class="text-lg font-semibold text-green-800 mb-2">🌱 What You’re Getting</h3>
+            <ul class="text-sm text-gray-700 space-y-1 mb-4 list-disc pl-5">
+              <li>Pasture-raised pork from pigs raised with care on our family farm</li>
+              <li>No antibiotics or added hormones</li>
+              <li>Processed at a USDA-inspected or custom butcher (your choice)</li>
+              <li>Custom cut just how your family likes it — thick chops, more sausage, no problem!</li>
+            </ul>
 
-    <h2>Roswell Family Farm – Whole Hog Price Sheet</h2>
-    <p>Pasture-Raised | Salisbury, NY | No Antibiotics or Hormones</p>
+            <h3 class="text-lg font-semibold text-green-800 mb-2">💲 Total Cost</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              <strong>$500–$550 per half hog</strong><br />
+              Includes hanging weight cost + butchering fees<br />
+              You’ll take home around <strong>65–75 lbs</strong> of frozen, vacuum-sealed pork — ready for the freezer.<br />
+              That’s about <strong>$7–$8.50/lb</strong> of ready-to-cook premium pork.<br />
+              <strong>A $100 deposit</strong> is required to reserve your half hog.
+            </p>
+          </div>
 
-    <h2>🌱 What You’re Getting:</h2>
-    <ul>
-      <li>A full hog raised with care on our family farm in Salisbury, NY</li>
-      <li>No antibiotics or added hormones</li>
-      <li>Processed at your choice of USDA-inspected or custom butcher</li>
-      <li>Custom cut options, sausage, and smoking available — just how your family wants it</li>
-    </ul>
+          <!-- Whole Hog Card -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-1">Whole Hog</h2>
+            <p class="text-sm text-gray-600 mb-4">Pasture-Raised | Salisbury, NY | No Antibiotics or Hormones</p>
 
-    <h2>💲 Price:</h2>
-    <p>
-      $3.50/lb Hanging Weight<br />
-      $200–$300 Butcher Fee (paid directly to the processor)<br />
-      🐷 Example for a 200 lb hog:<br />
-      • $700 to Roswell Family Farm<br />
-      • $200–$300 to the butcher (based on cuts, smoking, sausage, packaging)<br />
-      → Total: $900–$1,000<br />
-      → Take home 130–150 lbs of packaged pork<br />
-      → That’s about $6.00–$7.70/lb for premium, ready-to-cook meat<br />
-      → A $150 deposit is required to reserve your whole hog
-    </p>
+            <h3 class="text-lg font-semibold text-green-800 mb-2">🌱 What You’re Getting</h3>
+            <ul class="text-sm text-gray-700 space-y-1 mb-4 list-disc pl-5">
+              <li>A full hog raised with care on our family farm in Salisbury, NY</li>
+              <li>No antibiotics or added hormones</li>
+              <li>Processed at your choice of USDA-inspected or custom butcher</li>
+              <li>Custom cut options, sausage, and smoking available — just how your family wants it</li>
+            </ul>
 
-    <h2>🔍 What is “Hanging Weight”?</h2>
-    <p>
-      That’s the pig’s weight after slaughter, before cutting.<br />
-      Your final packaged meat will be around 65–75% of the hanging weight, depending on cut and processing preferences.
-    </p>
+            <h3 class="text-lg font-semibold text-green-800 mb-2">💲 Price</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              <strong>$3.50/lb Hanging Weight</strong><br />
+              <strong>$200–$300 Butcher Fee</strong> (paid directly to the processor)<br /><br />
+              🐷 Example for a 200 lb hog:<br />
+              • $700 to Roswell Family Farm<br />
+              • $200–$300 to the butcher (based on cuts, smoking, sausage, packaging)<br />
+              → Total: $900–$1,000<br />
+              → Take home 130–150 lbs of packaged pork<br />
+              → That’s about $6.00–$7.70/lb for premium, ready-to-cook meat<br />
+              <strong>A $150 deposit</strong> is required to reserve your whole hog.
+            </p>
+          </div>
+        </div>
 
-    <h2>📦 Cut Options:</h2>
-    <ul>
-      <li>Pork chops</li>
-      <li>Shoulder & butt roasts</li>
-      <li>Bacon</li>
-      <li>Ham (whole or sliced)</li>
-      <li>Ribs</li>
-      <li>Sausage (breakfast, sweet, or hot)</li>
-      <li>Ground pork</li>
-      <li>Optional: lard, hocks, jowl, soup bones</li>
-    </ul>
+        <!-- Extra info row (like beef page sections) -->
+        <div class="grid gap-6 md:grid-cols-2 mt-6">
+          <!-- Hanging Weight -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h3 class="text-xl font-semibold text-green-800 mb-2">🔍 What is “Hanging Weight”?</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Hanging weight is the pig’s weight after slaughter, before cutting.
+              Your final packaged meat will be around <strong>65–75%</strong> of the hanging weight,
+              depending on cut and processing preferences.
+            </p>
+          </div>
 
-    <h2>🛒 How to Reserve Your Whole or Half Hog:</h2>
-    <p>
-      Place your order below or online at
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdv8bqFWkMjJ0DUsmfAB9UcxT85-Nm8Lacon7SNDZ6sJhK8g/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-        our order form
-      </a>.<br />
-      A $150 deposit for a whole hog or $100 for a half hog is due when your order is confirmed.<br />
-      We’ll drop the hog off at the butcher and notify you when it’s time to make cut selections!
-    </p>
+          <!-- How to reserve -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h3 class="text-xl font-semibold text-green-800 mb-2">🛒 How to Reserve</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Place your order below or online at
+              <a class="text-blue-700 underline hover:text-blue-900"
+                 href="https://docs.google.com/forms/d/e/1FAIpQLSfdv8bqFWkMjJ0DUsmfAB9UcxT85-Nm8Lacon7SNDZ6sJhK8g/viewform?usp=header"
+                 target="_blank" rel="noopener noreferrer">
+                our order form
+              </a>.<br /><br />
+              A <strong>$150 deposit</strong> for a whole hog or <strong>$100</strong> for a half hog is due when your order is confirmed.<br />
+              We’ll drop the hog off at the butcher and notify you when it’s time to make cut selections!
+            </p>
+          </div>
+        </div>
 
-    <h2>🐷 Questions?</h2>
-    <p>
-      Email: <a href="mailto:roswellfamilyfarm@gmail.com">roswellfamilyfarm@gmail.com</a><br />
-      Facebook: <a href="https://www.facebook.com/647110288496461" target="_blank" rel="noopener noreferrer">Roswell Family Farm</a><br />
-      Instagram: <a href="https://instagram.com/RoswellFamilyFarm" target="_blank" rel="noopener noreferrer">@RoswellFamilyFarm</a>
-    </p>
-  </div>
+        <!-- Cut options grid (like beef page “Available Cuts”) -->
+        <div class="mt-8">
+          <h3 class="text-2xl font-semibold text-green-800 mb-3">📦 Cut Options</h3>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm text-gray-800">
+            <div class="bg-white rounded-md border border-gray-100 p-3">Pork chops</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Shoulder &amp; butt roasts</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Bacon</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Ham (whole or sliced)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Ribs</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Sausage (breakfast, sweet, or hot)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Ground pork</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Optional: lard</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Optional: hocks, jowl, soup bones</div>
+          </div>
+        </div>
 
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSfdv8bqFWkMjJ0DUsmfAB9UcxT85-Nm8Lacon7SNDZ6sJhK8g/viewform?embedded=true"
-    loading="lazy"
-    title="Pork Preorders Order Form"
-  >
-    Loading...
-  </iframe>
+        <!-- Questions -->
+        <div class="mt-8 bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+          <h3 class="text-xl font-semibold text-green-800 mb-2">🐷 Questions?</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Email:
+            <a class="text-blue-700 underline hover:text-blue-900" href="mailto:roswellfamilyfarm@gmail.com">
+              roswellfamilyfarm@gmail.com
+            </a><br />
+            Facebook:
+            <a class="text-blue-700 underline hover:text-blue-900"
+               href="https://www.facebook.com/647110288496461"
+               target="_blank" rel="noopener noreferrer">
+              Roswell Family Farm
+            </a><br />
+            Instagram:
+            <a class="text-blue-700 underline hover:text-blue-900"
+               href="https://instagram.com/RoswellFamilyFarm"
+               target="_blank" rel="noopener noreferrer">
+              @RoswellFamilyFarm
+            </a>
+          </p>
+        </div>
 
-  <!-- Scripts (same reliable hamburger behavior) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Embedded Pork Preorders Google Form (matching container) -->
+  <section class="px-4 pb-16">
+    <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
+      <iframe
+        class="form-frame"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfdv8bqFWkMjJ0DUsmfAB9UcxT85-Nm8Lacon7SNDZ6sJhK8g/viewform?embedded=true"
+        loading="lazy"
+        title="Pork Preorders Order Form"
+      >
+        Loading...
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
+  </footer>
+
+  <!-- Hamburger Script (greased-machine version; closes on link tap) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var toggle = document.getElementById('menu-toggle');
