@@ -8,12 +8,24 @@ on:
 permissions:
   contents: write
 
+# Prevent overlapping runs from fighting each other
+concurrency:
+  group: facebook-feed
+  cancel-in-progress: true
+
 jobs:
   update-facebook:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (full history)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Make sure we're up to date before generating a new facebook.json
+      - name: Sync with origin/main
+        run: |
+          git pull --rebase origin main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -30,17 +42,29 @@ jobs:
           FB_GRAPH_VERSION: "v23.0"
           FB_LIMIT: "25"
         run: python scripts/fetch_facebook.py
-        
-      - name: Debug - show generated JSON
-        run: |
-          echo "Branch:"
-          git rev-parse --abbrev-ref HEAD
-          echo "File content:"
-          cat assets/data/facebook.json
 
-      - name: Commit & push if changed
+      - name: Commit & push if changed (with retry)
         run: |
           git config user.name "roswell-farm-bot"
           git config user.email "actions@users.noreply.github.com"
+
           git add assets/data/facebook.json
-          git diff --cached --quiet || (git commit -m "Update Facebook feed JSON" && git push)
+
+          # If nothing changed, stop cleanly
+          git diff --cached --quiet && echo "No changes to commit." && exit 0
+
+          git commit -m "Update Facebook feed JSON"
+
+          # Retry push in case the branch moved between checkout and push
+          for i in 1 2 3; do
+            git pull --rebase origin main
+            if git push; then
+              echo "Push successful."
+              exit 0
+            fi
+            echo "Push failed (attempt $i). Retrying..."
+            sleep 5
+          done
+
+          echo "Push failed after retries."
+          exit 1
