@@ -3,65 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meat Boxes | Roswell Family Farm</title>
-  <meta name="description" content="Order Roswell Family Farm meat boxes and variety packs online. Submit your order through our website form.">
+
+  <title>Variety Boxes | Roswell Family Farm</title>
+  <meta name="description" content="Order Roswell Family Farm variety boxes and sampler packs through our embedded form. We’ll confirm availability and coordinate pickup or delivery.">
 
   <link rel="stylesheet" href="/assets/css/style.css">
 
+  <!-- Minimal page-specific styling to keep the form clean + responsive -->
   <style>
-    .page-wrap { max-width: 980px; margin: 0 auto; padding: 22px 16px 40px; }
-    .hero-card {
-      border: 2px solid #2C68FF;
-      border-radius: 16px;
-      padding: 22px 18px;
-      background: #FFFFFF;
+    :root{
+      --roswell-green:#3DC45A;
+      --cosmic-blue:#2C68FF;
+      --midnight:#0B0B0B;
+      --sky-gray:#E4E8EB;
+      --white:#FFFFFF;
     }
-    .hero-card h1 { margin: 0 0 10px; color: #0B0B0B; }
-    .hero-card p { margin: 0; line-height: 1.55; color: #0B0B0B; }
 
-    .cta-row { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
-    .cta-btn {
-      display: inline-block;
-      background: #2C68FF;
-      color: #FFFFFF;
-      padding: 12px 16px;
-      border-radius: 12px;
+    /* If your style.css already defines these, it will win—this is a safe fallback */
+    body{
+      margin:0;
+      color:var(--midnight);
+      background: var(--sky-gray);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .nav-bar{
+      background: var(--roswell-green);
+      color: var(--white);
+      padding: 14px 18px;
+    }
+    .nav-inner{
+      max-width: 1100px;
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand{
+      font-weight: 800;
+      letter-spacing: .3px;
+      text-decoration:none;
+      color: var(--white);
+    }
+    .nav-links{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .nav-links a{
+      color: var(--white);
+      text-decoration:none;
+      font-weight: 650;
+      opacity: .95;
+    }
+    .nav-links a:hover{ opacity: 1; text-decoration: underline; }
+
+    .hero{
+      background:
+        radial-gradient(900px 260px at 10% 10%, rgba(44,104,255,.18), rgba(255,255,255,0)),
+        radial-gradient(800px 240px at 90% 20%, rgba(61,196,90,.18), rgba(255,255,255,0)),
+        #FFFFFF;
+      border-bottom: 3px solid rgba(44,104,255,.20);
+      padding: 28px 18px;
+    }
+    .hero-inner{
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1{
+      margin: 0 0 8px 0;
+      font-size: 2rem;
+      line-height: 1.15;
+    }
+    .subhead{
+      margin: 0;
+      font-size: 1.05rem;
+      opacity: .9;
+    }
+
+    .content{
+      padding: 22px 18px 34px;
+    }
+    .content-inner{
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card{
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    iframe{
+      width: 100%;
+      height: 1200px;
+      border: 0;
+      display:block;
+    }
+
+    .help-links{
+      text-align:center;
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+    .help-links a{
+      color: var(--cosmic-blue);
+      font-weight: 650;
       text-decoration: none;
-      font-weight: 700;
     }
-    .cta-btn.secondary {
-      background: #3DC45A;
-      color: #0B0B0B;
+    .help-links a:hover{ text-decoration: underline; }
+
+    footer{
+      padding: 18px;
+      text-align:center;
+      font-size: .95rem;
+      color: rgba(11,11,11,.78);
     }
 
-    .boxes { margin-top: 18px; border-radius: 16px; overflow: hidden; border: 1px solid #E4E8EB; }
-    .boxes table { width: 100%; border-collapse: collapse; }
-    .boxes th, .boxes td { padding: 12px; text-align: left; border-bottom: 1px solid #E4E8EB; }
-    .boxes th { background: #E4E8EB; }
-
-    .form-wrap { margin-top: 18px; }
-    .form-wrap iframe { width: 100%; height: 1200px; border: 0; border-radius: 14px; }
+    @media (max-width: 680px){
+      h1{ font-size: 1.6rem; }
+      iframe{ height: 1400px; }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- ✅ COPY/PASTE your existing nav block here from index.html so it matches your site -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="chicken-orders.html">Chicken</a>
-    <a href="pork-orders.html">Pork</a>
-    <a href="beef-orders.html">Beef</a>
-    <a href="variety-boxes.html">Variety Boxes • Freezer Packs</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <!-- NAV (Keep consistent across all pages) -->
+  <div class="nav-bar">
+    <div class="nav-inner">
+      <a class="brand" href="/index.html">Roswell Family Farm</a>
+      <div class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/chicken-orders.html">Chicken</a>
+        <a href="/pork-orders.html">Pork</a>
+        <a href="/beef-orders.html">Beef</a>
+        <a href="/variety-boxes.html" aria-current="page">Variety Boxes</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
 
-  <main class="page-wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Variety Boxes Order Form</h1>
+      <p class="subhead">Choose a box, submit your request, and we’ll follow up to confirm availability + pickup/delivery details.</p>
+    </div>
+  </section>
 
-    <section class="hero-card">
-      <h1>Meat Boxes & Variety Packs</h1>
-      <p>
-        Stock your freezer with a ready-to-go box from Roswell Family Farm.
+  <!-- FORM -->
+  <main class="content">
+    <div class="content-inner">
+      <div class="card">
+        <!-- Google Forms embed -->
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSchz-qljKc5LlI9avt_pcog0FjEzjbYjc27szNzSIa3bRw3jg/viewform?embedded=true"
+          title="Roswell Family Farm - Variety Boxes Order Form"
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="help-links">
+        If the form doesn’t load, open it here:
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSchz-qljKc5LlI9avt_pcog0FjEzjbYjc27szNzSIa3bRw3jg/viewform?usp=sharing&ouid=106631524381436990064" target="_blank" rel="noopener">Variety Boxes Order Form</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Dolgeville / Salisbury, NY • Herkimer County • Mohawk Valley
+  </footer>
+
+</body>
+</html>
         Submit your order below — we’ll follow up to confirm availability and pickup/delivery details.
       </p>
 
