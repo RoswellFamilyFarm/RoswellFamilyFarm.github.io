@@ -1,240 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meat Boxes | Roswell Family Farm</title>
+  <meta name="description" content="Reserve variety meat boxes and sampler packs from Roswell Family Farm. Submit your order form online." />
 
-  <title>Variety Boxes | Roswell Family Farm</title>
-  <meta name="description" content="Order Roswell Family Farm variety boxes and sampler packs through our embedded form. We’ll confirm availability and coordinate pickup or delivery.">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="stylesheet" href="/assets/css/style.css">
-
-  <!-- Minimal page-specific styling to keep the form clean + responsive -->
   <style>
-    :root{
-      --roswell-green:#3DC45A;
-      --cosmic-blue:#2C68FF;
-      --midnight:#0B0B0B;
-      --sky-gray:#E4E8EB;
-      --white:#FFFFFF;
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg')
+                  no-repeat center center fixed;
+      background-size: cover;
+      font-family: "Segoe UI", sans-serif;
     }
 
-    /* If your style.css already defines these, it will win—this is a safe fallback */
-    body{
-      margin:0;
-      color:var(--midnight);
-      background: var(--sky-gray);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
-
-    .nav-bar{
-      background: var(--roswell-green);
-      color: var(--white);
-      padding: 14px 18px;
-    }
-    .nav-inner{
-      max-width: 1100px;
-      margin: 0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .brand{
-      font-weight: 800;
-      letter-spacing: .3px;
-      text-decoration:none;
-      color: var(--white);
-    }
-    .nav-links{
-      display:flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
-    .nav-links a{
-      color: var(--white);
-      text-decoration:none;
-      font-weight: 650;
-      opacity: .95;
-    }
-    .nav-links a:hover{ opacity: 1; text-decoration: underline; }
-
-    .hero{
-      background:
-        radial-gradient(900px 260px at 10% 10%, rgba(44,104,255,.18), rgba(255,255,255,0)),
-        radial-gradient(800px 240px at 90% 20%, rgba(61,196,90,.18), rgba(255,255,255,0)),
-        #FFFFFF;
-      border-bottom: 3px solid rgba(44,104,255,.20);
-      padding: 28px 18px;
-    }
-    .hero-inner{
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h1{
-      margin: 0 0 8px 0;
-      font-size: 2rem;
-      line-height: 1.15;
-    }
-    .subhead{
-      margin: 0;
-      font-size: 1.05rem;
-      opacity: .9;
-    }
-
-    .content{
-      padding: 22px 18px 34px;
-    }
-    .content-inner{
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .card{
-      background: var(--white);
-      border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,.06);
-    }
-
-    iframe{
+    .form-frame {
       width: 100%;
-      height: 1200px;
-      border: 0;
-      display:block;
+      border: none;
+      height: 85vh;
+      display: block;
     }
 
-    .help-links{
-      text-align:center;
-      margin-top: 10px;
-      font-size: 0.95rem;
-    }
-    .help-links a{
-      color: var(--cosmic-blue);
-      font-weight: 650;
-      text-decoration: none;
-    }
-    .help-links a:hover{ text-decoration: underline; }
-
-    footer{
-      padding: 18px;
-      text-align:center;
-      font-size: .95rem;
-      color: rgba(11,11,11,.78);
-    }
-
-    @media (max-width: 680px){
-      h1{ font-size: 1.6rem; }
-      iframe{ height: 1400px; }
+    @media (max-width: 640px) {
+      .form-frame { height: 78vh; }
     }
   </style>
 </head>
 
-<body>
+<body class="text-white">
 
-  <!-- NAV (Keep consistent across all pages) -->
-  <div class="nav-bar">
-    <div class="nav-inner">
-      <a class="brand" href="/index.html">Roswell Family Farm</a>
-      <div class="nav-links">
-        <a href="/index.html">Home</a>
-        <a href="/chicken-orders.html">Chicken</a>
-        <a href="/pork-orders.html">Pork</a>
-        <a href="/beef-orders.html">Beef</a>
-        <a href="/variety-boxes.html" aria-current="page">Variety Boxes</a>
-        <a href="/contact.html">Contact</a>
+  <!-- Header / Navigation (matches Beef Orders page) -->
+  <header class="bg-green-700 shadow-md sticky top-0 z-50">
+    <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
+      <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
+
+      <button
+        id="menu-toggle"
+        type="button"
+        class="text-white md:hidden focus:outline-none"
+        aria-label="Open menu"
+        aria-controls="menu"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <ul
+        id="menu"
+        class="hidden flex flex-col md:flex md:flex-row md:items-center gap-6
+               bg-green-700 md:bg-transparent text-white
+               absolute md:static top-full left-0 w-full md:w-auto
+               px-4 py-4 md:p-0 shadow-lg md:shadow-none z-50"
+      >
+        <li><a href="./" class="block py-2 hover:text-green-300">Home</a></li>
+        <li><a href="about.html" class="block py-2 hover:text-green-300">About</a></li>
+
+        <!-- Homepage sections -->
+        <li><a href="./#farm-updates" class="block py-2 hover:text-green-300">Farm Updates</a></li>
+        <li><a href="./#products" class="block py-2 hover:text-green-300">Products</a></li>
+
+        <li><a href="chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
+        <li><a href="pork-orders.html" class="block py-2 hover:text-green-300">Pork Preorders</a></li>
+        <li><a href="duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
+        <li><a href="beef-orders.html" class="block py-2 hover:text-green-300">Beef Orders</a></li>
+        <li><a href="pork-cuts-orders.html" class="block py-2 hover:text-green-300">Pork Cuts Orders</a></li>
+
+        <!-- Current page -->
+        <li><a href="variety-boxes.html" class="block py-2 hover:text-green-300 font-semibold underline underline-offset-4">Meat Boxes (Variety Packs)</a></li>
+
+        <li><a href="contact.html" class="block py-2 hover:text-green-300">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Intro / Details (exact Beef page structure) -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8">
+        <h1 class="text-4xl font-bold mb-4 text-green-800">Reserve Your Meat Boxes & Variety Packs</h1>
+
+        <p class="text-lg text-gray-800 mb-6">
+          Stock your freezer with a ready-to-go box from <strong>Roswell Family Farm</strong> — a little practical,
+          a little cosmic, and always farm-raised. 🛸🥩
+          <br class="hidden sm:block" />
+          Submit your request below and we’ll follow up to confirm availability and pickup/delivery details.
+        </p>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-xl font-semibold text-green-800 mb-2">📝 Order Instructions</h2>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              Please fill out your order with:
+              <br />• Which box(es) you want and how many of each
+              <br />• Any preferences (we’ll do our best based on availability)
+              <br />• Any notes we should know for pickup/delivery
+              <br /><br />
+              Example format:
+              <br />- Close Encounter Box (10 lb): 1
+              <br />- Area 20 Pack (20 lb): 1
+              <br />- 5 lb Chicken Sampler: 1
+              <br /><br />
+              Add any special requests or notes you'd like us to consider.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-xl font-semibold text-green-800 mb-2">🔁 After Submission</h2>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              • We’ll confirm availability
+              <br />• You’ll receive the final total directly
+              <br />• Pickup or delivery details will be arranged with you directly
+              <br />• We’ll follow up to confirm availability and timing
+            </p>
+
+            <div class="mt-4 text-sm text-gray-700">
+              Questions? Email
+              <a class="text-blue-700 underline hover:text-blue-900" href="mailto:roswellfamilyfarm@gmail.com">roswellfamilyfarm@gmail.com</a>
+              <br />
+              Facebook:
+              <a class="text-blue-700 underline hover:text-blue-900" href="https://www.facebook.com/647110288496461" target="_blank" rel="noopener noreferrer">Roswell Family Farm</a>
+              <br />
+              Instagram:
+              <a class="text-blue-700 underline hover:text-blue-900" href="https://instagram.com/RoswellFamilyFarm" target="_blank" rel="noopener noreferrer">@RoswellFamilyFarm</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <h2 class="text-2xl font-semibold text-green-800 mb-3">📦 Variety Box Options</h2>
+
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm text-gray-800">
+            <div class="bg-white rounded-md border border-gray-100 p-3">Close Encounter Box (10 lb) — $78</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Area 20 Pack (20 lb) — $155</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">Mothership Box (40 lb) — $297</div>
+
+            <div class="bg-white rounded-md border border-gray-100 p-3">Area 51 Chicken Bundle — $242 (45–51 lb)</div>
+
+            <div class="bg-white rounded-md border border-gray-100 p-3">5 lb Chicken Sampler Box (mixed cuts)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">5 lb Pork Sampler Box (mixed cuts)</div>
+            <div class="bg-white rounded-md border border-gray-100 p-3">5 lb Beef Sampler Box (mixed cuts)</div>
+          </div>
+
+          <p class="text-gray-700 mt-4 text-sm">
+            Thank you for shopping local and supporting our farm family!
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Variety Boxes Order Form</h1>
-      <p class="subhead">Choose a box, submit your request, and we’ll follow up to confirm availability + pickup/delivery details.</p>
     </div>
   </section>
 
-  <!-- FORM -->
-  <main class="content">
-    <div class="content-inner">
-      <div class="card">
-        <!-- Google Forms embed -->
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSchz-qljKc5LlI9avt_pcog0FjEzjbYjc27szNzSIa3bRw3jg/viewform?embedded=true"
-          title="Roswell Family Farm - Variety Boxes Order Form"
-          loading="lazy">
-        </iframe>
-      </div>
-
-      <div class="help-links">
-        If the form doesn’t load, open it here:
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSchz-qljKc5LlI9avt_pcog0FjEzjbYjc27szNzSIa3bRw3jg/viewform?usp=sharing&ouid=106631524381436990064" target="_blank" rel="noopener">Variety Boxes Order Form</a>
-      </div>
+  <!-- Embedded Variety Boxes Google Form (matching Beef page container) -->
+  <section class="px-4 pb-16">
+    <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
+      <iframe
+        class="form-frame"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSchz-qljKc5LlI9avt_pcog0FjEzjbYjc27szNzSIa3bRw3jg/viewform?embedded=true"
+        loading="lazy"
+        title="Meat Boxes Order Form"
+      >
+        Loading...
+      </iframe>
     </div>
-  </main>
 
-  <footer>
-    Dolgeville / Salisbury, NY • Herkimer County • Mohawk Valley
+    <p class="text-center text-sm text-white mt-4 opacity-90">
+      If the form doesn’t load, open it here:
+      <a class="underline hover:text-green-300"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSchz-qljKc5LlI9avt_pcog0FjEzjbYjc27szNzSIa3bRw3jg/viewform?usp=sharing&ouid=106631524381436990064"
+         target="_blank" rel="noopener noreferrer">
+        Meat Boxes (Variety Packs) Order Form
+      </a>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-700 text-white text-center py-6">
+    <p>© 2026 Roswell Family Farm. All rights reserved.</p>
   </footer>
 
-</body>
-</html>
-        Submit your order below — we’ll follow up to confirm availability and pickup/delivery details.
-      </p>
+  <!-- Hamburger Script (same as Beef page) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggle = document.getElementById('menu-toggle');
+      var menu = document.getElementById('menu');
+      if (!toggle || !menu) return;
 
-      <div class="cta-row">
-        <a class="cta-btn" href="#order-form">Jump to Order Form</a>
-        <a class="cta-btn secondary" href="index.html">Back to Home</a>
-      </div>
-    </section>
+      toggle.addEventListener('click', function () {
+        var willOpen = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
 
-    <section class="boxes" aria-label="Variety Box Options">
-      <table>
-        <thead>
-          <tr>
-            <th>Box</th>
-            <th>Weight</th>
-            <th>Price</th>
-            <th>Includes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Close Encounter Box</td>
-            <td>10 lbs</td>
-            <td>$78</td>
-            <td>4 lb chicken, 3 lb pork, 3 lb beef</td>
-          </tr>
-          <tr>
-            <td>Area 20 Pack</td>
-            <td>20 lbs</td>
-            <td>$155</td>
-            <td>8 lb chicken, 6 lb pork, 6 lb beef</td>
-          </tr>
-          <tr>
-            <td>Mothership Box</td>
-            <td>40 lbs</td>
-            <td>$297</td>
-            <td>18 lb chicken, 12 lb pork, 10 lb beef</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="form-wrap" id="order-form">
-      <iframe
-        title="Roswell Family Farm Meat Boxes Order Form"
-        src="https://docs.google.com/forms/d/e/1FAIpQLSchz-qljKc5LlI9avt_pcog0FjEzjbYjc27szNzSIa3bRw3jg/viewform?embedded=true"
-        loading="lazy">
-        Loading…
-      </iframe>
-    </section>
-
-  </main>
+      // Close menu after tapping a link on mobile
+      var links = menu.querySelectorAll('a');
+      links.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth < 768) {
+            menu.classList.add('hidden');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
