@@ -232,7 +232,9 @@
 
   <!-- Scripts -->
   <script>
-    // Mobile menu toggle (reliable on mobile)
+    // =========================
+    // Mobile menu toggle
+    // =========================
     document.addEventListener('DOMContentLoaded', function () {
       var toggle = document.getElementById('menu-toggle');
       var menu = document.getElementById('menu');
@@ -256,7 +258,13 @@
       });
     });
 
-    // Farm Updates: load generated JSON and render up to 3 posts
+    // =========================
+    // Farm Updates (fast + stable refresh)
+    // =========================
+    var FB_POLL_MS = 60 * 1000; // check every 60s so it shows new posts ASAP after the workflow commits
+    var fbLastGeneratedAt = "";
+    var fbAbort = null;
+
     async function loadFacebookUpdates() {
       var wrap = document.getElementById('fb-updates');
       var note = document.getElementById('fb-updates-note');
@@ -266,21 +274,36 @@
       var fbLink = "https://www.facebook.com/647110288496461";
 
       try {
-        // GitHub Pages-safe + CACHE-BUSTER so it always pulls the newest JSON
+        // Abort any in-flight fetch so we never overlap requests
+        if (fbAbort) fbAbort.abort();
+        fbAbort = new AbortController();
+
+        // GitHub Pages-safe + cache buster
         var jsonUrl = new URL('assets/data/facebook.json', window.location.href);
-        jsonUrl.searchParams.set('v', Date.now().toString()); // cache buster
-        var res = await fetch(jsonUrl.toString(), { cache: 'no-store' });
+        jsonUrl.searchParams.set('v', Date.now().toString());
+
+        var res = await fetch(jsonUrl.toString(), {
+          cache: 'no-store',
+          signal: fbAbort.signal
+        });
 
         if (!res.ok) throw new Error('facebook.json not found yet');
+
         var data = await res.json();
 
-        // Synced time (when GitHub Action generated the JSON)
+        // Always update the Synced time
         if (synced && data.generated_at) {
           var gen = new Date(data.generated_at);
           synced.textContent = !isNaN(gen.getTime()) ? ("Synced: " + gen.toLocaleString()) : "";
         } else if (synced) {
           synced.textContent = "";
         }
+
+        // If the JSON hasn't changed since last render, stop here (no re-render / no flashing)
+        if (data.generated_at && data.generated_at === fbLastGeneratedAt) {
+          return;
+        }
+        fbLastGeneratedAt = data.generated_at || "";
 
         var posts = Array.isArray(data.posts) ? data.posts : [];
         var mode = data.mode || "unknown";
@@ -319,7 +342,6 @@
           var message = (post.message || '').trim();
           var messageSafe = message.length > 0 ? message : '(Tap to view this post on Facebook)';
 
-          // Fixed-height media area so cards line up nicely
           var mediaHtml = post.full_picture
             ? `
               <div class="w-full h-56 overflow-hidden bg-gray-100">
@@ -361,6 +383,9 @@
         });
 
       } catch (err) {
+        // Ignore abort errors (expected during rapid refresh / tab focus)
+        if (err && err.name === 'AbortError') return;
+
         wrap.innerHTML = `
           <div class="sm:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6 text-gray-700">
             Farm update signal is temporarily offline — please check Facebook directly.
@@ -390,11 +415,10 @@
     // Initial load
     loadFacebookUpdates();
 
-    // Refresh automatically so new posts show up ASAP after your workflow commits.
-    // (Workflow runs every 5 minutes, but the page will re-check every 60 seconds.)
-    setInterval(loadFacebookUpdates, 60 * 1000);
+    // Poll frequently so it picks up new commits quickly
+    setInterval(loadFacebookUpdates, FB_POLL_MS);
 
-    // Refresh when they return to the tab or the tab regains focus (helps on mobile)
+    // Refresh when they return to the tab or it regains focus (helps mobile)
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden) loadFacebookUpdates();
     });
