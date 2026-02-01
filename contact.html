@@ -12,16 +12,17 @@
   <style>
     body {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg') no-repeat center center fixed;
+                  url('https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg')
+                  no-repeat center center fixed;
       background-size: cover;
-      font-family: sans-serif;
+      font-family: "Segoe UI", sans-serif;
     }
   </style>
 </head>
 
 <body class="text-white">
 
-  <!-- Header / Navigation (updated to match the other pages) -->
+  <!-- Header / Navigation (MATCHES order forms) -->
   <header class="bg-green-700 shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
       <a href="./" class="text-2xl font-bold text-white">Roswell Family Farm</a>
@@ -50,7 +51,7 @@
         <li><a href="./" class="block py-2 hover:text-green-300">Home</a></li>
         <li><a href="about.html" class="block py-2 hover:text-green-300">About</a></li>
 
-        <!-- These sections live on the homepage (Farm Updates before Products) -->
+        <!-- Homepage sections (Farm Updates before Products) -->
         <li><a href="./#farm-updates" class="block py-2 hover:text-green-300">Farm Updates</a></li>
         <li><a href="./#products" class="block py-2 hover:text-green-300">Products</a></li>
 
@@ -69,41 +70,45 @@
     </nav>
   </header>
 
-  <!-- Contact Info Section -->
-  <section class="py-16 px-6 max-w-5xl mx-auto text-center">
-    <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
-    <p class="text-xl mb-10">
-      Reach out to Roswell Family Farm or our partners at Spofford Farm for inquiries about our pasture-raised meats! 🚜
-    </p>
+  <!-- Contact Page Content (styled like order form pages: white card container) -->
+  <section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8 md:p-10">
 
-    <div class="flex flex-col gap-8 md:flex-row md:gap-12 justify-center items-stretch">
+        <h1 class="text-4xl font-bold mb-4 text-green-800 text-center">Contact Us</h1>
+        <p class="text-lg text-gray-800 mb-10 text-center max-w-3xl mx-auto">
+          Reach out to Roswell Family Farm or our partners at Spofford Farm for questions about our pasture-raised meats.
+        </p>
 
-      <!-- Roswell Contact Card -->
-      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-6 w-full md:w-1/2">
-        <h3 class="text-2xl font-semibold mb-4">Roswell Family Farm</h3>
-        <p class="mb-2">📧 <a href="mailto:roswellfamilyfarm@gmail.com" class="text-blue-600 hover:underline">roswellfamilyfarm@gmail.com</a></p>
-        <p class="mb-2">📞 AJ: (315) 985-3896</p>
-        <p class="mb-2">📞 Emily: (315) 717-3465</p>
-        <p>📍 146 Daley Rd, Dolgeville, NY</p>
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- Roswell Contact Card -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-4">Roswell Family Farm</h2>
+            <p class="mb-2 text-gray-700">📧 <a href="mailto:roswellfamilyfarm@gmail.com" class="text-blue-700 underline hover:text-blue-900">roswellfamilyfarm@gmail.com</a></p>
+            <p class="mb-2 text-gray-700">📞 AJ: (315) 985-3896</p>
+            <p class="mb-2 text-gray-700">📞 Emily: (315) 717-3465</p>
+            <p class="text-gray-700">📍 146 Daley Rd, Dolgeville, NY</p>
+          </div>
+
+          <!-- Spofford Contact Card -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-2xl font-semibold text-green-800 mb-4">Spofford Farm</h2>
+            <p class="mb-2 text-gray-700">📧 <a href="mailto:cspofford72@gmail.com" class="text-blue-700 underline hover:text-blue-900">cspofford72@gmail.com</a></p>
+            <p class="mb-2 text-gray-700">📞 Craig: (315) 868-2037</p>
+            <p class="text-gray-700">📍 955 Thompson Rd, Dolgeville, NY</p>
+          </div>
+        </div>
+
       </div>
-
-      <!-- Spofford Contact Card -->
-      <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-6 w-full md:w-1/2">
-        <h3 class="text-2xl font-semibold mb-4">Spofford Farm</h3>
-        <p class="mb-2">📧 <a href="mailto:cspofford72@gmail.com" class="text-blue-600 hover:underline">cspofford72@gmail.com</a></p>
-        <p class="mb-2">📞 Craig: (315) 868-2037</p>
-        <p>📍 955 Thompson Rd, Dolgeville, NY</p>
-      </div>
-
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-green-700 text-white text-center py-6 mt-12">
+  <footer class="bg-green-700 text-white text-center py-6">
     <p>© 2025 Roswell Family Farm. All rights reserved.</p>
   </footer>
 
-  <!-- Hamburger Script (matches the other pages; closes on link tap) -->
+  <!-- Hamburger Script (same behavior as order forms; closes on link tap) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var toggle = document.getElementById('menu-toggle');
