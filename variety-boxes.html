@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meat Boxes | Roswell Family Farm</title>
+  <meta name="description" content="Order Roswell Family Farm meat boxes and variety packs online. Submit your order through our website form.">
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <style>
+    .page-wrap { max-width: 980px; margin: 0 auto; padding: 22px 16px 40px; }
+    .hero-card {
+      border: 2px solid #2C68FF;
+      border-radius: 16px;
+      padding: 22px 18px;
+      background: #FFFFFF;
+    }
+    .hero-card h1 { margin: 0 0 10px; color: #0B0B0B; }
+    .hero-card p { margin: 0; line-height: 1.55; color: #0B0B0B; }
+
+    .cta-row { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .cta-btn {
+      display: inline-block;
+      background: #2C68FF;
+      color: #FFFFFF;
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .cta-btn.secondary {
+      background: #3DC45A;
+      color: #0B0B0B;
+    }
+
+    .boxes { margin-top: 18px; border-radius: 16px; overflow: hidden; border: 1px solid #E4E8EB; }
+    .boxes table { width: 100%; border-collapse: collapse; }
+    .boxes th, .boxes td { padding: 12px; text-align: left; border-bottom: 1px solid #E4E8EB; }
+    .boxes th { background: #E4E8EB; }
+
+    .form-wrap { margin-top: 18px; }
+    .form-wrap iframe { width: 100%; height: 1200px; border: 0; border-radius: 14px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ COPY/PASTE your existing nav block here from index.html so it matches your site -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="chicken-orders.html">Chicken</a>
+    <a href="pork-orders.html">Pork</a>
+    <a href="beef-orders.html">Beef</a>
+    <a href="variety-boxes.html">Variety Boxes • Freezer Packs</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="page-wrap">
+
+    <section class="hero-card">
+      <h1>Meat Boxes & Variety Packs</h1>
+      <p>
+        Stock your freezer with a ready-to-go box from Roswell Family Farm.
+        Submit your order below — we’ll follow up to confirm availability and pickup/delivery details.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta-btn" href="#order-form">Jump to Order Form</a>
+        <a class="cta-btn secondary" href="index.html">Back to Home</a>
+      </div>
+    </section>
+
+    <section class="boxes" aria-label="Variety Box Options">
+      <table>
+        <thead>
+          <tr>
+            <th>Box</th>
+            <th>Weight</th>
+            <th>Price</th>
+            <th>Includes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Close Encounter Box</td>
+            <td>10 lbs</td>
+            <td>$78</td>
+            <td>4 lb chicken, 3 lb pork, 3 lb beef</td>
+          </tr>
+          <tr>
+            <td>Area 20 Pack</td>
+            <td>20 lbs</td>
+            <td>$155</td>
+            <td>8 lb chicken, 6 lb pork, 6 lb beef</td>
+          </tr>
+          <tr>
+            <td>Mothership Box</td>
+            <td>40 lbs</td>
+            <td>$297</td>
+            <td>18 lb chicken, 12 lb pork, 10 lb beef</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="form-wrap" id="order-form">
+      <iframe
+        title="Roswell Family Farm Meat Boxes Order Form"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSchz-qljKc5LlI9avt_pcog0FjEzjbYjc27szNzSIa3bRw3jg/viewform?embedded=true"
+        loading="lazy">
+        Loading…
+      </iframe>
+    </section>
+
+  </main>
+
+</body>
+</html>
