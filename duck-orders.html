@@ -69,6 +69,7 @@
 
         <li><a href="chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
         <li><a href="pork-orders.html" class="block py-2 hover:text-green-300">Hog Preorders</a></li>
+        <li><a href="chicken-share.html" class="block py-2 hover:text-orange-300">Chicken Shares</a></li>
         <li><a href="turkey-orders.html" class="block py-2 hover:text-green-300">Turkey Preorders</a></li>
 
         <!-- Current page highlighted -->
@@ -90,7 +91,7 @@
     <div class="max-w-5xl mx-auto">
       <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8 md:p-10">
 
-        <h1 class="text-4xl font-bold mb-4 text-green-800 text-center">Duck Orders</h1>
+        <h1 class="text-4xl font-bold mb-4 text-yellow-700 text-center">Duck Orders</h1>
 
         <p class="text-lg text-gray-800 mb-8 text-center max-w-3xl mx-auto">
           Our ducks are raised with care at <strong>Roswell Family Farm</strong>.
@@ -98,12 +99,21 @@
           as soon as orders reopen. 🦆🛸
         </p>
 
+        <div class="text-center mb-8">
+          <a
+            href="#duck-interest-form"
+            class="inline-block bg-yellow-500 text-gray-900 font-bold px-8 py-4 rounded-full hover:bg-yellow-600 transition shadow-md"
+          >
+            🦆 JOIN THE DUCK LIST
+          </a>
+        </div>
+
         <!-- Top cards (like beef page) -->
         <div class="grid gap-6 md:grid-cols-2">
 
           <!-- Status / What’s happening -->
           <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-            <h2 class="text-2xl font-semibold text-green-800 mb-2">🚧 Current Status</h2>
+            <h2 class="text-2xl font-semibold text-yellow-700 mb-2">🚧 Current Status</h2>
             <p class="text-sm text-gray-700 leading-relaxed mb-4">
               Duck orders are currently paused. When the next batch is ready, we’ll reopen ordering and notify everyone
               who submitted the interest form.
@@ -119,7 +129,7 @@
 
           <!-- Interest / order instructions -->
           <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-            <h2 class="text-2xl font-semibold text-green-800 mb-2">📝 Join the List</h2>
+            <h2 class="text-2xl font-semibold text-yellow-700 mb-2">📝 Join the List</h2>
             <p class="text-sm text-gray-700 leading-relaxed mb-4">
               Use the form below to tell us what you’d want when duck orders reopen:
             </p>
@@ -147,7 +157,7 @@
 
           <!-- What happens after -->
           <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-            <h3 class="text-xl font-semibold text-green-800 mb-2">🔁 After You Submit</h3>
+            <h3 class="text-xl font-semibold text-yellow-700 mb-2">🔁 After You Submit</h3>
             <p class="text-sm text-gray-700 leading-relaxed">
               When duck orders reopen, we’ll contact you directly to confirm availability, timing, and next steps.
               Pickup or delivery details will be arranged with you.
@@ -156,7 +166,7 @@
 
           <!-- Questions -->
           <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-            <h3 class="text-xl font-semibold text-green-800 mb-2">🦆 Questions?</h3>
+            <h3 class="text-xl font-semibold text-yellow-700 mb-2">🦆 Questions?</h3>
             <p class="text-sm text-gray-700 leading-relaxed">
               Email:
               <a class="text-blue-700 underline hover:text-blue-900" href="mailto:roswellfamilyfarm@gmail.com">
@@ -180,7 +190,7 @@
 
         <!-- Typical cuts grid (beef-page style, no prices since not finalized) -->
         <div class="mt-8">
-          <h3 class="text-2xl font-semibold text-green-800 mb-3">🌱 Typical Duck Options (When Available)</h3>
+          <h3 class="text-2xl font-semibold text-yellow-700 mb-3">🌱 Typical Duck Options (When Available)</h3>
           <p class="text-sm text-gray-700 mb-4">
             These are common requests. Availability may vary when ordering reopens.
           </p>
@@ -199,8 +209,24 @@
     </div>
   </section>
 
+  <!-- Duck CTA + Embedded Duck Interest Form -->
+  <section class="px-4 pb-6">
+    <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md p-6 text-center">
+      <h2 class="text-3xl font-bold text-yellow-700 mb-3">🦆 Want Duck When It's Available?</h2>
+      <p class="text-lg text-gray-700 mb-5">
+        Join the interest list and we'll contact you when duck orders reopen.
+      </p>
+      <a
+        href="#duck-interest-form"
+        class="inline-block bg-yellow-500 text-gray-900 font-bold px-8 py-4 rounded-full hover:bg-yellow-600 transition shadow-md"
+      >
+        🦆 JOIN THE DUCK LIST
+      </a>
+    </div>
+  </section>
+
   <!-- Embedded Duck Interest Form -->
-  <section class="px-4 pb-16">
+  <section id="duck-interest-form" class="px-4 pb-16">
     <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
       <iframe
         class="form-frame"
