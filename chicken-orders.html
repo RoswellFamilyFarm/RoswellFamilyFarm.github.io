@@ -71,6 +71,7 @@
         <li><a href="chicken-orders.html" class="block py-2 hover:text-green-300 font-semibold underline underline-offset-4" aria-current="page">Chicken Orders</a></li>
 
         <li><a href="pork-orders.html" class="block py-2 hover:text-green-300">Hog Preorders</a></li>
+        <li><a href="chicken-share.html" class="block py-2 hover:text-orange-300">Chicken Shares</a></li>
         <li><a href="turkey-orders.html" class="block py-2 hover:text-green-300">Turkey Preorders</a></li>
         <li><a href="duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
         <li><a href="beef-orders.html" class="block py-2 hover:text-green-300">Beef Orders</a></li>
@@ -97,6 +98,16 @@
           <br class="hidden sm:block" />
           Use the form below to reserve <strong>whole</strong>, <strong>half</strong>, and/or <strong>cuts</strong> (availability varies by processing date).
         </p>
+
+        <!-- Primary Chicken Orders CTA -->
+        <div class="text-center mb-8">
+          <a
+            href="#chicken-order-form"
+            class="inline-block bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700 transition shadow-md"
+          >
+            🍗 ORDER YOUR CHICKEN
+          </a>
+        </div>
 
         <!-- Top row (like beef page cards) -->
         <div class="grid gap-6 md:grid-cols-2">
@@ -182,8 +193,23 @@
     </div>
   </section>
 
-  <!-- Embedded Chicken Google Form -->
-  <section class="px-4 pb-16">
+  <!-- Final Chicken Orders CTA + Embedded Google Form -->
+  <section class="px-4 pb-6">
+    <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md p-6 text-center">
+      <h2 class="text-3xl font-bold text-green-800 mb-3">🍗 Ready to Order?</h2>
+      <p class="text-lg text-gray-700 mb-5">
+        Reserve your pasture-raised chicken while your preferred cuts are available.
+      </p>
+      <a
+        href="#chicken-order-form"
+        class="inline-block bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700 transition shadow-md"
+      >
+        🍗 ORDER YOUR CHICKEN
+      </a>
+    </div>
+  </section>
+
+  <section id="chicken-order-form" class="px-4 pb-16">
     <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
       <iframe
         class="form-frame"
