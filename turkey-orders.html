@@ -33,6 +33,7 @@
         <li><a href="./#products" class="block py-2 hover:text-green-300">Products</a></li>
         <li><a href="chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
         <li><a href="pork-orders.html" class="block py-2 hover:text-green-300">Hog Preorders</a></li>
+        <li><a href="chicken-share.html" class="block py-2 hover:text-orange-300">Chicken Shares</a></li>
         <li><a href="turkey-orders.html" class="block py-2 hover:text-green-300 font-semibold underline underline-offset-4" aria-current="page">Turkey Preorders</a></li>
         <li><a href="duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
         <li><a href="beef-orders.html" class="block py-2 hover:text-green-300">Beef Orders</a></li>
@@ -54,6 +55,16 @@
             <br class="hidden sm:block" />
             Quantities are limited, so reserve your whole turkey while inventory is available.
           </p>
+
+          <!-- Primary Turkey Preorder CTA -->
+          <div class="text-center mb-8">
+            <a
+              href="#turkey-order-form"
+              class="inline-block bg-teal-600 text-white font-bold px-8 py-4 rounded-full hover:bg-teal-700 transition shadow-md"
+            >
+              🦃 RESERVE YOUR TURKEY
+            </a>
+          </div>
 
           <div class="grid gap-6 md:grid-cols-2">
             <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
@@ -133,8 +144,24 @@
       </div>
     </section>
 
+    <!-- Turkey Preorder CTA -->
+    <section class="px-4 pb-6">
+      <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md p-6 text-center">
+        <h2 class="text-3xl font-bold text-teal-700 mb-3">🦃 Ready to Reserve Your Turkey?</h2>
+        <p class="text-lg text-gray-700 mb-5">
+          Reserve your pasture-raised Thanksgiving turkey while availability remains.
+        </p>
+        <a
+          href="#turkey-order-form"
+          class="inline-block bg-teal-600 text-white font-bold px-8 py-4 rounded-full hover:bg-teal-700 transition shadow-md"
+        >
+          🦃 RESERVE YOUR TURKEY
+        </a>
+      </div>
+    </section>
+
     <!-- Embedded Turkey Preorder Form -->
-    <section class="px-4 pb-16" aria-labelledby="turkey-order-form-heading">
+    <section id="turkey-order-form" class="px-4 pb-16" aria-labelledby="turkey-order-form-heading">
       <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
         <div class="p-5 text-center text-gray-800 border-b border-gray-200">
           <h2 id="turkey-order-form-heading" class="text-2xl font-bold text-green-800">
