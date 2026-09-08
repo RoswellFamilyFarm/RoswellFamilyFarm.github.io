@@ -64,35 +64,38 @@ function pushPricingFields(){
   }
 }
 
+function readableValue(includeToken){
+  if(!selected || currentQty<cfg.minQty) return "";
+  let v = "Processing Week: " + selected.label + "\n" +
+          "Number of Chickens Reserved: " + currentQty;
+  if(includeToken && hold && hold.token){
+    v += "\nReservation Reference: " + hold.token;
+  }
+  return v;
+}
+
 async function apiGet(params){
  const u=new URL(cfg.apiUrl);Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v));
  const r=await fetch(u,{cache:"no-store"}),d=await r.json();
  if(!d.ok)throw new Error(d.error||"Scheduler service error.");
  return d;
 }
+
 async function apiPost(payload){
  const r=await fetch(cfg.apiUrl,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
  const d=await r.json();
  if(!d.ok)throw new Error(d.error||"Scheduler service error.");
  return d;
 }
+
 function sendData(valid){
  if(!valid||!selected||currentQty<cfg.minQty){
    JFCustomWidget.sendData({valid:false,value:""});
    return;
  }
- JFCustomWidget.sendData({
-   valid:true,
-   value:JSON.stringify({
-     chickens:currentQty,
-     base_price:basePriceFor(currentQty),
-     week_start:selected.start,
-     week_end:selected.end,
-     week_label:selected.label,
-     hold_token:hold?hold.token:""
-   })
- });
+ JFCustomWidget.sendData({valid:true,value:readableValue(false)});
 }
+
 async function refreshWeeks(){
  currentQty=parseInt(qty.value||"0",10);
  pushPricingFields();
@@ -145,17 +148,25 @@ JFCustomWidget.subscribe("ready",async data=>{
 
  if(data&&data.value){
   try{
-   const old=JSON.parse(data.value);
-   if(old&&old.chickens){
-    currentQty=parseInt(old.chickens,10)||0;
+   const qtyMatch=String(data.value).match(/Number of Chickens Reserved:\s*(\d+)/i);
+   const weekMatch=String(data.value).match(/Processing Week:\s*(.+)/i);
+   if(qtyMatch){
+    currentQty=parseInt(qtyMatch[1],10)||0;
     qty.value=String(currentQty);
     pushPricingFields();
     await refreshWeeks();
-    const match=[...week.options].find(o=>o.value===old.week_start);
-    if(match){
-      week.value=old.week_start;
-      selected=JSON.parse(match.dataset.week);
-      sendData(true);
+
+    if(weekMatch){
+      const label=weekMatch[1].trim();
+      const match=[...week.options].find(o=>{
+        if(!o.dataset.week) return false;
+        try{return JSON.parse(o.dataset.week).label===label}catch(e){return false}
+      });
+      if(match){
+        week.value=match.value;
+        selected=JSON.parse(match.dataset.week);
+        sendData(true);
+      }
     }
    }
   }catch(e){}
@@ -178,17 +189,7 @@ JFCustomWidget.subscribe("submit",async()=>{
   const d=await apiPost({action:"hold",formId,weekStart:selected.start,qty:currentQty});
   hold={token:d.token};
 
-  JFCustomWidget.sendSubmit({
-    valid:true,
-    value:JSON.stringify({
-      chickens:currentQty,
-      base_price:basePriceFor(currentQty),
-      week_start:selected.start,
-      week_end:selected.end,
-      week_label:selected.label,
-      hold_token:d.token
-    })
-  });
+  JFCustomWidget.sendSubmit({valid:true,value:readableValue(true)});
  }catch(e){
   setStatus(e.message||"Please check your processing-week selection.","error");
   JFCustomWidget.sendSubmit({valid:false,value:""});
