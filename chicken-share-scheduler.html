@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Roswell Chicken Share Scheduler</title>
+
 <script src="https://js.jotform.com/JotFormCustomWidget.min.js"></script>
 
 <style>
@@ -12,30 +14,30 @@ body{
   margin:0;
   padding:12px;
   color:#374151;
-  background:#fff
+  background:#fff;
 }
 
 .box{
   border:1px solid #d1d5db;
   border-radius:12px;
   padding:16px;
-  background:#f9fafb
+  background:#f9fafb;
 }
 
 h3{
   margin:0 0 8px;
   color:#15803d;
-  font-size:20px
+  font-size:20px;
 }
 
 p{
-  line-height:1.4
+  line-height:1.4;
 }
 
 label{
   display:block;
   font-weight:700;
-  margin:12px 0 6px
+  margin:12px 0 6px;
 }
 
 select{
@@ -45,7 +47,7 @@ select{
   border:1px solid #d1d5db;
   border-radius:8px;
   background:#fff;
-  font-size:16px
+  font-size:16px;
 }
 
 .status{
@@ -54,22 +56,22 @@ select{
   border-radius:8px;
   background:#fff7ed;
   color:#9a3412;
-  font-size:14px
+  font-size:14px;
 }
 
 .status.ok{
   background:#f0fdf4;
-  color:#166534
+  color:#166534;
 }
 
 .status.error{
   background:#fef2f2;
-  color:#b91c1c
+  color:#b91c1c;
 }
 
 .small{
   font-size:13px;
-  color:#6b7280
+  color:#6b7280;
 }
 </style>
 </head>
@@ -129,11 +131,17 @@ const cfg = {
   maxQty:50
 };
 
+
+/* JOTFORM FIELD LABELS */
+
 const TOTAL_LABEL =
   "Total Number of Chickens You Would Like to Reserve";
 
 const BASE_PRICE_LABEL =
   "Base Price Per Chicken";
+
+const RESERVATION_NUMBER_LABEL =
+  "Reservation Number";
 
 
 const qty =
@@ -172,6 +180,7 @@ function setStatus(message,className){
       : "");
 
   resizeWidget();
+
 }
 
 
@@ -203,6 +212,8 @@ function setting(name,defaultValue=""){
 
 
 
+/* BUILD QUANTITY LIST */
+
 for(let i=5;i<=50;i++){
 
   const option =
@@ -216,11 +227,15 @@ for(let i=5;i<=50;i++){
   option.textContent =
     String(i);
 
-  qty.appendChild(option);
+  qty.appendChild(
+    option
+  );
 
 }
 
 
+
+/* PRICE TIERS */
 
 function basePriceFor(q){
 
@@ -242,6 +257,8 @@ function basePriceFor(q){
 
 
 
+/* WRITE QUANTITY + PRICE INTO HIDDEN JOTFORM FIELDS */
+
 function pushPricingFields(){
 
   currentQty =
@@ -255,6 +272,7 @@ function pushPricingFields(){
       currentQty
     );
 
+
   try{
 
     JFCustomWidget
@@ -264,11 +282,8 @@ function pushPricingFields(){
             TOTAL_LABEL,
 
           value:
-            currentQty >=
-            cfg.minQty
-              ? String(
-                  currentQty
-                )
+            currentQty >= cfg.minQty
+              ? String(currentQty)
               : ""
         },
         {
@@ -282,11 +297,67 @@ function pushPricingFields(){
         }
       ]);
 
-  }catch(e){}
+  }catch(e){
+
+    console.error(
+      "Could not write pricing fields",
+      e
+    );
+
+  }
 
 }
 
 
+
+/* WRITE RFF NUMBER INTO HIDDEN JOTFORM FIELD */
+
+function pushReservationNumber(){
+
+  if(
+    !hold ||
+    !hold.token
+  ){
+    return;
+  }
+
+
+  try{
+
+    JFCustomWidget
+      .setFieldsValueByLabel([
+        {
+          label:
+            RESERVATION_NUMBER_LABEL,
+
+          value:
+            String(
+              hold.token
+            )
+        }
+      ]);
+
+
+    console.log(
+      "Reservation Number saved:",
+      hold.token
+    );
+
+
+  }catch(e){
+
+    console.error(
+      "Could not write Reservation Number field",
+      e
+    );
+
+  }
+
+}
+
+
+
+/* HUMAN-READABLE WIDGET VALUE */
 
 function readableValue(){
 
@@ -294,13 +365,16 @@ function readableValue(){
     !selected ||
     !hold ||
     !hold.token ||
-    currentQty <
-    cfg.minQty
+    currentQty < cfg.minQty
   ){
+
     return "";
+
   }
 
+
   return [
+
     "Reservation #: " +
       hold.token,
 
@@ -316,6 +390,8 @@ function readableValue(){
 
 
 
+/* API GET */
+
 async function apiGet(params){
 
   const url =
@@ -323,15 +399,18 @@ async function apiGet(params){
       cfg.apiUrl
     );
 
+
   Object.entries(
     params
   ).forEach(
-    ([key,value]) =>
+    ([key,value]) => {
 
       url.searchParams.set(
         key,
         value
-      )
+      );
+
+    }
   );
 
 
@@ -363,6 +442,8 @@ async function apiGet(params){
 }
 
 
+
+/* API POST */
 
 async function apiPost(payload){
 
@@ -405,6 +486,8 @@ async function apiPost(payload){
 
 
 
+/* SAVE CUSTOM WIDGET VALUE */
+
 function saveWidgetValue(){
 
   const valid =
@@ -412,8 +495,7 @@ function saveWidgetValue(){
       selected &&
       hold &&
       hold.token &&
-      currentQty >=
-      cfg.minQty
+      currentQty >= cfg.minQty
     );
 
 
@@ -421,6 +503,18 @@ function saveWidgetValue(){
     valid
       ? readableValue()
       : "";
+
+
+  /*
+    Make sure the normal hidden Reservation Number
+    field is also populated.
+  */
+
+  if(valid){
+
+    pushReservationNumber();
+
+  }
 
 
   JFCustomWidget.sendData({
@@ -437,6 +531,8 @@ function saveWidgetValue(){
 }
 
 
+
+/* LOAD PROCESSING WEEKS */
 
 async function refreshWeeks(){
 
@@ -455,6 +551,26 @@ async function refreshWeeks(){
 
   hold =
     null;
+
+
+  /*
+    Clear stale reservation number
+    if quantity changes before a new hold is made.
+  */
+
+  try{
+
+    JFCustomWidget
+      .setFieldsValueByLabel([
+        {
+          label:
+            RESERVATION_NUMBER_LABEL,
+
+          value:""
+        }
+      ]);
+
+  }catch(e){}
 
 
   if(
@@ -532,9 +648,8 @@ async function refreshWeeks(){
 
 
       /*
-        If there are not enough chickens
-        available for this customer's quantity,
-        keep the week visible but disable it.
+        Keep all 4 weeks visible.
+        Disable weeks that cannot fit this reservation.
       */
 
       if(
@@ -545,6 +660,7 @@ async function refreshWeeks(){
 
         option.disabled =
           true;
+
 
         option.textContent =
           `${processingWeek.label} — only ${processingWeek.available} chickens available`;
@@ -592,6 +708,8 @@ async function refreshWeeks(){
 
 
 
+/* CREATE HOLD */
+
 async function reserveSelectedWeek(){
 
   const option =
@@ -638,7 +756,9 @@ async function reserveSelectedWeek(){
 
 
   if(holding){
+
     return;
+
   }
 
 
@@ -694,6 +814,19 @@ async function reserveSelectedWeek(){
     };
 
 
+    /*
+      CRITICAL FIX:
+      immediately write RFF number into
+      normal hidden Jotform field.
+    */
+
+    pushReservationNumber();
+
+
+    /*
+      Also save readable custom widget value.
+    */
+
     saveWidgetValue();
 
 
@@ -716,6 +849,21 @@ async function reserveSelectedWeek(){
 
     week.value =
       "";
+
+
+    try{
+
+      JFCustomWidget
+        .setFieldsValueByLabel([
+          {
+            label:
+              RESERVATION_NUMBER_LABEL,
+
+            value:""
+          }
+        ]);
+
+    }catch(_){}
 
 
     setStatus(
@@ -741,6 +889,7 @@ async function reserveSelectedWeek(){
 
     }catch(_){}
 
+
   }finally{
 
     holding =
@@ -761,6 +910,8 @@ async function reserveSelectedWeek(){
 
 
 
+/* EVENTS */
+
 qty.addEventListener(
   "change",
   refreshWeeks
@@ -773,6 +924,8 @@ week.addEventListener(
 );
 
 
+
+/* JOTFORM READY */
 
 JFCustomWidget.subscribe(
   "ready",
@@ -818,9 +971,26 @@ JFCustomWidget.subscribe(
 
 
 
+/* JOTFORM SUBMIT */
+
 JFCustomWidget.subscribe(
   "submit",
   function(){
+
+    /*
+      Write RFF number one more time
+      immediately before Jotform submits.
+    */
+
+    if(
+      hold &&
+      hold.token
+    ){
+
+      pushReservationNumber();
+
+    }
+
 
     const result =
       saveWidgetValue();
@@ -848,7 +1018,6 @@ window.addEventListener(
 
   }
 );
-
 
 
 })();
