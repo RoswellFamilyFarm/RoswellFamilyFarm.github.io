@@ -3,9 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>Roswell Chicken Share Scheduler</title>
-
 <script src="https://js.jotform.com/JotFormCustomWidget.min.js"></script>
 
 <style>
@@ -16,31 +14,24 @@ body{
   color:#374151;
   background:#fff;
 }
-
 .box{
   border:1px solid #d1d5db;
   border-radius:12px;
   padding:16px;
   background:#f9fafb;
 }
-
 h3{
   margin:0 0 8px;
   color:#15803d;
   font-size:20px;
 }
-
-p{
-  line-height:1.4;
-}
-
+p{line-height:1.4}
 label{
   display:block;
   font-weight:700;
   margin:12px 0 6px;
 }
-
-select{
+select,button{
   width:100%;
   min-height:44px;
   padding:10px;
@@ -48,8 +39,13 @@ select{
   border-radius:8px;
   background:#fff;
   font-size:16px;
+  box-sizing:border-box;
 }
-
+button{
+  margin-top:10px;
+  cursor:pointer;
+  font-weight:700;
+}
 .status{
   margin-top:10px;
   padding:10px 12px;
@@ -58,20 +54,20 @@ select{
   color:#9a3412;
   font-size:14px;
 }
-
 .status.ok{
   background:#f0fdf4;
   color:#166534;
 }
-
 .status.error{
   background:#fef2f2;
   color:#b91c1c;
 }
-
 .small{
   font-size:13px;
   color:#6b7280;
+}
+.hidden{
+  display:none;
 }
 </style>
 </head>
@@ -88,17 +84,13 @@ The next <strong>4 processing weeks</strong> are shown and each processing week 
 to <strong>50 chickens</strong>.
 </p>
 
-<label for="qty">
-Number of chickens
-</label>
+<label for="qty">Number of chickens</label>
 
 <select id="qty">
 <option value="">Choose quantity</option>
 </select>
 
-<label for="week">
-Available processing week
-</label>
+<label for="week">Available processing week</label>
 
 <select id="week" disabled>
 <option value="">Choose quantity first</option>
@@ -107,6 +99,10 @@ Available processing week
 <div id="status" class="status">
 Choose 5–50 chickens to see available processing weeks.
 </div>
+
+<button id="changeSelection" class="hidden" type="button">
+Change quantity or processing week
+</button>
 
 <p class="small">
 Minimum Chicken Share reservation: 5 chickens.
@@ -124,15 +120,14 @@ let selected = null;
 let currentQty = 0;
 let hold = null;
 let holding = false;
+let refreshTimer = null;
+let restoring = false;
 
 const cfg = {
   apiUrl:"",
   minQty:5,
   maxQty:50
 };
-
-
-/* JOTFORM FIELD LABELS */
 
 const TOTAL_LABEL =
   "Total Number of Chickens You Would Like to Reserve";
@@ -143,7 +138,6 @@ const BASE_PRICE_LABEL =
 const RESERVATION_NUMBER_LABEL =
   "Reservation Number";
 
-
 const qty =
   document.getElementById("qty");
 
@@ -153,46 +147,108 @@ const week =
 const status =
   document.getElementById("status");
 
+const changeSelection =
+  document.getElementById(
+    "changeSelection"
+  );
+
+
+function storageKey(){
+  return (
+    "roswellChickenShareHold:" +
+    (formId || "default")
+  );
+}
+
+
+function saveHoldLocally(){
+  if(
+    !hold ||
+    !hold.token
+  ){
+    return;
+  }
+
+  try{
+    localStorage.setItem(
+      storageKey(),
+      JSON.stringify({
+        token:hold.token
+      })
+    );
+  }catch(e){}
+}
+
+
+function clearLocalHold(){
+  try{
+    localStorage.removeItem(
+      storageKey()
+    );
+  }catch(e){}
+}
+
+
+function getLocalHoldToken(){
+  try{
+    const raw =
+      localStorage.getItem(
+        storageKey()
+      );
+
+    if(!raw){
+      return "";
+    }
+
+    const parsed =
+      JSON.parse(raw);
+
+    return String(
+      parsed.token || ""
+    );
+
+  }catch(e){
+    return "";
+  }
+}
 
 
 function resizeWidget(){
-
   try{
-
     JFCustomWidget.requestFrameResize({
       height:500
     });
-
   }catch(e){}
-
 }
 
 
-
-function setStatus(message,className){
-
-  status.textContent = message;
+function setStatus(
+  message,
+  className
+){
+  status.textContent =
+    message;
 
   status.className =
     "status" +
-    (className
-      ? " " + className
-      : "");
+    (
+      className
+        ? " " + className
+        : ""
+    );
 
   resizeWidget();
-
 }
 
 
-
-function setting(name,defaultValue=""){
-
+function setting(
+  name,
+  defaultValue=""
+){
   try{
-
     const value =
-      JFCustomWidget.getWidgetSetting(
-        name
-      );
+      JFCustomWidget
+        .getWidgetSetting(name);
 
     return(
       value === undefined ||
@@ -203,19 +259,16 @@ function setting(name,defaultValue=""){
       : value;
 
   }catch(e){
-
     return defaultValue;
-
   }
-
 }
 
 
-
-/* BUILD QUANTITY LIST */
-
-for(let i=5;i<=50;i++){
-
+for(
+  let i=5;
+  i<=50;
+  i++
+){
   const option =
     document.createElement(
       "option"
@@ -227,18 +280,11 @@ for(let i=5;i<=50;i++){
   option.textContent =
     String(i);
 
-  qty.appendChild(
-    option
-  );
-
+  qty.appendChild(option);
 }
 
 
-
-/* PRICE TIERS */
-
 function basePriceFor(q){
-
   if(q >= 40){
     return 15;
   }
@@ -252,15 +298,10 @@ function basePriceFor(q){
   }
 
   return "";
-
 }
 
 
-
-/* WRITE QUANTITY + PRICE INTO HIDDEN JOTFORM FIELDS */
-
 function pushPricingFields(){
-
   currentQty =
     parseInt(
       qty.value || "0",
@@ -272,9 +313,7 @@ function pushPricingFields(){
       currentQty
     );
 
-
   try{
-
     JFCustomWidget
       .setFieldsValueByLabel([
         {
@@ -282,8 +321,11 @@ function pushPricingFields(){
             TOTAL_LABEL,
 
           value:
-            currentQty >= cfg.minQty
-              ? String(currentQty)
+            currentQty >=
+            cfg.minQty
+              ? String(
+                  currentQty
+                )
               : ""
         },
         {
@@ -297,23 +339,11 @@ function pushPricingFields(){
         }
       ]);
 
-  }catch(e){
-
-    console.error(
-      "Could not write pricing fields",
-      e
-    );
-
-  }
-
+  }catch(e){}
 }
 
 
-
-/* WRITE RFF NUMBER INTO HIDDEN JOTFORM FIELD */
-
 function pushReservationNumber(){
-
   if(
     !hold ||
     !hold.token
@@ -321,9 +351,7 @@ function pushReservationNumber(){
     return;
   }
 
-
   try{
-
     JFCustomWidget
       .setFieldsValueByLabel([
         {
@@ -336,45 +364,37 @@ function pushReservationNumber(){
             )
         }
       ]);
-
-
-    console.log(
-      "Reservation Number saved:",
-      hold.token
-    );
-
-
-  }catch(e){
-
-    console.error(
-      "Could not write Reservation Number field",
-      e
-    );
-
-  }
-
+  }catch(e){}
 }
 
 
+function clearReservationNumber(){
+  try{
+    JFCustomWidget
+      .setFieldsValueByLabel([
+        {
+          label:
+            RESERVATION_NUMBER_LABEL,
 
-/* HUMAN-READABLE WIDGET VALUE */
+          value:""
+        }
+      ]);
+  }catch(e){}
+}
+
 
 function readableValue(){
-
   if(
     !selected ||
     !hold ||
     !hold.token ||
-    currentQty < cfg.minQty
+    currentQty <
+    cfg.minQty
   ){
-
     return "";
-
   }
 
-
   return [
-
     "Reservation #: " +
       hold.token,
 
@@ -385,34 +405,30 @@ function readableValue(){
       currentQty
 
   ].join("\n");
-
 }
 
 
-
-/* API GET */
-
 async function apiGet(params){
-
   const url =
     new URL(
       cfg.apiUrl
     );
 
-
   Object.entries(
     params
   ).forEach(
-    ([key,value]) => {
-
+    ([key,value])=>{
       url.searchParams.set(
         key,
         value
       );
-
     }
   );
 
+  url.searchParams.set(
+    "_",
+    Date.now()
+  );
 
   const response =
     await fetch(
@@ -422,31 +438,21 @@ async function apiGet(params){
       }
     );
 
-
   const data =
     await response.json();
 
-
   if(!data.ok){
-
     throw new Error(
       data.error ||
       "Scheduler service error."
     );
-
   }
 
-
   return data;
-
 }
 
 
-
-/* API POST */
-
 async function apiPost(payload){
-
   const response =
     await fetch(
       cfg.apiUrl,
@@ -465,164 +471,121 @@ async function apiPost(payload){
       }
     );
 
-
   const data =
     await response.json();
 
-
   if(!data.ok){
-
     throw new Error(
       data.error ||
       "Scheduler service error."
     );
-
   }
 
-
   return data;
-
 }
 
 
-
-/* SAVE CUSTOM WIDGET VALUE */
-
 function saveWidgetValue(){
-
   const valid =
     !!(
       selected &&
       hold &&
       hold.token &&
-      currentQty >= cfg.minQty
+      currentQty >=
+      cfg.minQty
     );
-
 
   const value =
     valid
       ? readableValue()
       : "";
 
-
-  /*
-    Make sure the normal hidden Reservation Number
-    field is also populated.
-  */
-
   if(valid){
-
     pushReservationNumber();
-
   }
-
 
   JFCustomWidget.sendData({
     valid,
     value
   });
 
-
-  return {
+  return{
     valid,
     value
   };
-
 }
 
 
+function lockSelectionUI(){
+  qty.disabled = true;
+  week.disabled = true;
 
-/* LOAD PROCESSING WEEKS */
+  changeSelection
+    .classList
+    .remove("hidden");
 
-async function refreshWeeks(){
+  stopAutoRefresh();
+}
 
+
+function unlockSelectionUI(){
+  qty.disabled = false;
+
+  week.disabled =
+    currentQty <
+      cfg.minQty;
+
+  changeSelection
+    .classList
+    .add("hidden");
+}
+
+
+async function loadWeeks(
+  preserveStatus=false
+){
   currentQty =
     parseInt(
       qty.value || "0",
       10
     );
 
-
   pushPricingFields();
-
-
-  selected =
-    null;
-
-  hold =
-    null;
-
-
-  /*
-    Clear stale reservation number
-    if quantity changes before a new hold is made.
-  */
-
-  try{
-
-    JFCustomWidget
-      .setFieldsValueByLabel([
-        {
-          label:
-            RESERVATION_NUMBER_LABEL,
-
-          value:""
-        }
-      ]);
-
-  }catch(e){}
-
 
   if(
     currentQty <
     cfg.minQty
   ){
-
     week.innerHTML =
       '<option value="">Choose quantity first</option>';
 
     week.disabled =
       true;
 
+    if(!preserveStatus){
+      setStatus(
+        "Choose 5–50 chickens to see available processing weeks."
+      );
+    }
 
-    setStatus(
-      "Choose 5–50 chickens to see available processing weeks."
-    );
-
-
-    JFCustomWidget
-      .sendData({
-        valid:false,
-        value:""
-      });
-
-
-    return;
-
+    return [];
   }
 
-
-  setStatus(
-    "Checking available processing weeks…"
-  );
-
+  if(!preserveStatus){
+    setStatus(
+      "Checking current processing-week availability…"
+    );
+  }
 
   const data =
     await apiGet({
-      action:
-        "availability",
-
-      qty:
-        currentQty,
-
-      formId:
-        formId
+      action:"availability",
+      qty:currentQty,
+      formId:formId
     });
-
 
   week.innerHTML =
     '<option value="">Choose a processing week</option>';
-
 
   data.weeks.forEach(
     processingWeek => {
@@ -632,116 +595,65 @@ async function refreshWeeks(){
           "option"
         );
 
-
       option.value =
         processingWeek.start;
 
-
       option.textContent =
         `${processingWeek.label} — ${processingWeek.available} chickens available`;
-
 
       option.dataset.week =
         JSON.stringify(
           processingWeek
         );
 
-
-      /*
-        Keep all 4 weeks visible.
-        Disable weeks that cannot fit this reservation.
-      */
-
       if(
         processingWeek
           .has_enough_for_requested_qty
         === false
       ){
-
         option.disabled =
           true;
 
-
         option.textContent =
           `${processingWeek.label} — only ${processingWeek.available} chickens available`;
-
       }
-
 
       week.appendChild(
         option
       );
-
     }
   );
-
 
   week.disabled =
     data.weeks.length === 0;
 
-
-  setStatus(
-
-    data.weeks.length
-
-      ? `The next ${data.weeks.length} processing weeks are shown below.`
-
-      : "No processing weeks are currently available. Please contact Roswell Family Farm.",
-
-    data.weeks.length
-      ? "ok"
-      : "error"
-
-  );
-
-
-  JFCustomWidget
-    .sendData({
-      valid:false,
-      value:""
-    });
-
-
-  resizeWidget();
-
+  return data.weeks;
 }
 
 
+async function refreshWeeks(){
+  if(
+    hold &&
+    hold.token
+  ){
+    return;
+  }
 
-/* CREATE HOLD */
+  selected = null;
+  clearReservationNumber();
 
-async function reserveSelectedWeek(){
-
-  const option =
-    week.options[
-      week.selectedIndex
-    ];
-
-
-  selected =
-    option &&
-    option.dataset.week
-
-      ? JSON.parse(
-          option.dataset.week
-        )
-
-      : null;
-
-
-  hold =
-    null;
-
-
-  pushPricingFields();
-
-
-  if(!selected){
+  try{
+    const weeks =
+      await loadWeeks(true);
 
     setStatus(
-      "Choose an available processing week."
+      weeks.length
+        ? `The next ${weeks.length} processing weeks are shown below. Availability is checked live.`
+        : "No processing weeks are currently available. Please contact Roswell Family Farm.",
+      weeks.length
+        ? "ok"
+        : "error"
     );
-
 
     JFCustomWidget
       .sendData({
@@ -749,55 +661,72 @@ async function reserveSelectedWeek(){
         value:""
       });
 
-
-    return;
-
+  }catch(e){
+    setStatus(
+      e.message ||
+      "Could not refresh processing-week availability. Please try again.",
+      "error"
+    );
   }
 
+  resizeWidget();
+}
+
+
+async function reserveSelectedWeek(){
+  const option =
+    week.options[
+      week.selectedIndex
+    ];
+
+  selected =
+    option &&
+    option.dataset.week
+      ? JSON.parse(
+          option.dataset.week
+        )
+      : null;
+
+  hold = null;
+
+  pushPricingFields();
+
+  if(!selected){
+    setStatus(
+      "Choose an available processing week."
+    );
+
+    JFCustomWidget
+      .sendData({
+        valid:false,
+        value:""
+      });
+
+    return;
+  }
 
   if(holding){
-
     return;
-
   }
 
-
-  holding =
-    true;
-
-
-  week.disabled =
-    true;
-
-  qty.disabled =
-    true;
-
+  holding = true;
+  week.disabled = true;
+  qty.disabled = true;
 
   setStatus(
     "Temporarily reserving your processing-week capacity…"
   );
 
-
   try{
-
     const data =
       await apiPost({
-        action:
-          "hold",
-
-        formId:
-          formId,
-
-        weekStart:
-          selected.start,
-
-        qty:
-          currentQty
+        action:"hold",
+        formId:formId,
+        weekStart:selected.start,
+        qty:currentQty
       });
 
-
     hold = {
-
       token:
         data.reservation_number ||
         data.token,
@@ -810,71 +739,26 @@ async function reserveSelectedWeek(){
 
       qty:
         currentQty
-
     };
 
-
-    /*
-      CRITICAL FIX:
-      immediately write RFF number into
-      normal hidden Jotform field.
-    */
-
     pushReservationNumber();
-
-
-    /*
-      Also save readable custom widget value.
-    */
-
     saveWidgetValue();
+    saveHoldLocally();
 
+    lockSelectionUI();
 
     setStatus(
-
       `${hold.token} — ${selected.label} is temporarily held for ${currentQty} chickens while you finish your reservation.`,
-
       "ok"
-
     );
-
 
   }catch(e){
+    hold = null;
+    selected = null;
+    week.value = "";
 
-    hold =
-      null;
-
-    selected =
-      null;
-
-    week.value =
-      "";
-
-
-    try{
-
-      JFCustomWidget
-        .setFieldsValueByLabel([
-          {
-            label:
-              RESERVATION_NUMBER_LABEL,
-
-            value:""
-          }
-        ]);
-
-    }catch(_){}
-
-
-    setStatus(
-
-      e.message ||
-      "That processing week could not be reserved. Please choose another week.",
-
-      "error"
-
-    );
-
+    clearReservationNumber();
+    clearLocalHold();
 
     JFCustomWidget
       .sendData({
@@ -882,39 +766,274 @@ async function reserveSelectedWeek(){
         value:""
       });
 
-
     try{
-
       await refreshWeeks();
 
-    }catch(_){}
+      setStatus(
+        "That processing week was just reserved by another customer. Availability has been refreshed — please choose another week.",
+        "error"
+      );
 
+    }catch(_){
+      setStatus(
+        e.message ||
+        "That processing week could not be reserved. Please choose another week.",
+        "error"
+      );
+    }
 
   }finally{
+    holding = false;
 
-    holding =
-      false;
-
-    qty.disabled =
-      false;
-
-    week.disabled =
-      false;
-
+    if(
+      !hold ||
+      !hold.token
+    ){
+      unlockSelectionUI();
+    }
 
     resizeWidget();
-
   }
-
 }
 
 
+async function restoreExistingHold(){
+  const token =
+    getLocalHoldToken();
 
-/* EVENTS */
+  if(!token){
+    return false;
+  }
+
+  restoring = true;
+
+  setStatus(
+    "Restoring your existing Chicken Share reservation…"
+  );
+
+  try{
+    const data =
+      await apiGet({
+        action:"recover",
+        token:token
+      });
+
+    if(
+      !data.found ||
+      !data.active
+    ){
+      clearLocalHold();
+      clearReservationNumber();
+
+      restoring = false;
+      return false;
+    }
+
+    currentQty =
+      Number(
+        data.qty || 0
+      );
+
+    qty.value =
+      String(currentQty);
+
+    pushPricingFields();
+
+    await loadWeeks(true);
+
+    let matchedOption =
+      null;
+
+    for(
+      const option of
+      Array.from(
+        week.options
+      )
+    ){
+      if(
+        option.value ===
+        data.week_start
+      ){
+        matchedOption =
+          option;
+        break;
+      }
+    }
+
+    if(matchedOption){
+      week.value =
+        matchedOption.value;
+
+      selected =
+        JSON.parse(
+          matchedOption
+            .dataset.week
+        );
+    }else{
+      selected = {
+        start:data.week_start,
+        label:
+          "Week of " +
+          new Date(
+            data.week_start +
+            "T12:00:00"
+          ).toLocaleDateString(
+            "en-US",
+            {
+              month:"short",
+              day:"numeric",
+              year:"numeric"
+            }
+          )
+      };
+    }
+
+    hold = {
+      token:
+        data.reservation_number,
+
+      expires_at:
+        data.expires_at,
+
+      week_start:
+        data.week_start,
+
+      qty:
+        currentQty
+    };
+
+    pushReservationNumber();
+    saveWidgetValue();
+    saveHoldLocally();
+    lockSelectionUI();
+
+    setStatus(
+      `${hold.token} restored — ${selected.label} is still held for ${currentQty} chickens. You can continue your reservation.`,
+      "ok"
+    );
+
+    restoring = false;
+    return true;
+
+  }catch(e){
+    restoring = false;
+
+    setStatus(
+      "We could not verify your existing reservation hold yet. Please wait a moment and refresh the page.",
+      "error"
+    );
+
+    return true;
+  }
+}
+
+
+async function releaseCurrentHold(){
+  if(
+    !hold ||
+    !hold.token
+  ){
+    return;
+  }
+
+  const token =
+    hold.token;
+
+  changeSelection.disabled =
+    true;
+
+  setStatus(
+    "Releasing your current temporary hold…"
+  );
+
+  try{
+    await apiPost({
+      action:"release",
+      token:token
+    });
+
+    hold = null;
+    selected = null;
+
+    clearLocalHold();
+    clearReservationNumber();
+
+    JFCustomWidget
+      .sendData({
+        valid:false,
+        value:""
+      });
+
+    unlockSelectionUI();
+
+    await refreshWeeks();
+
+    startAutoRefresh();
+
+    setStatus(
+      "Your previous temporary hold was released. Choose a new quantity or processing week.",
+      "ok"
+    );
+
+  }catch(e){
+    setStatus(
+      "We could not release the current hold. Please try again before changing your reservation.",
+      "error"
+    );
+  }finally{
+    changeSelection.disabled =
+      false;
+  }
+}
+
+
+function startAutoRefresh(){
+  stopAutoRefresh();
+
+  refreshTimer =
+    setInterval(
+      function(){
+        if(
+          currentQty >=
+            cfg.minQty &&
+          !holding &&
+          !restoring &&
+          !hold
+        ){
+          refreshWeeks();
+        }
+      },
+      60000
+    );
+}
+
+
+function stopAutoRefresh(){
+  if(refreshTimer){
+    clearInterval(
+      refreshTimer
+    );
+
+    refreshTimer =
+      null;
+  }
+}
+
 
 qty.addEventListener(
   "change",
-  refreshWeeks
+  async function(){
+    if(
+      hold &&
+      hold.token
+    ){
+      return;
+    }
+
+    await refreshWeeks();
+
+    startAutoRefresh();
+  }
 );
 
 
@@ -924,13 +1043,16 @@ week.addEventListener(
 );
 
 
+changeSelection
+  .addEventListener(
+    "click",
+    releaseCurrentHold
+  );
 
-/* JOTFORM READY */
 
 JFCustomWidget.subscribe(
   "ready",
-  function(data){
-
+  async function(data){
     formId =
       String(
         (
@@ -939,13 +1061,11 @@ JFCustomWidget.subscribe(
         ) || ""
       );
 
-
     cfg.apiUrl =
       setting(
         "ApiUrl",
         ""
       );
-
 
     cfg.minQty =
       parseInt(
@@ -956,45 +1076,37 @@ JFCustomWidget.subscribe(
         10
       ) || 5;
 
-
     JFCustomWidget
       .sendData({
         valid:false,
         value:""
       });
 
-
     resizeWidget();
 
+    const recovered =
+      await restoreExistingHold();
+
+    if(!recovered){
+      startAutoRefresh();
+    }
   }
 );
 
 
-
-/* JOTFORM SUBMIT */
-
 JFCustomWidget.subscribe(
   "submit",
   function(){
-
-    /*
-      Write RFF number one more time
-      immediately before Jotform submits.
-    */
-
     if(
       hold &&
       hold.token
     ){
-
       pushReservationNumber();
-
+      saveHoldLocally();
     }
-
 
     const result =
       saveWidgetValue();
-
 
     JFCustomWidget
       .sendSubmit({
@@ -1004,18 +1116,22 @@ JFCustomWidget.subscribe(
         value:
           result.value
       });
-
   }
 );
-
 
 
 window.addEventListener(
   "load",
   function(){
-
     resizeWidget();
+  }
+);
 
+
+window.addEventListener(
+  "beforeunload",
+  function(){
+    stopAutoRefresh();
   }
 );
 
