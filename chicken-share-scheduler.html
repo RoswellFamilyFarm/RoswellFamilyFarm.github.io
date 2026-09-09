@@ -5,50 +5,855 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Roswell Chicken Share Scheduler</title>
 <script src="https://js.jotform.com/JotFormCustomWidget.min.js"></script>
+
 <style>
-body{font-family:"Segoe UI",Arial,sans-serif;margin:0;padding:12px;color:#374151;background:#fff}
-.box{border:1px solid #d1d5db;border-radius:12px;padding:16px;background:#f9fafb}
-h3{margin:0 0 8px;color:#15803d;font-size:20px}p{line-height:1.4}
-label{display:block;font-weight:700;margin:12px 0 6px}
-select{width:100%;min-height:44px;padding:10px;border:1px solid #d1d5db;border-radius:8px;background:#fff;font-size:16px}
-.status{margin-top:10px;padding:10px 12px;border-radius:8px;background:#fff7ed;color:#9a3412;font-size:14px}
-.status.ok{background:#f0fdf4;color:#166534}.status.error{background:#fef2f2;color:#b91c1c}.small{font-size:13px;color:#6b7280}
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  margin:0;
+  padding:12px;
+  color:#374151;
+  background:#fff
+}
+
+.box{
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  padding:16px;
+  background:#f9fafb
+}
+
+h3{
+  margin:0 0 8px;
+  color:#15803d;
+  font-size:20px
+}
+
+p{
+  line-height:1.4
+}
+
+label{
+  display:block;
+  font-weight:700;
+  margin:12px 0 6px
+}
+
+select{
+  width:100%;
+  min-height:44px;
+  padding:10px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:#fff;
+  font-size:16px
+}
+
+.status{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:8px;
+  background:#fff7ed;
+  color:#9a3412;
+  font-size:14px
+}
+
+.status.ok{
+  background:#f0fdf4;
+  color:#166534
+}
+
+.status.error{
+  background:#fef2f2;
+  color:#b91c1c
+}
+
+.small{
+  font-size:13px;
+  color:#6b7280
+}
 </style>
 </head>
-<body>
-<div class="box">
-<h3>🐔 Chicken Share Processing Scheduler</h3>
-<p>Choose how many chickens you want to reserve, then select an available processing week. Processing weeks are approximately <strong>6–8 weeks out</strong> and each week is limited to <strong>50 chickens</strong>.</p>
-<label for="qty">Number of chickens</label>
-<select id="qty"><option value="">Choose quantity</option></select>
-<label for="week">Available processing week</label>
-<select id="week" disabled><option value="">Choose quantity first</option></select>
-<div id="status" class="status">Choose 5–50 chickens to see available processing weeks.</div>
-<p class="small">Minimum Chicken Share reservation: 5 chickens.</p>
-</div>
-<script>
-(function(){
-let formId="",selected=null,currentQty=0,hold=null,holding=false;
-const cfg={apiUrl:"",minQty:5,maxQty:50};
-const TOTAL_LABEL="Total Number of Chickens You Would Like to Reserve";
-const BASE_PRICE_LABEL="Base Price Per Chicken";
-const qty=document.getElementById("qty"),week=document.getElementById("week"),status=document.getElementById("status");
 
-function setStatus(m,c){status.textContent=m;status.className="status"+(c?" "+c:"")}
-function setting(n,d=""){try{const v=JFCustomWidget.getWidgetSetting(n);return(v===undefined||v===null||v==="")?d:v}catch(e){return d}}
-for(let i=5;i<=50;i++){const o=document.createElement("option");o.value=String(i);o.textContent=String(i);qty.appendChild(o)}
-function basePriceFor(q){if(q>=40)return 15;if(q>=20)return 15.5;if(q>=5)return 16;return""}
-function pushPricingFields(){currentQty=parseInt(qty.value||"0",10);const base=basePriceFor(currentQty);try{JFCustomWidget.setFieldsValueByLabel([{label:TOTAL_LABEL,value:currentQty>=cfg.minQty?String(currentQty):""},{label:BASE_PRICE_LABEL,value:base!==""?String(base):""}])}catch(e){}}
-function readableValue(){if(!selected||!hold||!hold.token||currentQty<cfg.minQty)return"";return["Reservation #: "+hold.token,"Processing Week: "+selected.label,"Number of Chickens Reserved: "+currentQty].join("\n")}
-async function apiGet(params){const u=new URL(cfg.apiUrl);Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v));const r=await fetch(u,{cache:"no-store"}),d=await r.json();if(!d.ok)throw new Error(d.error||"Scheduler service error.");return d}
-async function apiPost(payload){const r=await fetch(cfg.apiUrl,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}),d=await r.json();if(!d.ok)throw new Error(d.error||"Scheduler service error.");return d}
-function saveWidgetValue(){const valid=!!(selected&&hold&&hold.token&&currentQty>=cfg.minQty),value=valid?readableValue():"";JFCustomWidget.sendData({valid,value});return{valid,value}}
-async function refreshWeeks(){currentQty=parseInt(qty.value||"0",10);pushPricingFields();selected=null;hold=null;if(currentQty<cfg.minQty){week.innerHTML='<option value="">Choose quantity first</option>';week.disabled=true;setStatus("Choose 5–50 chickens to see available processing weeks.");JFCustomWidget.sendData({valid:false,value:""});return}setStatus("Checking available processing weeks…");const d=await apiGet({action:"availability",qty:currentQty,formId});week.innerHTML='<option value="">Choose a processing week</option>';d.weeks.forEach(w=>{const o=document.createElement("option");o.value=w.start;o.textContent=`${w.label} — ${w.available} chickens available`;o.dataset.week=JSON.stringify(w);week.appendChild(o)});week.disabled=d.weeks.length===0;setStatus(d.weeks.length?`Available weeks for ${currentQty} chickens are shown below.`:"No processing week in your 6–8 week window has enough remaining capacity. Please contact Roswell Family Farm.",d.weeks.length?"ok":"error");JFCustomWidget.sendData({valid:false,value:""})}
-async function reserveSelectedWeek(){const o=week.options[week.selectedIndex];selected=o&&o.dataset.week?JSON.parse(o.dataset.week):null;hold=null;pushPricingFields();if(!selected){setStatus("Choose an available processing week.");JFCustomWidget.sendData({valid:false,value:""});return}if(holding)return;holding=true;week.disabled=true;qty.disabled=true;setStatus("Temporarily reserving your processing-week capacity…");try{const d=await apiPost({action:"hold",formId,weekStart:selected.start,qty:currentQty});hold={token:d.reservation_number||d.token,expires_at:d.expires_at,week_start:selected.start,qty:currentQty};saveWidgetValue();setStatus(`${hold.token} — ${selected.label} is temporarily held for ${currentQty} chickens while you finish your reservation.`,"ok")}catch(e){hold=null;selected=null;week.value="";setStatus(e.message||"That processing week could not be reserved. Please choose another week.","error");JFCustomWidget.sendData({valid:false,value:""});try{await refreshWeeks()}catch(_){}}finally{holding=false;qty.disabled=false;week.disabled=false}}
-qty.addEventListener("change",refreshWeeks);week.addEventListener("change",reserveSelectedWeek);
-JFCustomWidget.subscribe("ready",function(data){formId=String((data&&data.formId)||"");cfg.apiUrl=setting("ApiUrl","");cfg.minQty=parseInt(setting("MinQuantity","5"),10)||5;JFCustomWidget.sendData({valid:false,value:""});try{JFCustomWidget.requestFrameResize({height:330})}catch(e){}});
-JFCustomWidget.subscribe("submit",function(){const r=saveWidgetValue();JFCustomWidget.sendSubmit({valid:r.valid,value:r.value})});
+<body>
+
+<div class="box">
+
+<h3>🐔 Chicken Share Processing Scheduler</h3>
+
+<p>
+Choose how many chickens you want to reserve, then select an available processing week.
+The next <strong>4 processing weeks</strong> are shown and each processing week is limited
+to <strong>50 chickens</strong>.
+</p>
+
+<label for="qty">
+Number of chickens
+</label>
+
+<select id="qty">
+<option value="">Choose quantity</option>
+</select>
+
+<label for="week">
+Available processing week
+</label>
+
+<select id="week" disabled>
+<option value="">Choose quantity first</option>
+</select>
+
+<div id="status" class="status">
+Choose 5–50 chickens to see available processing weeks.
+</div>
+
+<p class="small">
+Minimum Chicken Share reservation: 5 chickens.
+</p>
+
+</div>
+
+
+<script>
+
+(function(){
+
+let formId = "";
+let selected = null;
+let currentQty = 0;
+let hold = null;
+let holding = false;
+
+const cfg = {
+  apiUrl:"",
+  minQty:5,
+  maxQty:50
+};
+
+const TOTAL_LABEL =
+  "Total Number of Chickens You Would Like to Reserve";
+
+const BASE_PRICE_LABEL =
+  "Base Price Per Chicken";
+
+
+const qty =
+  document.getElementById("qty");
+
+const week =
+  document.getElementById("week");
+
+const status =
+  document.getElementById("status");
+
+
+
+function resizeWidget(){
+
+  try{
+
+    JFCustomWidget.requestFrameResize({
+      height:500
+    });
+
+  }catch(e){}
+
+}
+
+
+
+function setStatus(message,className){
+
+  status.textContent = message;
+
+  status.className =
+    "status" +
+    (className
+      ? " " + className
+      : "");
+
+  resizeWidget();
+}
+
+
+
+function setting(name,defaultValue=""){
+
+  try{
+
+    const value =
+      JFCustomWidget.getWidgetSetting(
+        name
+      );
+
+    return(
+      value === undefined ||
+      value === null ||
+      value === ""
+    )
+      ? defaultValue
+      : value;
+
+  }catch(e){
+
+    return defaultValue;
+
+  }
+
+}
+
+
+
+for(let i=5;i<=50;i++){
+
+  const option =
+    document.createElement(
+      "option"
+    );
+
+  option.value =
+    String(i);
+
+  option.textContent =
+    String(i);
+
+  qty.appendChild(option);
+
+}
+
+
+
+function basePriceFor(q){
+
+  if(q >= 40){
+    return 15;
+  }
+
+  if(q >= 20){
+    return 15.5;
+  }
+
+  if(q >= 5){
+    return 16;
+  }
+
+  return "";
+
+}
+
+
+
+function pushPricingFields(){
+
+  currentQty =
+    parseInt(
+      qty.value || "0",
+      10
+    );
+
+  const base =
+    basePriceFor(
+      currentQty
+    );
+
+  try{
+
+    JFCustomWidget
+      .setFieldsValueByLabel([
+        {
+          label:
+            TOTAL_LABEL,
+
+          value:
+            currentQty >=
+            cfg.minQty
+              ? String(
+                  currentQty
+                )
+              : ""
+        },
+        {
+          label:
+            BASE_PRICE_LABEL,
+
+          value:
+            base !== ""
+              ? String(base)
+              : ""
+        }
+      ]);
+
+  }catch(e){}
+
+}
+
+
+
+function readableValue(){
+
+  if(
+    !selected ||
+    !hold ||
+    !hold.token ||
+    currentQty <
+    cfg.minQty
+  ){
+    return "";
+  }
+
+  return [
+    "Reservation #: " +
+      hold.token,
+
+    "Processing Week: " +
+      selected.label,
+
+    "Number of Chickens Reserved: " +
+      currentQty
+
+  ].join("\n");
+
+}
+
+
+
+async function apiGet(params){
+
+  const url =
+    new URL(
+      cfg.apiUrl
+    );
+
+  Object.entries(
+    params
+  ).forEach(
+    ([key,value]) =>
+
+      url.searchParams.set(
+        key,
+        value
+      )
+  );
+
+
+  const response =
+    await fetch(
+      url,
+      {
+        cache:"no-store"
+      }
+    );
+
+
+  const data =
+    await response.json();
+
+
+  if(!data.ok){
+
+    throw new Error(
+      data.error ||
+      "Scheduler service error."
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+
+async function apiPost(payload){
+
+  const response =
+    await fetch(
+      cfg.apiUrl,
+      {
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+
+        body:
+          JSON.stringify(
+            payload
+          )
+      }
+    );
+
+
+  const data =
+    await response.json();
+
+
+  if(!data.ok){
+
+    throw new Error(
+      data.error ||
+      "Scheduler service error."
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+
+function saveWidgetValue(){
+
+  const valid =
+    !!(
+      selected &&
+      hold &&
+      hold.token &&
+      currentQty >=
+      cfg.minQty
+    );
+
+
+  const value =
+    valid
+      ? readableValue()
+      : "";
+
+
+  JFCustomWidget.sendData({
+    valid,
+    value
+  });
+
+
+  return {
+    valid,
+    value
+  };
+
+}
+
+
+
+async function refreshWeeks(){
+
+  currentQty =
+    parseInt(
+      qty.value || "0",
+      10
+    );
+
+
+  pushPricingFields();
+
+
+  selected =
+    null;
+
+  hold =
+    null;
+
+
+  if(
+    currentQty <
+    cfg.minQty
+  ){
+
+    week.innerHTML =
+      '<option value="">Choose quantity first</option>';
+
+    week.disabled =
+      true;
+
+
+    setStatus(
+      "Choose 5–50 chickens to see available processing weeks."
+    );
+
+
+    JFCustomWidget
+      .sendData({
+        valid:false,
+        value:""
+      });
+
+
+    return;
+
+  }
+
+
+  setStatus(
+    "Checking available processing weeks…"
+  );
+
+
+  const data =
+    await apiGet({
+      action:
+        "availability",
+
+      qty:
+        currentQty,
+
+      formId:
+        formId
+    });
+
+
+  week.innerHTML =
+    '<option value="">Choose a processing week</option>';
+
+
+  data.weeks.forEach(
+    processingWeek => {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        processingWeek.start;
+
+
+      option.textContent =
+        `${processingWeek.label} — ${processingWeek.available} chickens available`;
+
+
+      option.dataset.week =
+        JSON.stringify(
+          processingWeek
+        );
+
+
+      /*
+        If there are not enough chickens
+        available for this customer's quantity,
+        keep the week visible but disable it.
+      */
+
+      if(
+        processingWeek
+          .has_enough_for_requested_qty
+        === false
+      ){
+
+        option.disabled =
+          true;
+
+        option.textContent =
+          `${processingWeek.label} — only ${processingWeek.available} chickens available`;
+
+      }
+
+
+      week.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  week.disabled =
+    data.weeks.length === 0;
+
+
+  setStatus(
+
+    data.weeks.length
+
+      ? `The next ${data.weeks.length} processing weeks are shown below.`
+
+      : "No processing weeks are currently available. Please contact Roswell Family Farm.",
+
+    data.weeks.length
+      ? "ok"
+      : "error"
+
+  );
+
+
+  JFCustomWidget
+    .sendData({
+      valid:false,
+      value:""
+    });
+
+
+  resizeWidget();
+
+}
+
+
+
+async function reserveSelectedWeek(){
+
+  const option =
+    week.options[
+      week.selectedIndex
+    ];
+
+
+  selected =
+    option &&
+    option.dataset.week
+
+      ? JSON.parse(
+          option.dataset.week
+        )
+
+      : null;
+
+
+  hold =
+    null;
+
+
+  pushPricingFields();
+
+
+  if(!selected){
+
+    setStatus(
+      "Choose an available processing week."
+    );
+
+
+    JFCustomWidget
+      .sendData({
+        valid:false,
+        value:""
+      });
+
+
+    return;
+
+  }
+
+
+  if(holding){
+    return;
+  }
+
+
+  holding =
+    true;
+
+
+  week.disabled =
+    true;
+
+  qty.disabled =
+    true;
+
+
+  setStatus(
+    "Temporarily reserving your processing-week capacity…"
+  );
+
+
+  try{
+
+    const data =
+      await apiPost({
+        action:
+          "hold",
+
+        formId:
+          formId,
+
+        weekStart:
+          selected.start,
+
+        qty:
+          currentQty
+      });
+
+
+    hold = {
+
+      token:
+        data.reservation_number ||
+        data.token,
+
+      expires_at:
+        data.expires_at,
+
+      week_start:
+        selected.start,
+
+      qty:
+        currentQty
+
+    };
+
+
+    saveWidgetValue();
+
+
+    setStatus(
+
+      `${hold.token} — ${selected.label} is temporarily held for ${currentQty} chickens while you finish your reservation.`,
+
+      "ok"
+
+    );
+
+
+  }catch(e){
+
+    hold =
+      null;
+
+    selected =
+      null;
+
+    week.value =
+      "";
+
+
+    setStatus(
+
+      e.message ||
+      "That processing week could not be reserved. Please choose another week.",
+
+      "error"
+
+    );
+
+
+    JFCustomWidget
+      .sendData({
+        valid:false,
+        value:""
+      });
+
+
+    try{
+
+      await refreshWeeks();
+
+    }catch(_){}
+
+  }finally{
+
+    holding =
+      false;
+
+    qty.disabled =
+      false;
+
+    week.disabled =
+      false;
+
+
+    resizeWidget();
+
+  }
+
+}
+
+
+
+qty.addEventListener(
+  "change",
+  refreshWeeks
+);
+
+
+week.addEventListener(
+  "change",
+  reserveSelectedWeek
+);
+
+
+
+JFCustomWidget.subscribe(
+  "ready",
+  function(data){
+
+    formId =
+      String(
+        (
+          data &&
+          data.formId
+        ) || ""
+      );
+
+
+    cfg.apiUrl =
+      setting(
+        "ApiUrl",
+        ""
+      );
+
+
+    cfg.minQty =
+      parseInt(
+        setting(
+          "MinQuantity",
+          "5"
+        ),
+        10
+      ) || 5;
+
+
+    JFCustomWidget
+      .sendData({
+        valid:false,
+        value:""
+      });
+
+
+    resizeWidget();
+
+  }
+);
+
+
+
+JFCustomWidget.subscribe(
+  "submit",
+  function(){
+
+    const result =
+      saveWidgetValue();
+
+
+    JFCustomWidget
+      .sendSubmit({
+        valid:
+          result.valid,
+
+        value:
+          result.value
+      });
+
+  }
+);
+
+
+
+window.addEventListener(
+  "load",
+  function(){
+
+    resizeWidget();
+
+  }
+);
+
+
+
 })();
+
 </script>
+
 </body>
 </html>
