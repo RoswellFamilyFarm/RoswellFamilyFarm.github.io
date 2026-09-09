@@ -1,626 +1,1148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chicken Shares | Roswell Family Farm</title>
-  <meta name="description" content="Reserve a pasture-raised Chicken Share from Roswell Family Farm. Choose your quantity and processing options, then reserve your share with a 50% reservation payment." />
-  <script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    body {
-      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-        url("https://assets.grok.com/users/02cb5ccb-4509-4ca1-bda0-c9e99c8a2282/generated/98e5d6c9-4ac4-41b4-9e4d-9554d6b3d3c6/image.jpg") no-repeat center center fixed;
-      background-size: cover;
-      font-family: "Segoe UI", sans-serif;
-    }
-  </style>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Roswell Chicken Share Scheduler</title>
+
+<script src="https://js.jotform.com/JotFormCustomWidget.min.js"></script>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  margin:0;
+  padding:12px;
+  color:#374151;
+  background:#fff;
+}
+
+.box{
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  padding:16px;
+  background:#f9fafb;
+}
+
+h3{
+  margin:0 0 8px;
+  color:#15803d;
+  font-size:20px;
+}
+
+p{
+  line-height:1.4;
+}
+
+label{
+  display:block;
+  font-weight:700;
+  margin:12px 0 6px;
+}
+
+select{
+  width:100%;
+  min-height:44px;
+  padding:10px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:#fff;
+  font-size:16px;
+}
+
+.status{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:8px;
+  background:#fff7ed;
+  color:#9a3412;
+  font-size:14px;
+}
+
+.status.ok{
+  background:#f0fdf4;
+  color:#166534;
+}
+
+.status.error{
+  background:#fef2f2;
+  color:#b91c1c;
+}
+
+.status.info{
+  background:#eff6ff;
+  color:#1d4ed8;
+}
+
+.small{
+  font-size:13px;
+  color:#6b7280;
+}
+</style>
 </head>
 
-<body class="text-white">
+<body>
 
-  <!-- Header / Navigation -->
-  <header class="bg-green-700 shadow-md sticky top-0 z-50">
-    <nav class="container mx-auto px-4 py-4 flex items-center justify-between relative">
+<div class="box">
 
-      <a href="./" class="text-2xl font-bold text-white">
-        Roswell Family Farm
-      </a>
+<h3>🐔 Chicken Share Processing Scheduler</h3>
 
-      <button
-        id="menu-toggle"
-        type="button"
-        class="text-white md:hidden focus:outline-none"
-        aria-label="Open menu"
-        aria-controls="menu"
-        aria-expanded="false"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
+<p>
+Choose how many chickens you want to reserve, then select an available
+processing week. The next <strong>4 processing weeks</strong> are shown
+and each processing week is limited to <strong>50 chickens</strong>.
+</p>
 
-      <ul
-        id="menu"
-        class="hidden flex flex-col md:flex md:flex-row md:items-center gap-6 bg-green-700 md:bg-transparent text-white absolute md:static top-full left-0 w-full md:w-auto px-4 py-4 md:p-0 shadow-lg md:shadow-none z-50"
-      >
-        <li><a href="./" class="block py-2 hover:text-green-300">Home</a></li>
-        <li><a href="about.html" class="block py-2 hover:text-green-300">About</a></li>
-        <li><a href="./#farm-updates" class="block py-2 hover:text-green-300">Farm Updates</a></li>
-        <li><a href="./#products" class="block py-2 hover:text-green-300">Products</a></li>
-        <li><a href="chicken-orders.html" class="block py-2 hover:text-green-300">Chicken Orders</a></li>
-        <li><a href="pork-orders.html" class="block py-2 hover:text-green-300">Hog Preorders</a></li>
-        <li>
-          <a
-            href="chicken-share.html"
-            class="block py-2 hover:text-orange-300 font-semibold underline underline-offset-4"
-            aria-current="page"
-          >
-            Chicken Shares
-          </a>
-        </li>
-        <li><a href="turkey-orders.html" class="block py-2 hover:text-green-300">Turkey Preorders</a></li>
-        <li><a href="duck-orders.html" class="block py-2 hover:text-green-300">Duck Orders</a></li>
-        <li><a href="beef-orders.html" class="block py-2 hover:text-green-300">Beef Orders</a></li>
-        <li><a href="pork-cuts-orders.html" class="block py-2 hover:text-green-300">Pork Cuts Orders</a></li>
-        <li><a href="variety-boxes.html" class="block py-2 hover:text-green-300">Meat Boxes (Variety Packs)</a></li>
-        <li><a href="contact.html" class="block py-2 hover:text-green-300">Contact</a></li>
-      </ul>
+<label for="qty">Number of chickens</label>
 
-    </nav>
-  </header>
+<select id="qty">
+<option value="">Choose quantity</option>
+</select>
 
+<label for="week">Available processing week</label>
 
-  <main>
+<select id="week" disabled>
+<option value="">Choose quantity first</option>
+</select>
 
-    <!-- Hero / Overview -->
-    <section class="py-16 px-6">
+<div id="status" class="status">
+Choose 5–50 chickens to see available processing weeks.
+</div>
 
-      <div class="max-w-5xl mx-auto">
+<p class="small">
+Minimum Chicken Share reservation: 5 chickens.
+</p>
 
-        <div class="bg-white bg-opacity-90 text-gray-900 rounded-lg shadow-md p-8 md:p-10">
+</div>
 
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-orange-700 text-center">
-            🐔 Chicken Shares
-          </h1>
+<script>
+(function(){
 
-          <p class="text-xl text-gray-800 mb-3 text-center max-w-3xl mx-auto">
-            <strong>Fill your freezer. Reserve your flock.</strong>
-          </p>
+let formId = "";
+let selected = null;
+let currentQty = 0;
+let hold = null;
+let holding = false;
+let renewing = false;
+let renewTimer = null;
 
-          <p class="text-lg text-gray-800 mb-8 text-center max-w-3xl mx-auto">
-            Reserve pasture-raised chicken directly from Roswell Family Farm.
-            Choose how many chickens you'd like, select how you'd like them processed,
-            and we'll take care of the rest. 🛸
-          </p>
+const cfg = {
+  apiUrl:"",
+  minQty:5,
+  maxQty:50
+};
 
-          <div class="text-center mb-8">
-            <a
-              href="#chicken-share-order-form"
-              class="inline-block bg-orange-600 text-white font-bold px-8 py-4 rounded-full hover:bg-orange-700 transition shadow-md"
-            >
-              🐔 RESERVE YOUR CHICKEN SHARE
-            </a>
-          </div>
+const STORAGE_KEY =
+  "roswellChickenShareReservationV11";
 
+const RENEW_EVERY_MS =
+  10 * 60 * 1000;
 
-          <!-- Why Chicken Share -->
-          <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-6">
+const TOTAL_LABEL =
+  "Total Number of Chickens You Would Like to Reserve";
 
-            <h2 class="text-2xl font-semibold text-orange-700 mb-3">
-              🛸 Why Reserve a Chicken Share?
-            </h2>
+const BASE_PRICE_LABEL =
+  "Base Price Per Chicken";
 
-            <p class="text-base text-gray-700 leading-relaxed">
-              Chicken Share gives you a way to reserve multiple pasture-raised chickens
-              in advance instead of waiting for individual birds to become available.
-              You choose your quantity, choose your processing, and reserve your
-              processing allocation with a 50% reservation payment.
-            </p>
+const qty =
+  document.getElementById("qty");
 
-          </div>
+const week =
+  document.getElementById("week");
 
+const status =
+  document.getElementById("status");
 
-          <!-- Pricing -->
-          <div class="grid gap-6 md:grid-cols-2 mt-6">
 
-            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-
-              <h2 class="text-2xl font-semibold text-orange-700 mb-1">
-                🐔 Chicken Share Pricing
-              </h2>
-
-              <p class="text-sm text-gray-600 mb-4">
-                Your quantity determines your price per bird.
-              </p>
-
-              <div class="space-y-3 text-base text-gray-700">
-
-                <div class="flex justify-between border-b border-gray-100 pb-2">
-                  <span>5–19 chickens</span>
-                  <strong class="text-orange-700">$16.00/bird</strong>
-                </div>
-
-                <div class="flex justify-between border-b border-gray-100 pb-2">
-                  <span>20–39 chickens</span>
-                  <strong class="text-orange-700">$15.50/bird</strong>
-                </div>
-
-                <div class="flex justify-between">
-                  <span>40–50 chickens</span>
-                  <strong class="text-orange-700">$15.00/bird</strong>
-                </div>
-
-              </div>
-
-              <div class="mt-5 bg-yellow-50 border border-yellow-200 rounded-md p-4">
-
-                <p class="text-base text-gray-800 leading-relaxed">
-                  <strong>Processing charges are separate</strong> from the chicken price
-                  and depend on how each bird is processed.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-
-              <h2 class="text-2xl font-semibold text-orange-700 mb-1">
-                🔪 Processing Options
-              </h2>
-
-              <p class="text-sm text-gray-600 mb-4">
-                Mix and match within the same Chicken Share.
-              </p>
-
-              <ul class="text-base text-gray-700 space-y-3 list-disc pl-5">
-
-                <li>
-                  <strong>Whole</strong> — No additional processing charge
-                </li>
-
-                <li>
-                  <strong>Cut in half</strong> — +$3.50 per chicken
-                </li>
-
-                <li>
-                  <strong>Fully cut</strong> — +$7.00 per chicken
-                </li>
-
-              </ul>
-
-              <p class="text-base text-gray-700 leading-relaxed mt-4">
-                Your whole, halved, and fully cut quantities must equal the total number
-                of chickens reserved.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <!-- Payment -->
-          <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-
-            <h2 class="text-2xl font-semibold text-orange-700 mb-3">
-              💳 How Payment Works
-            </h2>
-
-            <ol class="text-base text-gray-700 space-y-3 list-decimal pl-5">
-
-              <li>
-                Reserve your Chicken Share with a <strong>50% reservation payment</strong>
-                based on your Chicken Share order value.
-              </li>
-
-              <li>
-                An <strong>Online Reservation &amp; Administrative Fee</strong> is added
-                to the reservation payment. This fee is an additional charge and is not
-                part of the Chicken Share product price.
-              </li>
-
-              <li>
-                The remaining <strong>50% balance</strong> must be paid in full before
-                your chickens are released for pickup or delivery.
-              </li>
-
-            </ol>
-
-            <p class="text-base text-gray-700 leading-relaxed mt-4">
-              Your reservation is not confirmed until the order and required payment
-              have been successfully completed.
-            </p>
-
-          </div>
-
-
-          <!-- How It Works -->
-          <div class="grid gap-6 md:grid-cols-2 mt-6">
-
-            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-
-              <h2 class="text-2xl font-semibold text-orange-700 mb-3">
-                🛸 How It Works
-              </h2>
-
-              <ol class="text-base text-gray-700 space-y-3 list-decimal pl-5">
-
-                <li>
-                  <strong>Choose your share:</strong> Select how many chickens you want.
-                </li>
-
-                <li>
-                  <strong>Choose your processing:</strong> Whole, halved, fully cut,
-                  or a combination.
-                </li>
-
-                <li>
-                  <strong>Reserve your flock:</strong> Pay the required 50% reservation
-                  payment plus the applicable online fee.
-                </li>
-
-                <li>
-                  <strong>We raise and process:</strong> We'll keep you updated as your
-                  preferred processing date approaches.
-                </li>
-
-                <li>
-                  <strong>Pickup or delivery:</strong> We'll contact you when your order
-                  is ready and arrange the next step.
-                </li>
-
-              </ol>
-
-            </div>
-
-
-            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-
-              <h2 class="text-2xl font-semibold text-orange-700 mb-3">
-                📅 Processing, Pickup &amp; Delivery
-              </h2>
-
-              <ul class="text-base text-gray-700 space-y-3 list-disc pl-5">
-
-                <li>
-                  Choose an available <strong>processing week</strong> when placing your order.
-                </li>
-
-                <li>
-                  Processing dates may be adjusted if necessary due to flock availability,
-                  processor scheduling, weather, or other farm conditions.
-                </li>
-
-                <li>
-                  After processing, your order will be frozen and prepared for pickup
-                  or arranged delivery.
-                </li>
-
-                <li>
-                  We'll contact you with the ready-for-pickup or delivery information
-                  and remaining balance.
-                </li>
-
-              </ul>
-
-            </div>
-
-          </div>
-
-
-          <!-- Storage / Terms Summary -->
-          <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-
-            <h2 class="text-2xl font-semibold text-orange-700 mb-3">
-              📦 Reservation, Cancellation &amp; Storage Terms
-            </h2>
-
-            <div class="text-base text-gray-700 leading-relaxed space-y-4">
-
-              <p>
-                The 50% reservation payment is <strong>non-refundable</strong> if you
-                cancel your order, reduce your order, fail to complete your order,
-                fail to pay the remaining balance, or fail to pick up your order.
-                The reservation payment will only be refunded if Roswell Family Farm
-                is unable to fulfill the chickens reserved, subject to applicable law.
-              </p>
-
-              <p>
-                <strong>7 calendar days of frozen holding are included</strong>
-                after you are notified that your order is ready.
-                Beginning on Day 8, a frozen holding charge of
-                <strong>$1.00 per chicken per week, prorated daily</strong>, will apply.
-              </p>
-
-              <p>
-                Chicken Share orders cannot be held indefinitely.
-                If an order has not been completed, paid for, and picked up within
-                <strong>30 calendar days</strong> after the original ready-for-pickup
-                notification, Roswell Family Farm may treat the order as a customer
-                default and may exercise applicable remedies, including cancellation
-                and commercially reasonable resale after any notice required by
-                applicable law.
-              </p>
-
-              <p>
-                The complete Chicken Share Reservation &amp; Payment Agreement appears
-                on the order form below. Customers must check the required agreement
-                and provide a required signature before completing the reservation.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <!-- Final CTA -->
-          <div class="mt-8 bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-
-            <h2 class="text-3xl font-bold text-orange-700 mb-3">
-              🛸 Ready to Fill the Mothership?
-            </h2>
-
-            <p class="text-lg text-gray-700 mb-5">
-              Reserve your Chicken Share while processing allocation is available.
-            </p>
-
-            <a
-              href="#chicken-share-order-form"
-              class="inline-block bg-orange-600 text-white font-bold px-8 py-4 rounded-full hover:bg-orange-700 transition shadow-md"
-            >
-              🐔 RESERVE MY CHICKEN SHARE
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- Embedded Chicken Share Order Form -->
-    <section
-      id="chicken-share-order-form"
-      class="px-4 pb-16"
-      aria-labelledby="chicken-share-order-form-heading"
-    >
-
-      <div class="max-w-5xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md overflow-hidden">
-
-        <div class="p-5 text-center text-gray-800 border-b border-gray-200">
-
-          <h2
-            id="chicken-share-order-form-heading"
-            class="text-2xl font-bold text-orange-700"
-          >
-            Chicken Share Reservation Form
-          </h2>
-
-          <p class="mt-2 text-base">
-            Please allow a few seconds for the secure order form to load.
-            If it does not appear or stops loading, use the external button below.
-          </p>
-
-          <a
-            class="inline-block mt-4 bg-orange-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-orange-700 transition"
-            href="https://form.jotform.com/262495469772070"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Chicken Share Order Form in a New Window
-          </a>
-
-        </div>
-
-        <script
-          type="text/javascript"
-          src="https://pci.jotform.com/jsform/262495469772070"
-        ></script>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <footer class="bg-green-700 text-white text-center py-6">
-    <p>© 2025 Roswell Family Farm. All rights reserved.</p>
-  </footer>
-
-
-  <!-- Mobile Menu Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-      var toggle =
-        document.getElementById("menu-toggle");
-
-      var menu =
-        document.getElementById("menu");
-
-      if (!toggle || !menu) return;
-
-
-      function closeMenu() {
-
-        menu.classList.add("hidden");
-
-        toggle.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
-      }
-
-
-      function openMenu() {
-
-        menu.classList.remove("hidden");
-
-        toggle.setAttribute(
-          "aria-expanded",
-          "true"
-        );
-
-      }
-
-
-      toggle.addEventListener(
-        "click",
-        function (event) {
-
-          event.stopPropagation();
-
-          if (
-            menu.classList.contains(
-              "hidden"
-            )
-          ) {
-
-            openMenu();
-
-          } else {
-
-            closeMenu();
-
-          }
-
-        }
-      );
-
-
-      menu
-        .querySelectorAll("a")
-        .forEach(
-          function (link) {
-
-            link.addEventListener(
-              "click",
-              function () {
-
-                if (
-                  window.innerWidth <
-                  768
-                ) {
-
-                  closeMenu();
-
-                }
-
-              }
-            );
-
-          }
-        );
-
-
-      document.addEventListener(
-        "click",
-        function (event) {
-
-          if (
-            window.innerWidth < 768 &&
-            !menu.classList.contains("hidden") &&
-            !menu.contains(event.target) &&
-            !toggle.contains(event.target)
-          ) {
-
-            closeMenu();
-
-          }
-
-        }
-      );
-
-
-      window.addEventListener(
-        "resize",
-        function () {
-
-          if (
-            window.innerWidth >= 768
-          ) {
-
-            closeMenu();
-
-          }
-
-        }
-      );
-
-
-      document.addEventListener(
-        "keydown",
-        function (event) {
-
-          if (
-            event.key === "Escape"
-          ) {
-
-            closeMenu();
-
-          }
-
-        }
-      );
-
+function resizeWidget(){
+  try{
+    JFCustomWidget.requestFrameResize({
+      height:520
     });
-  </script>
+  }catch(e){}
+}
 
 
-  <!-- Prevent Enter Key From Submitting Form -->
-  <script>
-    document.addEventListener(
-      "keydown",
-      function (event) {
+function setStatus(message,type){
+  status.textContent = message;
+  status.className =
+    "status" + (type ? " " + type : "");
+  resizeWidget();
+}
 
-        if (
-          event.key !== "Enter"
-        ) {
-          return;
-        }
 
-        var target =
-          event.target;
+function setting(name,defaultValue=""){
+  try{
+    const value =
+      JFCustomWidget.getWidgetSetting(name);
 
-        if (!target) {
-          return;
-        }
+    return(
+      value === undefined ||
+      value === null ||
+      value === ""
+    ) ? defaultValue : value;
 
-        var tag =
-          target.tagName;
+  }catch(e){
+    return defaultValue;
+  }
+}
 
-        var isFormField =
-          tag === "INPUT" ||
-          tag === "SELECT" ||
-          tag === "TEXTAREA";
 
-        if (
-          isFormField
-        ) {
+for(let i=5;i<=50;i++){
+  const option =
+    document.createElement("option");
 
-          event.preventDefault();
+  option.value = String(i);
+  option.textContent = String(i);
 
-          event.stopPropagation();
+  qty.appendChild(option);
+}
 
-          return false;
 
-        }
+function basePriceFor(q){
+  if(q >= 40) return 15;
+  if(q >= 20) return 15.5;
+  if(q >= 5) return 16;
+  return "";
+}
 
-      },
-      true
+
+function pushPricingFields(){
+
+  currentQty =
+    parseInt(
+      qty.value || "0",
+      10
     );
-  </script>
+
+  const base =
+    basePriceFor(currentQty);
+
+  try{
+    JFCustomWidget
+      .setFieldsValueByLabel([
+        {
+          label: TOTAL_LABEL,
+          value:
+            currentQty >= cfg.minQty
+              ? String(currentQty)
+              : ""
+        },
+        {
+          label: BASE_PRICE_LABEL,
+          value:
+            base !== ""
+              ? String(base)
+              : ""
+        }
+      ]);
+
+  }catch(e){}
+}
+
+
+function saveLocalReservation(){
+
+  if(
+    !hold ||
+    !hold.token ||
+    !selected
+  ){
+    return;
+  }
+
+  const record = {
+    token: hold.token,
+    qty: currentQty,
+    weekStart: selected.start,
+    weekLabel: selected.label,
+    expiresAt: hold.expires_at || ""
+  };
+
+  try{
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(record)
+    );
+  }catch(e){}
+}
+
+
+function readLocalReservation(){
+  try{
+    const raw =
+      localStorage.getItem(STORAGE_KEY);
+
+    if(!raw){
+      return null;
+    }
+
+    return JSON.parse(raw);
+
+  }catch(e){
+    return null;
+  }
+}
+
+
+function clearLocalReservation(){
+  try{
+    localStorage.removeItem(
+      STORAGE_KEY
+    );
+  }catch(e){}
+
+  stopRenewTimer();
+}
+
+
+function readableValue(){
+
+  if(
+    !selected ||
+    !hold ||
+    !hold.token ||
+    currentQty < cfg.minQty
+  ){
+    return "";
+  }
+
+  return [
+    "Reservation #: " + hold.token,
+    "Processing Week: " + selected.label,
+    "Number of Chickens Reserved: " + currentQty
+  ].join("\n");
+}
+
+
+function saveWidgetValue(){
+
+  const valid =
+    !!(
+      selected &&
+      hold &&
+      hold.token &&
+      currentQty >= cfg.minQty
+    );
+
+  const value =
+    valid
+      ? readableValue()
+      : "";
+
+  JFCustomWidget.sendData({
+    valid,
+    value
+  });
+
+  return {
+    valid,
+    value
+  };
+}
+
+
+async function apiGet(params){
+
+  const url =
+    new URL(cfg.apiUrl);
+
+  Object.entries(params)
+    .forEach(([key,value])=>{
+      url.searchParams.set(
+        key,
+        value
+      );
+    });
+
+  const response =
+    await fetch(
+      url,
+      {
+        cache:"no-store"
+      }
+    );
+
+  const data =
+    await response.json();
+
+  if(!data.ok){
+    throw new Error(
+      data.error ||
+      "Scheduler service error."
+    );
+  }
+
+  return data;
+}
+
+
+async function apiPost(payload){
+
+  const response =
+    await fetch(
+      cfg.apiUrl,
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+        body:
+          JSON.stringify(payload)
+      }
+    );
+
+  return await response.json();
+}
+
+
+function stopRenewTimer(){
+
+  if(renewTimer){
+    clearInterval(renewTimer);
+    renewTimer = null;
+  }
+}
+
+
+function startRenewTimer(){
+
+  stopRenewTimer();
+
+  if(
+    !hold ||
+    !hold.token
+  ){
+    return;
+  }
+
+  renewTimer =
+    setInterval(
+      function(){
+        renewCurrentHold();
+      },
+      RENEW_EVERY_MS
+    );
+}
+
+
+async function renewCurrentHold(){
+
+  if(
+    renewing ||
+    !hold ||
+    !hold.token
+  ){
+    return;
+  }
+
+  renewing = true;
+
+  try{
+
+    const data =
+      await apiPost({
+        action:"renew",
+        token:hold.token
+      });
+
+    if(
+      data.ok &&
+      data.confirmed
+    ){
+      clearLocalReservation();
+      return;
+    }
+
+    if(!data.ok){
+      return;
+    }
+
+    hold.expires_at =
+      data.expires_at ||
+      hold.expires_at;
+
+    saveLocalReservation();
+
+  }catch(e){
+
+  }finally{
+    renewing = false;
+  }
+}
+
+
+async function releaseCurrentHold(){
+
+  if(
+    !hold ||
+    !hold.token
+  ){
+    return;
+  }
+
+  const oldToken =
+    hold.token;
+
+  try{
+    await apiPost({
+      action:"release",
+      token:oldToken
+    });
+  }catch(e){}
+
+  hold = null;
+  selected = null;
+
+  clearLocalReservation();
+
+  JFCustomWidget.sendData({
+    valid:false,
+    value:""
+  });
+}
+
+
+async function loadWeeks(
+  requestedQty,
+  restoreWeekStart
+){
+
+  setStatus(
+    "Checking available processing weeks…",
+    "info"
+  );
+
+  const data =
+    await apiGet({
+      action:"availability",
+      qty:requestedQty,
+      formId:formId
+    });
+
+  week.innerHTML =
+    '<option value="">Choose a processing week</option>';
+
+  let restoredOption =
+    null;
+
+  data.weeks.forEach(
+    processingWeek => {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        processingWeek.start;
+
+      option.dataset.week =
+        JSON.stringify(processingWeek);
+
+      option.textContent =
+        `${processingWeek.label} — ${processingWeek.available} chickens available`;
+
+      if(
+        restoreWeekStart &&
+        processingWeek.start ===
+        restoreWeekStart
+      ){
+        restoredOption = option;
+      }
+
+      week.appendChild(option);
+    }
+  );
+
+
+  if(
+    restoreWeekStart &&
+    !restoredOption
+  ){
+
+    const stored =
+      readLocalReservation();
+
+    if(stored){
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        stored.weekStart;
+
+      option.textContent =
+        stored.weekLabel +
+        " — your reserved processing week";
+
+      option.dataset.week =
+        JSON.stringify({
+          start:stored.weekStart,
+          label:stored.weekLabel,
+          available:null,
+          has_enough_for_requested_qty:true
+        });
+
+      week.appendChild(option);
+
+      restoredOption = option;
+    }
+  }
+
+
+  week.disabled =
+    data.weeks.length === 0 &&
+    !restoredOption;
+
+
+  if(restoredOption){
+    week.value =
+      restoredOption.value;
+  }
+
+  resizeWidget();
+
+  return {
+    data,
+    restoredOption
+  };
+}
+
+
+async function refreshWeeks(){
+
+  const oldHold =
+    hold;
+
+  currentQty =
+    parseInt(
+      qty.value || "0",
+      10
+    );
+
+  pushPricingFields();
+
+
+  if(
+    oldHold &&
+    oldHold.token
+  ){
+    await releaseCurrentHold();
+  }
+
+  selected = null;
+  hold = null;
+
+
+  if(
+    currentQty <
+    cfg.minQty
+  ){
+
+    week.innerHTML =
+      '<option value="">Choose quantity first</option>';
+
+    week.disabled = true;
+
+    setStatus(
+      "Choose 5–50 chickens to see available processing weeks."
+    );
+
+    JFCustomWidget.sendData({
+      valid:false,
+      value:""
+    });
+
+    return;
+  }
+
+
+  try{
+
+    const result =
+      await loadWeeks(
+        currentQty,
+        null
+      );
+
+    setStatus(
+      result.data.weeks.length
+        ? `The next ${result.data.weeks.length} available processing weeks are shown below.`
+        : "No processing weeks are currently available. Please contact Roswell Family Farm.",
+      result.data.weeks.length
+        ? "ok"
+        : "error"
+    );
+
+  }catch(e){
+
+    setStatus(
+      "We could not load processing availability. Please try again.",
+      "error"
+    );
+  }
+
+
+  JFCustomWidget.sendData({
+    valid:false,
+    value:""
+  });
+}
+
+
+async function reserveSelectedWeek(){
+
+  const option =
+    week.options[
+      week.selectedIndex
+    ];
+
+  const newSelection =
+    option &&
+    option.dataset.week
+      ? JSON.parse(
+          option.dataset.week
+        )
+      : null;
+
+
+  if(!newSelection){
+
+    selected = null;
+
+    setStatus(
+      "Choose an available processing week."
+    );
+
+    JFCustomWidget.sendData({
+      valid:false,
+      value:""
+    });
+
+    return;
+  }
+
+
+  if(
+    hold &&
+    hold.token
+  ){
+    await releaseCurrentHold();
+  }
+
+
+  selected =
+    newSelection;
+
+  pushPricingFields();
+
+
+  if(holding){
+    return;
+  }
+
+  holding = true;
+  week.disabled = true;
+  qty.disabled = true;
+
+  setStatus(
+    "Temporarily reserving your processing-week capacity…",
+    "info"
+  );
+
+
+  try{
+
+    const data =
+      await apiPost({
+        action:"hold",
+        formId:formId,
+        weekStart:selected.start,
+        qty:currentQty
+      });
+
+
+    if(!data.ok){
+      throw new Error(
+        data.error ||
+        "That processing week could not be reserved."
+      );
+    }
+
+
+    hold = {
+      token:
+        data.reservation_number ||
+        data.token,
+
+      expires_at:
+        data.expires_at,
+
+      week_start:
+        selected.start,
+
+      qty:
+        currentQty
+    };
+
+
+    saveLocalReservation();
+
+    saveWidgetValue();
+
+    startRenewTimer();
+
+
+    setStatus(
+      `${hold.token} — ${selected.label} is reserved for ${currentQty} chickens while you complete this order.`,
+      "ok"
+    );
+
+
+  }catch(e){
+
+    hold = null;
+    selected = null;
+
+    clearLocalReservation();
+
+    week.value = "";
+
+    setStatus(
+      e.message ||
+      "That processing week could not be reserved. Please choose another week.",
+      "error"
+    );
+
+    JFCustomWidget.sendData({
+      valid:false,
+      value:""
+    });
+
+  }finally{
+
+    holding = false;
+    qty.disabled = false;
+    week.disabled = false;
+
+    resizeWidget();
+  }
+}
+
+
+async function resumeSavedReservation(){
+
+  const stored =
+    readLocalReservation();
+
+
+  if(
+    !stored ||
+    !stored.token
+  ){
+
+    setStatus(
+      "Choose 5–50 chickens to see available processing weeks."
+    );
+
+    return false;
+  }
+
+
+  setStatus(
+    "Checking your existing Chicken Share reservation…",
+    "info"
+  );
+
+
+  let data;
+
+
+  try{
+
+    data =
+      await apiPost({
+        action:"resume",
+        token:stored.token
+      });
+
+  }catch(e){
+
+    setStatus(
+      "We could not verify your existing reservation yet. Your saved reservation has not been erased. Please try refreshing the page in a moment.",
+      "error"
+    );
+
+    return true;
+  }
+
+
+  if(
+    data.ok &&
+    data.confirmed
+  ){
+
+    clearLocalReservation();
+
+    hold = null;
+    selected = null;
+
+    setStatus(
+      "Choose 5–50 chickens to see available processing weeks."
+    );
+
+    return false;
+  }
+
+
+  if(!data.ok){
+
+    const message =
+      String(
+        data.error || ""
+      ).toLowerCase();
+
+
+    const staleReservation =
+      message.includes("not found") ||
+      message.includes("released");
+
+
+    if(staleReservation){
+
+      clearLocalReservation();
+
+      hold = null;
+      selected = null;
+
+      qty.value = "";
+
+      week.innerHTML =
+        '<option value="">Choose quantity first</option>';
+
+      week.disabled = true;
+
+      setStatus(
+        "Choose 5–50 chickens to see available processing weeks."
+      );
+
+      JFCustomWidget.sendData({
+        valid:false,
+        value:""
+      });
+
+      return false;
+    }
+
+
+    setStatus(
+      "We could not verify your existing reservation yet. Your reservation information is still saved. Please try again shortly.",
+      "error"
+    );
+
+    return true;
+  }
+
+
+  const restoredQty =
+    Number(
+      data.qty ||
+      stored.qty ||
+      0
+    );
+
+  const restoredWeek =
+    data.week_start ||
+    stored.weekStart;
+
+
+  if(
+    !restoredQty ||
+    !restoredWeek
+  ){
+
+    clearLocalReservation();
+
+    setStatus(
+      "Choose 5–50 chickens to see available processing weeks."
+    );
+
+    return false;
+  }
+
+
+  qty.value =
+    String(restoredQty);
+
+  currentQty =
+    restoredQty;
+
+  pushPricingFields();
+
+
+  try{
+    await loadWeeks(
+      restoredQty,
+      restoredWeek
+    );
+  }catch(e){}
+
+
+  const selectedOption =
+    Array.from(
+      week.options
+    ).find(
+      option =>
+        option.value ===
+        restoredWeek
+    );
+
+
+  if(
+    selectedOption &&
+    selectedOption.dataset.week
+  ){
+
+    selected =
+      JSON.parse(
+        selectedOption.dataset.week
+      );
+
+  }else{
+
+    selected = {
+      start:restoredWeek,
+      label:
+        stored.weekLabel ||
+        "Your reserved processing week"
+    };
+  }
+
+
+  week.value =
+    restoredWeek;
+
+
+  hold = {
+    token:stored.token,
+    expires_at:
+      data.expires_at ||
+      stored.expiresAt ||
+      "",
+    week_start:
+      restoredWeek,
+    qty:
+      restoredQty
+  };
+
+
+  saveLocalReservation();
+
+  saveWidgetValue();
+
+  startRenewTimer();
+
+
+  setStatus(
+    `${hold.token} — your reservation has been restored. ${selected.label} remains held for ${currentQty} chickens.`,
+    "ok"
+  );
+
+
+  return true;
+}
+
+
+qty.addEventListener(
+  "change",
+  refreshWeeks
+);
+
+week.addEventListener(
+  "change",
+  reserveSelectedWeek
+);
+
+
+JFCustomWidget.subscribe(
+  "ready",
+  async function(data){
+
+    formId =
+      String(
+        (
+          data &&
+          data.formId
+        ) || ""
+      );
+
+    cfg.apiUrl =
+      setting(
+        "ApiUrl",
+        ""
+      );
+
+    cfg.minQty =
+      parseInt(
+        setting(
+          "MinQuantity",
+          "5"
+        ),
+        10
+      ) || 5;
+
+    resizeWidget();
+
+    const resumed =
+      await resumeSavedReservation();
+
+    if(!resumed){
+      JFCustomWidget.sendData({
+        valid:false,
+        value:""
+      });
+    }
+
+    resizeWidget();
+  }
+);
+
+
+JFCustomWidget.subscribe(
+  "submit",
+  function(){
+
+    const result =
+      saveWidgetValue();
+
+    JFCustomWidget.sendSubmit({
+      valid:
+        result.valid,
+      value:
+        result.value
+    });
+  }
+);
+
+
+window.addEventListener(
+  "load",
+  function(){
+    resizeWidget();
+  }
+);
+
+
+window.addEventListener(
+  "beforeunload",
+  function(){
+    saveLocalReservation();
+  }
+);
+
+})();
+</script>
 
 </body>
 </html>
